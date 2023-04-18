@@ -87,10 +87,21 @@ local Button12 = Scriptsec4:AddButton("Prison Life", function()
 	loadstring(game:HttpGet(("https://raw.githubusercontent.com/Demarrr/Roblox-Hax/master/Prison%20Life%20v2.0%20GUI%20Revamped.txt"),true))() 
 end)
 
-local Button14 = Scriptsec4:AddButton("Prison Life", function()
-	loadstring(game:HttpGet(("https://raw.githubusercontent.com/Demarrr/Roblox-Hax/master/Prison%20Life%20v2.0%20GUI%20Revamped.txt"),true))() 
+local Button14 = Scriptsec4:AddButton("Arsenal", function()
+	loadstring(game:HttpGet('https://pastebin.com/raw/T3fzg7tm', true))()
 end)
 
+local Button16 = Scriptsec4:AddButton("Arsenal", function()
+	loadstring(game:HttpGet('https://pastebin.com/raw/T3fzg7tm', true))()
+end)
+
+local Button17 = Scriptsec4:AddButton("Adopt Me", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/TestForCry/robloxhacks/master/Adopt%20Me', true))()
+end)
+
+local Button18 = Scriptsec4:AddButton("Jailbreak", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/TestForCry/robloxhacks/master/JailBreak%20Best%20Script%20Gui', true))()
+end)
 
 
 local settingssec = Settings:AddSection("Main", {default = true})
@@ -116,6 +127,11 @@ local Featsec4 = Features:AddSection("Game", {default = false})
 -- Create Slider
 local Slider = Featsec1:AddSlider("Speed", 15, 100, 16, {default = false, flag = "Slider_Flag1", fireondrag = true, rounded = true}, function(val)
 	game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass('Humanoid').WalkSpeed = val
+end)
+
+-- Create Slider
+local Slider1 = Featsec1:AddSlider("HipHeight", -10, 10, 0, {default = false, flag = "Slider_Flag", fireondrag = true, rounded = true}, function(val)
+	game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass('Humanoid').HipHeight = val
 end)
 
 
@@ -145,11 +161,13 @@ local Button10 = Featsec1:AddButton("Ctrl Click TP", function()
 	loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Click%20Teleport.txt"))()
 end)
 
+local Button15 = Featsec1:AddButton("Backflip + frontflip", function()
+	loadstring(game:HttpGet('https://pastebin.com/raw/7wDcPtLk'))()
+end)
+
 local Button11 = Featsec4:AddButton("BTools", function()
 	loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/BTools.txt"))()
 end)
-
-
 
 
 
