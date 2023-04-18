@@ -43,6 +43,19 @@ end)
 
 local settingssec = Settings:AddSection("Main", {default = true})
 
+-- Create Picker
+local Picker = settingssec:AddPicker("Accent Colour", {color = Color3.fromRGB(85, 235, 186)}, function(color)
+	Window:SetAccent(color)
+end)
+
+local Bind = settingssec:AddBind("Menu Bind", Enum.KeyCode.RightShift, {default = false, flag = "Bind_Flag"}, function(keycode)
+	Window:SetKey(keycode)
+end)
+
+-- Create ClipboardLabel
+local ClipboardLabel = Section:AddClipboardLabel("Copy Loadstring", function()
+	return "loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Mainscript.lua"))()"
+end)
 
 local Featsec1 = Features:AddSection("Movement", {default = false})
 -- Create Slider
