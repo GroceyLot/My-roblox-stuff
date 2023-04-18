@@ -130,7 +130,7 @@ local Slider = Featsec1:AddSlider("Speed", 15, 100, 16, {default = false, flag =
 end)
 
 -- Create Slider
-local Slider1 = Featsec1:AddSlider("HipHeight", -10, 10, 0, {default = false, flag = "Slider_Flag", fireondrag = true, rounded = true}, function(val)
+local Slider1 = Featsec1:AddSlider("HipHeight", -2, 100, 0, {default = false, flag = "Slider_Flag", fireondrag = true, rounded = true}, function(val)
 	game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass('Humanoid').HipHeight = val
 end)
 
