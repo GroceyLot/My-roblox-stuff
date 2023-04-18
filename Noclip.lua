@@ -20,5 +20,3 @@ function clip()
 	if Noclip then Noclip:Disconnect() end
 	Clip = true
 end
-
-noclip() -- to toggle noclip() and clip()
