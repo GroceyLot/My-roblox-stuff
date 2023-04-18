@@ -1,4 +1,3 @@
-local noclip = loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Noclip.lua"))()
 -- Define Library
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/UI-Libraries/main/Vynixius/Source.lua"))()
 
@@ -53,7 +52,7 @@ local Bind = settingssec:AddBind("Menu Bind", Enum.KeyCode.RightShift, {default 
 end)
 
 -- Create ClipboardLabel
-local ClipboardLabel = Section:AddClipboardLabel("Copy Loadstring", function()
+local ClipboardLabel = settingssec:AddClipboardLabel("Copy Loadstring", function()
 	return "loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Mainscript.lua"))()"
 end)
 
