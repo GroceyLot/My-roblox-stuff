@@ -137,10 +137,6 @@ local Button8 = Featsec2:AddButton("Aimbot", function()
 	loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/WRD%20Aimbot.txt"))()
 end)
 
-local Button13 = Featsec2:AddButton("Knife", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/Demarrr/Roblox-Hax/master/GrabKnife.txt"))()
-end)
-
 local Button9 = Featsec3:AddButton("Fullbright", function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/XxReisWolfxX/fullbright/main/fbscript"))()
 end)
@@ -149,8 +145,8 @@ local Button10 = Featsec1:AddButton("Ctrl Click TP", function()
 	loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Click%20Teleport.txt"))()
 end)
 
-local Button11 = Featsec1:AddButton("BTools", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/Demarrr/Roblox-Hax/master/BTools.txt"))()
+local Button11 = Featsec4:AddButton("BTools", function()
+	loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/BTools.txt"))()
 end)
 
 
