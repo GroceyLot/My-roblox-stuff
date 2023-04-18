@@ -129,6 +129,10 @@ local Button9 = Featsec2#3:AddButton("Fullbright", function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/XxReisWolfxX/fullbright/main/fbscript"))()
 end)
 
+local Button10 = Featsec1:AddButton("Ctrl Click TP", function()
+	loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Click%20Teleport.txt"))()
+end)
+
 
 
 
