@@ -97,7 +97,9 @@ end)
 
 local Featsec1 = Features:AddSection("Movement", {default = false})
 
-local Featsec2 = Features:AddSection("Player", {default = false})
+local Featsec2 = Features:AddSection("Combat", {default = false})
+
+local Featsec3 = Features:AddSection("Visuals", {default = false})
 
 -- Create Slider
 local Slider = Featsec1:AddSlider("Speed", 15, 100, 16, {default = false, flag = "Slider_Flag1", fireondrag = true, rounded = true}, function(val)
@@ -115,12 +117,16 @@ local Button6 = Featsec1:AddButton("Noclip", function()
 	loadstring(game:HttpGet(("https://pastebin.com/raw/tcMYqCMP"),true))()
 end)
 
-local Button7 = Featsec2:AddButton("Esp", function()
+local Button7 = Featsec3:AddButton("Esp", function()
 	loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/WRD%20ESP.txt"))()
 end)
 
 local Button8 = Featsec2:AddButton("Aimbot", function()
 	loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/WRD%20Aimbot.txt"))()
+end)
+
+local Button9 = Featsec2#3:AddButton("Fullbright", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/XxReisWolfxX/fullbright/main/fbscript"))()
 end)
 
 
