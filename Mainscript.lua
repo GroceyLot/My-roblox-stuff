@@ -54,6 +54,9 @@ end)
 
 
 local Featsec1 = Features:AddSection("Movement", {default = false})
+
+local Featsec2 = Features:AddSection("Visuals", {default = false})
+
 -- Create Slider
 local Slider = Featsec1:AddSlider("Speed", 15, 100, 16, {default = false, flag = "Slider_Flag1", fireondrag = true, rounded = true}, function(val)
 	game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass('Humanoid').WalkSpeed = val
@@ -64,6 +67,14 @@ end)
 -- Create Toggle
 local Button5 = Featsec1:AddButton("Infinite Jump", function()
 	loadstring(game:HttpGet(("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Infinitejump.lua"),true))()
+end)
+
+local Button6 = Featsec1:AddButton("Noclip", function()
+	loadstring(game:HttpGet(("https://pastebin.com/raw/tcMYqCMP"),true))()
+end)
+
+local Button7 = Featsec2:AddButton("Esp", function()
+	lloadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/WRD%20ESP.txt"))()
 end)
 
 
