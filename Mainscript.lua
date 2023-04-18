@@ -51,10 +51,6 @@ local Bind = settingssec:AddBind("Menu Bind", Enum.KeyCode.RightShift, {default 
 	Window:SetKey(keycode)
 end)
 
--- Create ClipboardLabel
-local ClipboardLabel = settingssec:AddClipboardLabel("Copy Loadstring", function()
-	return "loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Mainscript.lua"))()"
-end)
 
 local Featsec1 = Features:AddSection("Movement", {default = false})
 -- Create Slider
