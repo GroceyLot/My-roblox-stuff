@@ -91,15 +91,11 @@ local Button14 = Scriptsec4:AddButton("Arsenal", function()
 	loadstring(game:HttpGet('https://pastebin.com/raw/T3fzg7tm', true))()
 end)
 
-local Button16 = Scriptsec4:AddButton("Arsenal", function()
-	loadstring(game:HttpGet('https://pastebin.com/raw/T3fzg7tm', true))()
-end)
-
-local Button17 = Scriptsec4:AddButton("Adopt Me", function()
+local Button16 = Scriptsec4:AddButton("Adopt Me", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/TestForCry/robloxhacks/master/Adopt%20Me', true))()
 end)
 
-local Button18 = Scriptsec4:AddButton("Jailbreak", function()
+local Button17 = Scriptsec4:AddButton("Jailbreak", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/TestForCry/robloxhacks/master/JailBreak%20Best%20Script%20Gui', true))()
 end)
 
