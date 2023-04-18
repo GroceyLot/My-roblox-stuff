@@ -64,7 +64,7 @@ local Settings = Window:AddTab("Settings", {default = false})
 local Scriptsec1 = Scripts:AddSection("Dex", {default = false})
 local Scriptsec2 = Scripts:AddSection("InfiniteYield", {default = false})
 local Scriptsec3 = Scripts:AddSection("Vynixius", {default = false})
-local Scriptsec4 = Scripts:AddSection("MSDoors", {default = false})
+local Scriptsec4 = Scripts:AddSection("Game Scripts", {default = false})
 
 -- Create Button
 local Button = Scriptsec1:AddButton("Load", function()
@@ -79,9 +79,15 @@ local Button3 = Scriptsec3:AddButton("Load", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/RegularVynixu/Vynixius/main/Loader.lua'))()
 end)
 
-local Button4 = Scriptsec4:AddButton("Load", function()
+local Button4 = Scriptsec4:AddButton("MSDoors", function()
 	loadstring(game:HttpGet(("https://raw.githubusercontent.com/mstudio45/MSDOORS/main/MSDOORS.lua"),true))() 
 end)
+
+local Button12 = Scriptsec4:AddButton("Prison Life", function()
+	loadstring(game:HttpGet(("https://raw.githubusercontent.com/Demarrr/Roblox-Hax/master/Prison%20Life%20v2.0%20GUI%20Revamped.txt"),true))() 
+end)
+
+
 
 local settingssec = Settings:AddSection("Main", {default = true})
 
@@ -100,6 +106,8 @@ local Featsec1 = Features:AddSection("Movement", {default = false})
 local Featsec2 = Features:AddSection("Combat", {default = false})
 
 local Featsec3 = Features:AddSection("Visuals", {default = false})
+
+local Featsec4 = Features:AddSection("Game", {default = false})
 
 -- Create Slider
 local Slider = Featsec1:AddSlider("Speed", 15, 100, 16, {default = false, flag = "Slider_Flag1", fireondrag = true, rounded = true}, function(val)
@@ -125,13 +133,23 @@ local Button8 = Featsec2:AddButton("Aimbot", function()
 	loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/WRD%20Aimbot.txt"))()
 end)
 
-local Button9 = Featsec2#3:AddButton("Fullbright", function()
+local Button13 = Featsec2:AddButton("Knife", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Demarrr/Roblox-Hax/master/GrabKnife.txt"))()
+end)
+
+local Button9 = Featsec3:AddButton("Fullbright", function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/XxReisWolfxX/fullbright/main/fbscript"))()
 end)
 
 local Button10 = Featsec1:AddButton("Ctrl Click TP", function()
 	loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Click%20Teleport.txt"))()
 end)
+
+local Button11 = Featsec1:AddButton("BTools", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Demarrr/Roblox-Hax/master/BTools.txt"))()
+end)
+
+
 
 
 
