@@ -87,6 +87,10 @@ local Button12 = Scriptsec4:AddButton("Prison Life", function()
 	loadstring(game:HttpGet(("https://raw.githubusercontent.com/Demarrr/Roblox-Hax/master/Prison%20Life%20v2.0%20GUI%20Revamped.txt"),true))() 
 end)
 
+local Button14 = Scriptsec4:AddButton("Prison Life", function()
+	loadstring(game:HttpGet(("https://raw.githubusercontent.com/Demarrr/Roblox-Hax/master/Prison%20Life%20v2.0%20GUI%20Revamped.txt"),true))() 
+end)
+
 
 
 local settingssec = Settings:AddSection("Main", {default = true})
