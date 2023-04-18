@@ -11,6 +11,7 @@ local Window = Library:AddWindow({
 	default = true
 })
 
+
 -- Create Tab
 local Scripts = Window:AddTab("Scripts", {default = true})
 local Features = Window:AddTab("Features", {default = false})
