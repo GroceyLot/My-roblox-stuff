@@ -13,7 +13,7 @@ local Window = Library:AddWindow({
 })
 
 local Features = Window:AddTab("Player", {default = false})
-local AFeatures = Window:AddTab("Features", {default = false})
+local AFeatures = Window:AddTab("Features", {default = true})
 local Settings = Window:AddTab("Settings", {default = false})
 
 local settingssec = Settings:AddSection("Main", {default = true})
