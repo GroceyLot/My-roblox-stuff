@@ -118,7 +118,7 @@ local Picker = settingssec:AddPicker("Accent Colour", {color = Color3.fromRGB(85
 	Window:SetAccent(color)
 end)
 
-local Bind = settingssec:AddBind("Menu Bind", Enum.KeyCode.RightShift, {default = false, flag = "Bind_Flag"}, function(keycode)
+local Bind = settingssec:AddBind("Menu Bind", Enum.KeyCode.M, {default = false, flag = "Bind_Flag"}, function(keycode)
 	Window:SetKey(keycode)
 end)
 
