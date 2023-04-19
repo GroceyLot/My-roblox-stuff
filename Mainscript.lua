@@ -101,7 +101,7 @@ local Button17 = Scriptsec4:AddButton("Jailbreak", function()
 	loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/5d4b0843f800d5dcac07568e18190b7e.lua"))()
 end)
 
-local Button20 = Scriptsec4:AddButton("Jailbreak", function()
+local Button20 = Scriptsec4:AddButton("Grocey - Barry's Prison", function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Barry's%20Prison%20Run%20GUI"))()
 end)
 
