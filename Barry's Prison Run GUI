@@ -34,7 +34,10 @@ end)
 local 1 = AFeatures:AddSection("Barry", {default = true})
 
 local a1 = 1:AddButton("Anti-Detection", function()
-	game.StarterPlayer.StarterCharacterScripts
+	game.StarterPlayer.StarterCharacterScripts.pol1:Destroy()
+	game.StarterPlayer.StarterCharacterScripts.pol2:Destroy()
+	game.Players.LocalPlayer.Character.pol1:Destroy()
+	game.Players.LocalPlayer.Character.pol2:Destroy()
 end)
 
 local Featsec1 = Features:AddSection("Player", {default = false})
