@@ -31,13 +31,13 @@ local Button18 = settingssec:AddButton("Unload", function()
 	game.CoreGui["Vynixius UI Library"]:Destroy()
 end)
 
-local 1 = AFeatures:AddSection("Barry", {default = true})
+local 1 = AFeatures:AddSection("Barry", {default = false})
 
 local a1 = 1:AddButton("Anti-Detection", function()
-	game.StarterPlayer.StarterCharacterScripts.pol1:Destroy()
-	game.StarterPlayer.StarterCharacterScripts.pol2:Destroy()
-	game.Players.LocalPlayer.Character.pol1:Destroy()
-	game.Players.LocalPlayer.Character.pol2:Destroy()
+	game.StarterPlayer.StarterCharacterScripts:Findfirstchild("pol1"):Destroy()
+	game.StarterPlayer.StarterCharacterScripts:Findfirstchild("pol2"):Destroy()
+	game.Players.LocalPlayer.Character:Findfirstchild("pol1"):Destroy()
+	game.Players.LocalPlayer.Character:Findfirstchild("pol2"):Destroy()
 end)
 
 local Featsec1 = Features:AddSection("Player", {default = false})
