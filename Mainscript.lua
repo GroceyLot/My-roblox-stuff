@@ -98,7 +98,7 @@ local Button16 = Scriptsec4:AddButton("Adopt Me", function()
 end)
 
 local Button17 = Scriptsec4:AddButton("Jailbreak", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/TestForCry/robloxhacks/master/JailBreak%20Best%20Script%20Gui', true))()
+	loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/5d4b0843f800d5dcac07568e18190b7e.lua"))()
 end)
 
 -- Create Box
