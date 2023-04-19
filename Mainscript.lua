@@ -127,7 +127,7 @@ local Button18 = settingssec:AddButton("Unload", function()
 end)
 
 
-local Featsec1 = Features:AddSection("Movement", {default = false})
+local Featsec1 = Features:AddSection("Player", {default = false})
 
 local Featsec2 = Features:AddSection("Combat", {default = false})
 
@@ -156,6 +156,10 @@ local Button6 = Featsec1:AddButton("Noclip", function()
 	loadstring(game:HttpGet(("https://pastebin.com/raw/tcMYqCMP"),true))()
 end)
 
+local Button19 = Featsec1:AddButton("Invisibility", function()
+	loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Invisible%20Character.txt"))()
+end)
+
 local Button7 = Featsec3:AddButton("Esp", function()
 	loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/WRD%20ESP.txt"))()
 end)
@@ -179,7 +183,4 @@ end)
 local Button11 = Featsec4:AddButton("BTools", function()
 	loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/BTools.txt"))()
 end)
-
-
-
 
