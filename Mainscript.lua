@@ -102,7 +102,7 @@ local Button17 = Scriptsec4:AddButton("Jailbreak", function()
 end)
 
 -- Create Box
-local Box = Section:AddBox("Loadstring url", {fireonempty = false}, function(text)
+local Box = Scriptsec4:AddBox("Loadstring url", {fireonempty = false}, function(text)
 	loady = text
 end)
 
