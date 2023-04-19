@@ -40,6 +40,8 @@ end)
 -- // Credits
 getgenv().AntiKickExecuted = true
 
+local loady = nil
+
 -- Define Library
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/UI-Libraries/main/Vynixius/Source.lua"))()
 
@@ -97,6 +99,15 @@ end)
 
 local Button17 = Scriptsec4:AddButton("Jailbreak", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/TestForCry/robloxhacks/master/JailBreak%20Best%20Script%20Gui', true))()
+end)
+
+-- Create Box
+local Box = Section:AddBox("Loadstring url", {fireonempty = false}, function(text)
+	loady = text
+end)
+
+local Button19 = Scriptsec4:AddButton("Run", function()
+	loadstring(game:HttpGet(loady, true))()
 end)
 
 
