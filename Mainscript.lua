@@ -111,6 +111,10 @@ local Bind = settingssec:AddBind("Menu Bind", Enum.KeyCode.RightShift, {default 
 	Window:SetKey(keycode)
 end)
 
+local Button18 = settingssec:AddButton("Unload", function()
+	game.CoreGui["Vynixius UI Library"]:Destroy()
+end)
+
 
 local Featsec1 = Features:AddSection("Movement", {default = false})
 
