@@ -16,7 +16,7 @@ local Features = Window:AddTab("Player", {default = false})
 local AFeatures = Window:AddTab("Features", {default = true})
 local Settings = Window:AddTab("Settings", {default = false})
 
-local settingssec = Settings:AddSection("Main", {default = true})
+local settingssec = Settings:AddSection("Main", {default = false})
 
 -- Create Picker
 local Picker = settingssec:AddPicker("Accent Colour", {color = Color3.fromRGB(85, 235, 186)}, function(color)
