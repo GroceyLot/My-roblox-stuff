@@ -33,6 +33,5 @@ end)
 local a = Features:AddSection("Barry", {default = false})
 
 local b = a:AddButton("Anti-Detection", function()
-	game.Players.LocalPlayer.Character.pol1:Destroy()
-	game.Players.LocalPlayer.Character.pol2:Destroy()
+	game.Workspace.Policeman1:Destroy()
 end)
