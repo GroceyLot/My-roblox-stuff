@@ -55,6 +55,7 @@ end)
 
 local g = a:AddButton("Anti-Fan", function()
 	game.Workspace.LocalObjects.FanPush:Destroy()
+	game.Workspace.LocalObjects.Fans:Destroy()
 end)
 
 
