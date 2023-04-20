@@ -67,7 +67,7 @@ local i = a:AddButton("Anti-Lazers", function()
 end)
 
 local j = a:AddButton("Kill mech", function()
-	game.Workspace.MechBoss.Health.Value = 0
+	game.Workspace.MechBoss.health.Value = 0
 end)
 
 
