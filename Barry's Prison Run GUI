@@ -60,7 +60,7 @@ local g = a:AddButton("Anti-Steam", function()
 end)
 
 local h = a:AddButton("Kill chef", function()
-	game.Workspace.DinnerChef.Health = 0
+	game.Workspace.DinnerChef.Health.Value = 0
 end)
 local i = a:AddButton("Anti-Lazers", function()
 	game.Workspace.LocalObjects.LazerSpins:Destroy()
