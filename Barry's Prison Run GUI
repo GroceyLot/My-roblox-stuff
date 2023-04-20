@@ -32,7 +32,7 @@ end)
 
 local a = Features:AddSection("Game", {default = false})
 
-local b = a:AddButton("Anti-Detection", function()
+local b = a:AddButton("Anti-Barry", function()
 	game.Workspace.Policeman1:Destroy()
 end)
 
@@ -48,4 +48,9 @@ end)
 local E = a:AddButton("Auto dig", function()
 	game.Workspace.DigPuzzle:Destroy()
 end)
+local f = a:AddButton("Anti-Boulder", function()
+	game.Players.LocalPlayer.PlayerScripts.LocalEnter:ClearAllChildren()
+end)
+
+
 
