@@ -53,5 +53,9 @@ local f = a:AddButton("Anti-Boulder", function()
 	game.Players.LocalPlayer.PlayerScripts.LocalEnter:ClearAllChildren()
 end)
 
+local g = a:AddButton("Anti-Fan", function()
+	game.Workspace.LocalObjects.FanPush:Destroy()
+end)
+
 
 
