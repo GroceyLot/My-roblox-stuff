@@ -81,8 +81,8 @@ local Button3 = Scriptsec3:AddButton("Load", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/RegularVynixu/Vynixius/main/Loader.lua'))()
 end)
 
-local Button4 = Scriptsec4:AddButton("MSDoors", function()
-	loadstring(game:HttpGet(("https://raw.githubusercontent.com/mstudio45/MSDOORS/main/MSDOORS.lua"),true))() 
+local Button4 = Scriptsec4:AddButton("MSHUB", function()
+	loadstring(game:HttpGet(('https://scripts.luawl.com/hosted/5055/19915/MSHUB_LOADER.lua'),true))() 
 end)
 
 local Button12 = Scriptsec4:AddButton("Prison Life", function()
