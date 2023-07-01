@@ -5,9 +5,9 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Regul
 local speed = 10
 -- Create Window
 local Window = Library:AddWindow({
-	title = {"Grocey", "Barry's Prison"},
+	title = {"Grocey", "Garten of Banban"},
 	theme = {
-		Accent = Color3.fromRGB(0, 255, 0)
+		Accent = Color3.fromRGB(125, 0, 20)
 	},
 	key = Enum.KeyCode.RightShift,
 	default = true
