@@ -32,7 +32,7 @@ local Button18 = settingssec:AddButton("Unload", function()
 end)
 
 local a = Features:AddSection("Game", {default = false})
-local a1 = a:AddSlider("Speed", 10, 20, 10, {toggleable = false, default = false, flag = "Slider_Flag",  fireondrag = true, rounded = true}, function(val)
+local a1 = a:AddSlider("Speed (Disables sprinting)", 10, 20, 10, {toggleable = false, default = false, flag = "Slider_Flag",  fireondrag = true, rounded = true}, function(val)
   game.Players.LocalPlayer.PlayerGui.MainGui.Stamina:Destroy()
   game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = val
 end)
