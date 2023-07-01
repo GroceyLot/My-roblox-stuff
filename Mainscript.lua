@@ -82,7 +82,7 @@ local Button3 = Scriptsec3:AddButton("Load", function()
 end)
 
 local Button4 = Scriptsec4:AddButton("MSHUB", function()
-	loadstring(game:HttpGet('https://scripts.luawl.com/hosted/5055/19915/MSHUB_LOADER.lua',true))() 
+	loadstring(game:HttpGet('https://scripts.luawl.com/hosted/5055/19915/MSHUB_LOADER.lua'))()
 end)
 
 local Button12 = Scriptsec4:AddButton("Prison Life", function()
