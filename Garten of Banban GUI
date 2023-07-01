@@ -1,0 +1,5 @@
+game.Player.LocalPlayer.PlayerGui.MainGui.Stamina:Destroy
+while true do
+wait()
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+end
