@@ -33,11 +33,6 @@ end)
 
 local a = Features:AddSection("Game", {default = false})
 local a1 = a:AddSlider("Speed", 10, 20, 10, {toggleable = false, default = false, flag = "Slider_Flag",  fireondrag = true, rounded = true}, function(val)
-	game.Player.LocalPlayer.PlayerGui.MainGui.Stamina:Destroy()
-  speed = val
+  game.Player.LocalPlayer.PlayerGui.MainGui.Stamina:Destroy()
+  game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = val
 end)
-
-while true do
-wait()
-  game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speed
-end
