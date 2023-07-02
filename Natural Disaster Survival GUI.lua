@@ -17,7 +17,7 @@ game.Workspace.ContentModel.Status:GetPropertyChangedSignal("Value"):Connect(fun
 		while true do
 			wait(1)
 			if game.Workspace.ContentModel.Status.Value ~= "Survivers" then
-				game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-280, 190, 340))
+				game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-280, 180, 340))
 			else
 				break
 			end
