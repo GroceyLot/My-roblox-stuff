@@ -13,7 +13,7 @@ local Window = Library:AddWindow({
 })
 local autowin = false
 game.Workspace.ContentModel.Status:GetPropertyChangedSignal("Value"):Connect(function()
-	if autowin and game.Workspace.ContentModel.Status.Value = "NewMap" then
+	if autowin and game.Workspace.ContentModel.Status.Value == "New Map" then
 		while true do
 			wait()
 			if game.Workspace.ContentModel.Status.Value ~= "Survivors" then
