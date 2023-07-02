@@ -105,7 +105,7 @@ local Button20 = Scriptsec4:AddButton("Grocey - Barry's Prison", function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Barry's%20Prison%20Run%20GUI"))()
 end)
 local Button21 = Scriptsec4:AddButton("Grocey - Natural Disater Survival", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Barry's%20Prison%20Run%20GUI"))()
+	loadstring(game:HttpGet("https://github.com/GroceyLot/My-roblox-stuff/raw/Things/Natural%20Disaster%20Survival%20GUI.lua"))()
 end)
 
 -- Create Box
@@ -151,6 +151,11 @@ end)
 local Slider1 = Featsec1:AddSlider("HipHeight", 0, 100, game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass('Humanoid').HipHeight, {default = false, flag = "Slider_Flag", fireondrag = true, rounded = true}, function(val)
 	game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass('Humanoid').HipHeight = val
 end)
+-- Create Slider
+local Slider2 = Featsec1:AddSlider("JumpPower", 0, 100, game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass('Humanoid').JumpPower, {default = false, flag = "Slider_Flag2", fireondrag = true, rounded = true}, function(val)
+	game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass('Humanoid').JumpPower = val
+end)
+
 
 
 
