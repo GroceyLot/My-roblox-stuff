@@ -16,7 +16,7 @@ game.Workspace.ContentModel.Status:GetPropertyChangedSignal("Value"):Connect(fun
 	if autowin and game.Workspace.ContentModel.Status.Value == "New Map" then
 		while true do
 			wait(1)
-			if game.Workspace.ContentModel.Status.Value ~= "Survivors" then
+			if game.Workspace.ContentModel.Status.Value ~= "Survivers" then
 				game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-280, 190, 340))
 			else
 				break
