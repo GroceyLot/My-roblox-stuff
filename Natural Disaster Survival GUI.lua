@@ -12,7 +12,7 @@ local Window = Library:AddWindow({
 	default = true
 })
 local autowin = false
-game.Workpace.ContentModel.Status:GetPropertyChangedSignal("Value"):Connect(function()
+game.WorkSpace.ContentModel.Status:GetPropertyChangedSignal("Value"):Connect(function()
 	if autowin then
 		game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-280, 190, 340))
 	end
