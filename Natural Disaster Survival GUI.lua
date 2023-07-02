@@ -12,9 +12,16 @@ local Window = Library:AddWindow({
 	default = true
 })
 local autowin = false
-game.WorkSpace.ContentModel.Status:GetPropertyChangedSignal("Value"):Connect(function()
-	if autowin then
-		game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-280, 190, 340))
+game.Workspace.ContentModel.Status:GetPropertyChangedSignal("Value"):Connect(function()
+	if autowin and game.Workspace.ContentModel.Status.Value = "NewMap" then
+		while true do
+			wait()
+			if game.Workspace.ContentModel.Status.Value ~= "Survivors" then
+				game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-280, 190, 340))
+			else
+				break
+			end
+		end
 	end
 end)
 local Features = Window:AddTab("Features", {default = true})
