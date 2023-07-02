@@ -2,17 +2,21 @@
 
 -- Define Library
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/UI-Libraries/main/Vynixius/Source.lua"))()
-local speed = 10
 -- Create Window
 local Window = Library:AddWindow({
-	title = {"Grocey", "Garten of Banban"},
+	title = {"Grocey", "Natural Disaster Survival"},
 	theme = {
 		Accent = Color3.fromRGB(125, 0, 20)
 	},
 	key = Enum.KeyCode.RightShift,
 	default = true
 })
-
+local autowin = false
+:Connect(function()
+	if autowin then
+		game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-280, 190, 340))
+	end
+end)
 local Features = Window:AddTab("Features", {default = true})
 local Settings = Window:AddTab("Settings", {default = false})
 
@@ -32,7 +36,6 @@ local Button18 = settingssec:AddButton("Unload", function()
 end)
 
 local a = Features:AddSection("Game", {default = false})
-local a1 = a:AddSlider("Speed (Disables sprinting)", 10, 20, 10, {toggleable = false, default = false, flag = "Slider_Flag",  fireondrag = true, rounded = true}, function(val)
-  game.Players.LocalPlayer.PlayerGui.MainGui.Stamina:Destroy()
-  game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = val
+local a1 = a:AddToggle("AutoWin", {default = false}, function(bool)
+	autowin = bool
 end)
