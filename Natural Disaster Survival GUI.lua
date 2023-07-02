@@ -6,13 +6,13 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Regul
 local Window = Library:AddWindow({
 	title = {"Grocey", "Natural Disaster Survival"},
 	theme = {
-		Accent = Color3.fromRGB(125, 0, 20)
+		Accent = Color3.fromRGB(85, 235, 186)
 	},
 	key = Enum.KeyCode.RightShift,
 	default = true
 })
 local autowin = false
-:Connect(function()
+game.Workpace.ContentModel.Status.GetPropertyChangedSignal("Value"):Connect(function()
 	if autowin then
 		game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-280, 190, 340))
 	end
