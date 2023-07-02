@@ -43,6 +43,6 @@ local Button18 = settingssec:AddButton("Unload", function()
 end)
 
 local a = Features:AddSection("Game", {default = false})
-local a1 = a:AddToggle("AutoWin", {default = false}, function(bool)
+local a1 = a:AddToggle("AFKGrind", {default = false}, function(bool)
 	autowin = bool
 end)
