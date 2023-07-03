@@ -1,8 +1,8 @@
 local Glib = {}
-function Glib.init(BackColor3, FrontColor3, TextColor3, name, parent)
+function Glib.init(BackColor3, FrontColor3, TextColor3, name)
 	local scrgui = Instance.new("ScreenGui")
 	scrgui.Name = "Glib" .. tostring(math.random(0, 999999))
-	scrgui.Parent = parent
+	scrgui.Parent = game.CoreGui
 	local objs = {Instance.new("Frame"), Instance.new("UICorner"), Instance.new("TextLabel"), Instance.new("UICorner"), Instance.new("ScrollingFrame")}
 	local cobj = objs[1]
 	cobj.Position = UDim2.new(0.7,0,0.5,0)
