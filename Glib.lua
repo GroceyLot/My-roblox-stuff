@@ -64,3 +64,12 @@ function Glib:ConnectToggle(window, togglename, func)
 		func(window:FindFirstChild(togglename).Checked.Value)
 	end)
 end
+function Glib:TriggerToggle(window, togglename)
+	window:FindFirstChild(togglename).Checked.Value = not window:FindFirstChild(togglename).Checked.Value
+		
+	if window:FindFirstChild(togglename).Checked.Value then
+		toggle.TextColor = BrickColor.Green()
+	else
+		toggle.TextColor3 = window.Parent.Label.TextColor3
+	end
+end
