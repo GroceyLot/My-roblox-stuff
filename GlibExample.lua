@@ -7,7 +7,7 @@ local window = Glib.init( --Create Window
   game.CoreGui --Parent
 )
 for i=1, 10 do
-	Glib.AddToggle( --Add Toggle
+  Glib.AddToggle( --Add Toggle
     window, --Window
     "Hello", --Text
     tostring(i) --Name/ID
