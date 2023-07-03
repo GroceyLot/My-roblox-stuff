@@ -1,5 +1,5 @@
 local Glib = {}
-function Glib.init(BackColor3, FrontColor3, TextColor3, name)
+function Glib:init(BackColor3, FrontColor3, TextColor3, name)
 	local scrgui = Instance.new("ScreenGui")
 	scrgui.Name = "Glib" .. tostring(math.random(0, 999999))
 	scrgui.Parent = game.Players.LocalPlayer.PlayerGui
@@ -33,7 +33,7 @@ function Glib.init(BackColor3, FrontColor3, TextColor3, name)
 	cobj.Parent = objs[1]
 	return cobj
 end
-function Glib.AddToggle(window, text, name)
+function Glib:AddToggle(window, text, name)
 	local toggle = Instance.new("TextButton")
 	toggle.Name = name
 	toggle.Position = UDim2.new(0,0,0,#window:GetChildren()*55)
@@ -58,7 +58,7 @@ function Glib.AddToggle(window, text, name)
 	end)
 	return toggle
 end
-function Glib.ConnectToggle(window, togglename, func)
+function Glib:ConnectToggle(window, togglename, func)
 	window:FindFirstChild(togglename).MouseButton1Click:Connect(function()
 		wait()
 		func(window:FindFirstChild(togglename).Checked.Value)
