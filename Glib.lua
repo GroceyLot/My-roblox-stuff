@@ -59,6 +59,8 @@ function Glib.AddToggle(window, text, name)
 	return toggle
 end
 function Glib.ConnectToggle(window, togglename, func)
-	local value = window:FindFirstChild(togglename).Checked
-	window:FindFirstChild(togglename).MouseButton1Click:Connect(func(value))
+	window:FindFirstChild(togglename).MouseButton1Click:Connect(function()
+		wait()
+		func(window:FindFirstChild(togglename).Checked.Value)
+	end)
 end
