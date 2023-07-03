@@ -3,8 +3,7 @@ local window = Glib.init( --Create Window
   Color3.new(0.2,0.2,0.2), --Backcolor
   Color3.new(0.3,0.3,0.3), --Frontcolor
   Color3.new(1,1,1), --Textcolor
-  "Glib", --Text
-  game.CoreGui --Parent
+  "Glib" --Text
 )
 for i=1, 10 do
   Glib.AddToggle( --Add Toggle
@@ -13,9 +12,9 @@ for i=1, 10 do
     tostring(i) --Name/ID
   )
   Glib.ConnectToggle(
-    window,
-    tostring(i),
-    function(value)
+    window, --Window
+    tostring(i), --Id of the button
+    function(value) --Function (value is a bool)
       if value then
       local newpart = Instance.new("Part")
       newpart.Parent = game.Workspace
