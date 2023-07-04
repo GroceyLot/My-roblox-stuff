@@ -126,7 +126,7 @@ function Glib:TriggerToggle(window, togglename)
 end
 function Glib:AddButton(window, text, id, func)
    local toggle = Instance.new("TextButton")
-   toggle.Name = name
+   toggle.Name = id
    toggle.Position = UDim2.new(0,0,0,#window:GetChildren()*55)
    toggle.Parent = window
    toggle.Text = text
@@ -137,6 +137,7 @@ function Glib:AddButton(window, text, id, func)
    toggle.BackgroundColor3 = window.Parent.Label.BackgroundColor3
    toggle.TextColor3 = window.Parent.Label.TextColor3
    toggle.MouseButton1Click:Connect(func)
+   return toggle
 end
 local window = Glib:init(Color3.new(0.1,0.1,0.1),Color3.new(0.25,0.25,0.25),Color3.new(1,1,1), "Orchestra")
 findallchildren(game.Workspace, allchids, "Sound")
