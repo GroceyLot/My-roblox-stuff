@@ -157,6 +157,10 @@ local Slider2 = Featsec1:AddSlider("JumpPower", 0, 100, game:GetService"Players"
 end)
 
 
+-- Create Slider
+local Slider3 = Featsec3:AddSlider("Fov", 20, 120, game.Workspace.CurrentCamera.FieldOfView, {default = false, flag = "Slider_Flag3", fireondrag = true, rounded = true}, function(val)
+	game.Workspace.CurrentCamera.FieldOfView = val
+end)
 
 
 -- Create Toggle
