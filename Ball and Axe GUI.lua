@@ -156,7 +156,7 @@ DivSection:AddColorpicker({
 		game.Workspace.division.Color = Value
 	end	  
 })
-DivtSection:AddSlider({
+DivSection:AddSlider({
 	Name = "Transparency",
 	Min = 0,
 	Max = 100,
@@ -175,4 +175,17 @@ PlayerSection:AddColorpicker({
 		axe.Parent.ball.Color = Value
 	end	  
 })
-
+VisTab:AddSlider({
+	Name = "Zoom",
+	Min = 1,
+	Max = 150,
+	Default = 12,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "Zoom",
+	Callback = function(t)
+		game.Workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
+		player.CameraMinZoomDistance = t
+		player.CameraMaxZoomDistance = t
+	end    
+})
