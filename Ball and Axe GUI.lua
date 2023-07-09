@@ -77,6 +77,9 @@ local PlatSection = PlayerTab:AddSection({
 local DotSection = VisTab:AddSection({
 	Name = "Dot"
 })
+local DivSection = VisTab:AddSection({
+	Name = "Plane"
+})
 local PlayerSection = VisTab:AddSection({
 	Name = "Player"
 })
@@ -145,6 +148,24 @@ DotSection:AddSlider({
 	ValueName = "Transparency",
 	Callback = function(t)
 		game.Workspace.ind.Transparency = t / 100
+	end    
+})
+DivSection:AddColorpicker({
+	Name = "Color",
+	Default = Color3.fromRGB(255, 0, 0),
+		game.Workspace.division.Color = Value
+	end	  
+})
+DivtSection:AddSlider({
+	Name = "Transparency",
+	Min = 0,
+	Max = 100,
+	Default = 70,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "Transparency",
+	Callback = function(t)
+		game.Workspace.division.Transparency = t / 100
 	end    
 })
 PlayerSection:AddColorpicker({
