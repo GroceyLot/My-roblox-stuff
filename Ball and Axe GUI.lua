@@ -130,7 +130,7 @@ PlayerTab:AddSlider({
 })
 DotSection:AddColorpicker({
 	Name = "Color",
-	Default = Color3.fromRGB(255, 0, 0),
+	Default = game.Workspace.ind.Color,
 	Callback = function(Value)
 		if game.Workspace.ind:FindFirstChild("Highlight") then
 			game.Workspace.ind:FindFirstChild("Highlight"):Destroy()
@@ -152,7 +152,7 @@ DotSection:AddSlider({
 })
 DivSection:AddColorpicker({
 	Name = "Color",
-	Default = Color3.fromRGB(255, 0, 0),
+	Default = Color3.fromRGB(0, 0, 0),
 		game.Workspace.division.Color = Value
 	end	  
 })
@@ -170,7 +170,7 @@ DivtSection:AddSlider({
 })
 PlayerSection:AddColorpicker({
 	Name = "Player Color",
-	Default = Color3.fromRGB(255, 0, 0),
+	Default = axe.Parent.ball.Color,
 	Callback = function(Value)
 		axe.Parent.ball.Color = Value
 	end	  
