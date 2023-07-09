@@ -107,7 +107,9 @@ end)
 local Button21 = Scriptsec4:AddButton("Grocey - Natural Disater Survival", function()
 	loadstring(game:HttpGet("https://github.com/GroceyLot/My-roblox-stuff/raw/Things/Natural%20Disaster%20Survival%20GUI.lua"))()
 end)
-
+local Button22 = Scriptsec4:AddButton("Grocey - Ball and Axe", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Ball%20and%20Axe%20GUI.lua"))()
+end)
 -- Create Box
 local Box = Scriptsec4:AddBox("Loadstring url", {fireonempty = false}, function(text)
 	loady = text
