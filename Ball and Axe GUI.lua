@@ -151,10 +151,11 @@ DotSection:AddSlider({
 	end    
 })
 DivSection:AddColorpicker({
-	Name = "Color",
-	Default = Color3.fromRGB(0, 0, 0),
-		game.Workspace.division.Color = Value
-	end	  
+    Name = "Color",
+    Default = Color3.fromRGB(0, 0, 0),
+    Callback = function(Value)
+        game.Workspace.division.Color = Value
+    end
 })
 DivSection:AddSlider({
 	Name = "Transparency",
