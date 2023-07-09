@@ -17,21 +17,21 @@ local function onMouseButton1Down()
         part.Name = "FollowPart"
         part.Transparency = trans / 100
         part.Anchored = true
-        part.Size = Vector3.new(5, 5, 5)
+        part.Size = Vector3.new(100, 5, 5)
         if shape == 1 then
-            part.Size = Vector3.new(5, 1, 5) -- Adjust the size as desired
+            part.Size = Vector3.new(5, 5, 5) -- Adjust the size as desired
         end
         if shape == 2 then
-            part.Size = Vector3.new(1, 1, 1)
+            part.Size = Vector3.new(5, 1, 5)
         end
         part.BrickColor = BrickColor.new("Bright red") -- Adjust the color as desired
         part.Parent = parts
         local position = axe.Position
         axe.Parent.ball.CanCollide = false
-        if shape == 0 then
-            part.Position = Vector3.new(position.x, position.y - 2.5, position.z)
-        else
+        if shape == 2 then
             part.Position = Vector3.new(position.x, position.y - 1, position.z)
+        else
+            part.Position = Vector3.new(position.x, position.y - 2.5, position.z)
         end
     end
 end
@@ -89,14 +89,14 @@ PlatSection:AddToggle({
 })
 PlatSection:AddDropdown({
 	Name = "Shape",
-	Default = "Cube",
-	Options = {"Cube",  "Platform", "Dot"},
+	Default = "Long",
+	Options = {"Long",  "Cube", "Platform"},
 	Callback = function(t)
-		if t == "Cube" then
+		if t == "Long" then
         	shape = 0
-    	elseif t == "Platform" then
+    	elseif t == "Cube" then
         	shape = 1
-    	elseif t == "Dot" then
+    	elseif t == "Platform" then
         	shape = 2
     	end
 	end    
