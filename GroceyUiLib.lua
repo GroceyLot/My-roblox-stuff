@@ -144,7 +144,7 @@ function Lib:Initialize()
                     BoxContainer,
                     TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),
                     UDim2.new(1, 0, 13, 0),
-                    UDim2.new(1, 0, 1, 0)
+                    UDim2.new(1, 0, 0.01, 0)
                 )
                 Utils:TweenRotation(
                     Arrow_2,
@@ -154,7 +154,8 @@ function Lib:Initialize()
                 )
                 wait(0.5)
                 BoxContainer.Enabled = false
-            else
+            end
+            if BoxContainer.Size == UDim2.new(1, 0, 0.01, 0) then
                 Utils:TweenSize(
                     BoxContainer,
                     TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),
