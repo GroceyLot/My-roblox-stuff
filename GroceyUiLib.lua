@@ -156,7 +156,8 @@ function Lib:Initialize()
 				)
 				wait(0.5)
 				BoxContainer.Visible = false
-			else
+			end
+			if BoxContainer.Size == UDim2.new(1, 0, 0.01, 0) then
 				Utils:TweenSize(
 					BoxContainer,
 					TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),
