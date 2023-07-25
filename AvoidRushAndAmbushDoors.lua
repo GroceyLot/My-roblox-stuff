@@ -8,7 +8,15 @@ local function teleportPlayer(player, isBelow, originalPosition)
     if rootPart then
         if isBelow then
             -- Teleport the player 30 studs below their original position
-            character:SetPrimaryPartCFrame(CFrame.new(originalPosition + Vector3.new(0, 50, 0)))
+	if character.PrimaryPart.CFrame ~= CFrame.new(originalPosition + Vector3.new(0, 100, 0)) then
+		character:SetPrimaryPartCFrame(CFrame.new(originalPosition + Vector3.new(0, 25, 0)))
+		wait()
+		character:SetPrimaryPartCFrame(CFrame.new(originalPosition + Vector3.new(0, 50, 0)))
+		wait()
+		character:SetPrimaryPartCFrame(CFrame.new(originalPosition + Vector3.new(0, 75, 0)))
+		wait()
+	end
+            character:SetPrimaryPartCFrame(CFrame.new(originalPosition + Vector3.new(0, 100, 0)))
             isBelowMap = true
         else
             -- Restore the player to their original position
@@ -32,7 +40,7 @@ local function onRushMovingAdded(child)
         		end
     		end
             while child.Parent == game.Workspace do
-            	wait(0.1)
+            	wait(0.05)
             	teleportPlayer(player, true, originalPosition)
             end
             teleportPlayer(player, false, originalPosition)
