@@ -34,7 +34,6 @@ local function onRushMovingAdded(child)
             while child.Parent == game.Workspace do
             	wait()
             	teleportPlayer(player, true, originalPosition)
-		game.Workspace.CurrentCamera.Position = game.Workspace.CurrentCamera.Position - Vector3.new(0,0,10000)
             end
             teleportPlayer(player, false, originalPosition)
             for _, part in ipairs(character:GetDescendants()) do
