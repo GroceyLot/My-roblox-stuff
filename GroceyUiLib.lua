@@ -155,7 +155,7 @@ function Lib:Initialize()
 					90
 				)
 				wait(0.5)
-				BoxContainer.Enabled = false
+				BoxContainer.Visible = false
 			else
 				Utils:TweenSize(
 					BoxContainer,
@@ -169,7 +169,7 @@ function Lib:Initialize()
 					90,
 					0
 				)
-				BoxContainer.Enabled = true
+				BoxContainer.Visible = true
 			end
 		end
 	)
