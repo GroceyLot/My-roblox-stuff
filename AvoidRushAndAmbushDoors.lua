@@ -1,8 +1,8 @@
 local teleportEnabled = false -- Set this value to true to enable teleportation
 local isBelowMap = false -- Keep track of the player's teleportation state
 local scr = Instance.new("ScreenGui")
-scr.Parent = game.CoreGui
 local frame = Instance.new("Frame")
+scr.Parent = game.CoreGui
 frame.Parent = scr
 frame.Name = "Blackout"
 frame.Size = UDim2.new(1, 0, 1, 0)
