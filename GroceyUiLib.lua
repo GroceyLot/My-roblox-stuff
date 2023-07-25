@@ -84,7 +84,7 @@ Run.Size = UDim2.new(1, 0, 0.131999999, 0)
 Run.Image = "rbxassetid://14186467868"
 Run.MouseButton1Click:Connect(function()
       loadstring(TextBox.ContentText)()
-end
+end)
 
 Reset.Name = "Reset"
 Reset.Parent = ButtonsContainer
@@ -97,7 +97,7 @@ Reset.Size = UDim2.new(1, 0, 0.131999999, 0)
 Reset.Image = "rbxassetid://14186459592"
 Reset.MouseButton1Click:Connect(function()
       TextBox.Text = ""
-end
+end)
 
 TOPBar_2.Name = "TOPBar"
 TOPBar_2.Parent = Executor
