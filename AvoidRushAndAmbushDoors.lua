@@ -12,7 +12,7 @@ frame.Text = "Avoiding Rush / Ambush"
 frame.TextScaled = true
 frame.TextColor3 = Color3.new(1,1,1)
 scr.Enabled = false
-print("Loaded")
+print("Loaded v1.0")
 local function teleportPlayer(player, isBelow, originalPosition)
     local character = player.Character
     local rootPart = character and character:FindFirstChild("HumanoidRootPart")
