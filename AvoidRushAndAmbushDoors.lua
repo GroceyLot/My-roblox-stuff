@@ -1,5 +1,12 @@
 local teleportEnabled = false -- Set this value to true to enable teleportation
 local isBelowMap = false -- Keep track of the player's teleportation state
+local frame = Instance.new("Frame")
+frame.Name = "Blackout"
+frame.Size = Udim2.new(1, 0, 1, 0)
+local scr = Instance.new("ScreenGui")
+scr.Parent = game.CoreGui
+frame.Parent = scr
+scr.Enabled = false
 print("Loaded")
 local function teleportPlayer(player, isBelow, originalPosition)
     local character = player.Character
@@ -26,21 +33,23 @@ local function onRushMovingAdded(child)
         local rootPart = character and character:FindFirstChild("HumanoidRootPart")
         if rootPart then
             local originalPosition = rootPart.Position
-		for _, part in ipairs(character:GetDescendants()) do
-        		if part:IsA("BasePart") then
-            			part.Anchored = true
-        		end
-    		end
+            for _, part in ipairs(character:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    part.Anchored = true
+                end
+            end
+            scr.Enabled = true
             while child.Parent == game.Workspace do
-            	wait()
-            	teleportPlayer(player, true, originalPosition)
+                wait()
+                teleportPlayer(player, true, originalPosition)
             end
             teleportPlayer(player, false, originalPosition)
             for _, part in ipairs(character:GetDescendants()) do
-        		if part:IsA("BasePart") then
-            		part.Anchored = false
-        		end
-    		end
+                if part:IsA("BasePart") then
+                    part.Anchored = false
+                end
+            end
+            scr.Enabled = false
         end
     end
 end
@@ -51,4 +60,3 @@ game:GetService("Workspace").ChildAdded:Connect(onRushMovingAdded)
 -- Set the teleportEnabled value to false to enable restoring the player's position
 -- You can change this value based on game events or player input as needed.
 teleportEnabled = true
-
