@@ -4,9 +4,10 @@ local Lib = {
 }
 local Utils = loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Utilla.lua"))()
 local Uitils = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/UI.lua"))()
-function Lib:Initialize()
+function Lib:Initialize(color)
 	local MainGHubUI = Instance.new("ScreenGui")
 	Lib["MainGui"] = MainGHubUI
+	Lib["AccentColour"] = color
 	local Executor = Instance.new("Frame")
 	local BoxContainer = Instance.new("Frame")
 	local UICorner_9 = Instance.new("UICorner")
