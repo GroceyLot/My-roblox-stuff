@@ -304,7 +304,7 @@ function Lib:Panel(Height, Name, TextTop)
 		Toggle.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
 		Toggle.BorderColor3 = Color3.new(0, 0, 0)
 		Toggle.BorderSizePixel = 0
-		Toggle.Position = UDim2.new(0, 0, 0, (#framechids * 35) + (#framechids * 2))
+		Toggle.Position = UDim2.new(0, 0, 0, (#framechids * 35) + (#framechids * 2) + Panel.AbsoluteSize.Y)
 		Toggle.Size = UDim2.new(1, 0, 0, 35)
 		Toggle.Font = Enum.Font.Cartoon
 		Toggle.Text = Text
