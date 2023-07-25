@@ -101,7 +101,7 @@ end)
 
 TOPBar_2.Name = "TOPBar"
 TOPBar_2.Parent = Executor
-TOPBar_2.BackgroundColor3 = Lib[AccentColour]
+TOPBar_2.BackgroundColor3 = Lib["AccentColour"]
 TOPBar_2.BorderColor3 = Color3.new(0, 0, 0)
 TOPBar_2.BorderSizePixel = 0
 TOPBar_2.Size = UDim2.new(1, 0, 1, 0)
