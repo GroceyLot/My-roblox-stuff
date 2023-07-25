@@ -339,5 +339,6 @@ function Lib:Panel(Height, Name, TextTop)
 			Function(Triggered.Value)
 		end)
 	end
+	return PanelTable
 end
 return Lib
