@@ -1,7 +1,7 @@
 local Lib = {
   AccentColour = Color3.new(216,61,255)
 }
-local Utils = 
+local Utils = loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Utilla.lua"))()
 function Lib:Initialize()
   local MainGHubUI = Instance.new("ScreenGui")
   local Executor = Instance.new("Frame")
@@ -82,6 +82,9 @@ Run.BorderColor3 = Color3.new(0, 0, 0)
 Run.BorderSizePixel = 0
 Run.Size = UDim2.new(1, 0, 0.131999999, 0)
 Run.Image = "rbxassetid://14186467868"
+Run.MouseButton1Click:Connect(function()
+      loadstring(TextBox.ContentText)()
+end
 
 Reset.Name = "Reset"
 Reset.Parent = ButtonsContainer
@@ -92,6 +95,9 @@ Reset.BorderSizePixel = 0
 Reset.Position = UDim2.new(0, 0, 0.131999999, 0)
 Reset.Size = UDim2.new(1, 0, 0.131999999, 0)
 Reset.Image = "rbxassetid://14186459592"
+Reset.MouseButton1Click:Connect(function()
+      TextBox.Text = ""
+end
 
 TOPBar_2.Name = "TOPBar"
 TOPBar_2.Parent = Executor
@@ -126,6 +132,7 @@ Arrow_2.BorderSizePixel = 0
 Arrow_2.Position = UDim2.new(0.949000001, 0, 0.0500000007, 0)
 Arrow_2.Size = UDim2.new(0.0511826649, 0, 0.950000107, 0)
 Arrow_2.Image = "http://www.roblox.com/asset/?id=278544479"
+
 
 UICorner_10.Parent = TOPBar_2
 end
