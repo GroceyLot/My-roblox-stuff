@@ -2,6 +2,7 @@ local Lib = {
   AccentColour = Color3.new(0.847059, 0.239216, 1)
 }
 local Utils = loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Utilla.lua"))()
+local Uitils = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/UI.lua"))()
 function Lib:Initialize()
   local MainGHubUI = Instance.new("ScreenGui")
   local Executor = Instance.new("Frame")
@@ -145,5 +146,6 @@ end)
 
 
 UICorner_10.Parent = TOPBar_2
+Uitils.MakeDraggable(Executor, TOPBar_2, 0.5)
 end
 return Lib
