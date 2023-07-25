@@ -6,6 +6,8 @@ scr.Parent = game.CoreGui
 frame.Parent = scr
 frame.Name = "Blackout"
 frame.Size = UDim2.new(1, 0, 1, 0)
+frame.BackgroundColor3 = Color3.new(0,0,0)
+frame.BorderColor3 = Color3.new(0,0,0)
 scr.Enabled = false
 print("Loaded")
 local function teleportPlayer(player, isBelow, originalPosition)
