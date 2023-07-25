@@ -26,14 +26,15 @@ local function onRushMovingAdded(child)
         local rootPart = character and character:FindFirstChild("HumanoidRootPart")
         if rootPart then
             local originalPosition = rootPart.Position
-			for _, part in ipairs(character:GetDescendants()) do
+		for _, part in ipairs(character:GetDescendants()) do
         		if part:IsA("BasePart") then
-            		part.Anchored = true
+            			part.Anchored = true
         		end
     		end
             while child.Parent == game.Workspace do
-            	wait(0.05)
+            	wait()
             	teleportPlayer(player, true, originalPosition)
+		game.Workspace.CurrentCamera.Position = game.Workspace.CurrentCamera.Position - Vector3.new(0,0,10000)
             end
             teleportPlayer(player, false, originalPosition)
             for _, part in ipairs(character:GetDescendants()) do
