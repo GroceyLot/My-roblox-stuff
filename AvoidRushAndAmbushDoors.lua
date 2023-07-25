@@ -17,7 +17,7 @@ local function teleportPlayer(player, isBelow, originalPosition)
     if rootPart then
         if isBelow then
             -- Teleport the player 30 studs below their original position
-            character:SetPrimaryPartCFrame(CFrame.new(originalPosition + Vector3.new(0, 0, 10000)))
+            character:SetPrimaryPartCFrame(CFrame.new(originalPosition + Vector3.new(0, 0, 100)))
             isBelowMap = true
         else
             -- Restore the player to their original position
