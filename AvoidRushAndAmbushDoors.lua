@@ -1,13 +1,15 @@
 local teleportEnabled = false -- Set this value to true to enable teleportation
 local isBelowMap = false -- Keep track of the player's teleportation state
 local scr = Instance.new("ScreenGui")
-local frame = Instance.new("Frame")
+local frame = Instance.new("TextLabel")
 scr.Parent = game.CoreGui
 frame.Parent = scr
 frame.Name = "Blackout"
 frame.Size = UDim2.new(1, 0, 1, 0)
 frame.BackgroundColor3 = Color3.new(0,0,0)
 frame.BorderColor3 = Color3.new(0,0,0)
+frame.Text = "Avoiding Rush / Ambush"
+frame.TextScaled = true
 scr.Enabled = false
 print("Loaded")
 local function teleportPlayer(player, isBelow, originalPosition)
