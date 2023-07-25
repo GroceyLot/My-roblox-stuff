@@ -136,10 +136,12 @@ Arrow_2.Image = "http://www.roblox.com/asset/?id=278544479"
 Arrow_2.MouseButton1Click:Connect(function()
       if BoxContainer.Size == UDim2.new(1, 0, 13, 0) then
         Utils:TweenSize(BoxContainer, TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), UDim2.new(1, 0, 13, 0), UDim2.new(1, 0, 1, 0))
+        Utils:TweenRotation(Arrow_2, TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), 0, 90)
         wait(0.5)
         BoxContainer.Enabled = false
       else
         Utils:TweenSize(BoxContainer, TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), UDim2.new(1, 0, 0.01, 0), UDim2.new(1, 0, 13, 0))
+        Utils:TweenRotation(Arrow_2, TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), 90, 0)
         BoxContainer.Enabled = true
       end
 end)
