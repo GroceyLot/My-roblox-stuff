@@ -8,14 +8,6 @@ local function teleportPlayer(player, isBelow, originalPosition)
     if rootPart then
         if isBelow then
             -- Teleport the player 30 studs below their original position
-	if character.PrimaryPart.CFrame ~= CFrame.new(originalPosition + Vector3.new(0, 100, 0)) then
-		character:SetPrimaryPartCFrame(CFrame.new(originalPosition + Vector3.new(0, 25, 0)))
-		wait()
-		character:SetPrimaryPartCFrame(CFrame.new(originalPosition + Vector3.new(0, 50, 0)))
-		wait()
-		character:SetPrimaryPartCFrame(CFrame.new(originalPosition + Vector3.new(0, 75, 0)))
-		wait()
-	end
             character:SetPrimaryPartCFrame(CFrame.new(originalPosition + Vector3.new(0, 100, 0)))
             isBelowMap = true
         else
