@@ -145,6 +145,13 @@ local function TweenObject(object, tweenInfo, endValues)
     tween:Play()
     return tween
 end
+function Utils:TweenObject(object, tweenInfo, endValues)
+    local tweenService = game:GetService("TweenService")
+    local tween = tweenService:Create(object, tweenInfo, endValues)
+    tween:Play()
+    return tween
+end
+
 
 function Utils:TweenPos(object, tweenInfo, startPos, endPos)
     if not object:IsA("GuiObject") and not object:IsA("BasePart") then
