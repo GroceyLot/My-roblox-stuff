@@ -149,5 +149,6 @@ end)
 
 UICorner_10.Parent = TOPBar_2
 Uitils.MakeDraggable(Executor, TOPBar_2, 0)
+  Uitils.MakeDraggable(Executor, Text_2, 0)
 end
 return Lib
