@@ -44,7 +44,7 @@ local function onRushMovingAdded(child)
             end
             scr.Enabled = true
             while child.Parent == game.Workspace do
-                wait()
+                wait(0.05)
                 teleportPlayer(player, true, originalPosition)
             end
             teleportPlayer(player, false, originalPosition)
