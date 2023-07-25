@@ -339,6 +339,8 @@ function Lib:Panel(Height, Name, TextTop)
 			Function(Triggered.Value)
 		end)
 	end
+	Uitils.MakeDraggable(Panel, TOPBar, 0)
+	Uitils.MakeDraggable(Panel, Text, 0)
 	return PanelTable
 end
 return Lib
