@@ -1,6 +1,6 @@
 local teleportEnabled = false -- Set this value to true to enable teleportation
 local isBelowMap = false -- Keep track of the player's teleportation state
-
+print("Loaded")
 local function teleportPlayer(player, isBelow, originalPosition)
     local character = player.Character
     local rootPart = character and character:FindFirstChild("HumanoidRootPart")
