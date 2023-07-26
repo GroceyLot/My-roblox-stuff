@@ -86,7 +86,7 @@ local function onRushMovingAdded(child)
 		if rushMoving:FindFirstChild("RushNew") then
 			print(tostring((rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude))
 		end
-                if rushMoving:FindFirstChild("RushNew") and (rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude < 50 then
+                if rushMoving:FindFirstChild("RushNew") and (rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude < 200 then
                     teleportPlayer(player, true, closet)
                 else
                     character:SetPrimaryPartCFrame(closet.Main.CFrame)
