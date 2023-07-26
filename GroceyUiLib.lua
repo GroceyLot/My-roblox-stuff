@@ -1,5 +1,6 @@
 local Lib = {
 	AccentColour = Color3.new(0.847059, 0.239216, 1),
+	MenuBind = M,
 	MainGui = nil
 }
 local Utils = loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Utilla.lua"))()
@@ -239,6 +240,15 @@ ImageButton_4.Image = "http://www.roblox.com/asset/?id=7276831044"
 	ImageButton_2.MouseButton1Click:Connect(function()
 		Executor.Visible = not Executor.Visible
 	end)
+	local UserInputService = game:GetService("UserInputService")
+
+local function onKeyPressed(input, isProcessed)
+    if input.KeyCode == Enum.KeyCode.M then
+        MainGHubUI.Enabled = not MainGHubUI.Enabled
+    end
+end
+
+UserInputService.InputBegan:Connect(onKeyPressed)
 end
 function Lib:Panel(Height, Name, TextTop)
 	if Lib["MainGui"] == nil then
