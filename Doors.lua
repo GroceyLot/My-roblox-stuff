@@ -75,7 +75,6 @@ local function onRushMovingAdded(child)
                 local rushMoving = workspace:FindFirstChild("RushMoving")
 		wait(0.1)
 		character:MoveTo(closet.Main.Position)
-		print(done)
                 if rushMoving:FindFirstChild("RushNew") and (rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude < 200 and closet.HiddenPlayer.Value == false then
                 	fireproximityprompt(closet.HidePrompt)
 		else
