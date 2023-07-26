@@ -91,7 +91,7 @@ local function onRushMovingAdded(child)
                 else
                     character:SetPrimaryPartCFrame(closet.Main.CFrame)
                 end
-                wait(0.05) -- Adjust the delay to avoid excessive checks (optional)
+                wait(0.1) -- Adjust the delay to avoid excessive checks (optional)
             end
         end
     end
