@@ -89,7 +89,7 @@ local function onRushMovingAdded(child)
                 else
                     teleportPlayer(player, false, closet)
                 end
-                wait(0.1) -- Adjust the delay to avoid excessive checks (optional)
+                wait() -- Adjust the delay to avoid excessive checks (optional)
             end
         end
     end
