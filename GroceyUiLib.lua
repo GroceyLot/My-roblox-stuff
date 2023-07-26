@@ -236,8 +236,8 @@ ImageButton_4.Size = UDim2.new(0.15562129, 0, 0.899999917, 0)
 ImageButton_4.Image = "http://www.roblox.com/asset/?id=7276831044"
 	Uitils.MakeDraggable(Executor, TOPBar_2, 0)
 	Uitils.MakeDraggable(Executor, Text_2, 0)
-	ImageButton.MouseButton1Click:Connect(function()
-		Executor.Enabled = not Executor.Enabled
+	ImageButton_2.MouseButton1Click:Connect(function()
+		Executor.Visible = not Executor.Visible
 	end)
 end
 function Lib:Panel(Height, Name, TextTop)
