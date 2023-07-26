@@ -1,4 +1,5 @@
 local teleportEnabled = false -- Set this value to true to enable teleportation
+local jumpscareEnabled = false
 local isBelowMap = false -- Keep track of the player's teleportation state
 local scr = Instance.new("ScreenGui")
 local frame = Instance.new("TextLabel")
@@ -100,3 +101,4 @@ game:GetService("Workspace").ChildAdded:Connect(onRushMovingAdded)
 -- Set the teleportEnabled value to false to enable restoring the player's position
 -- You can change this value based on game events or player input as needed.
 teleportEnabled = true
+game.Players.LocalPlayer.PlayerGui.MainUI.Jumpscare:Destroy()
