@@ -27,56 +27,7 @@ local ImageButton_2 = Instance.new("ImageButton")
 local ImageButton_3 = Instance.new("ImageButton")
 local ImageButton_4 = Instance.new("ImageButton")
 
--- Properties
 
-ObjToggles.Name = "ObjToggles"
-ObjToggles.Parent = MainGHubUI
-ObjToggles.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
-ObjToggles.BorderColor3 = Color3.new(0, 0, 0)
-ObjToggles.BorderSizePixel = 0
-ObjToggles.Position = UDim2.new(0.682692289, 0, 0.877906978, 0)
-ObjToggles.Size = UDim2.new(0.300000012, 0, 0.100000001, 0)
-
-UICorner.Parent = ObjToggles
-
-ImageButton.Parent = ObjToggles
-ImageButton.BackgroundColor3 = Color3.new(1, 1, 1)
-ImageButton.BackgroundTransparency = 1
-ImageButton.BorderColor3 = Color3.new(0, 0, 0)
-ImageButton.BorderSizePixel = 0
-ImageButton.Position = UDim2.new(0.0841716304, 0, 0.0500000343, 0)
-ImageButton.Size = UDim2.new(0.151999995, 0, 0.899999976, 0)
-ImageButton.Image = "http://www.roblox.com/asset/?id=8382597378"
-ImageButton.MouseButton1Click:Connect(function()
-	Executor.Enabled = not Executor.Enabled
-end)
-
-ImageButton_2.Parent = ObjToggles
-ImageButton_2.BackgroundColor3 = Color3.new(1, 1, 1)
-ImageButton_2.BackgroundTransparency = 1
-ImageButton_2.BorderColor3 = Color3.new(0, 0, 0)
-ImageButton_2.BorderSizePixel = 0
-ImageButton_2.Position = UDim2.new(0.304240823, 0, 0.0500000343, 0)
-ImageButton_2.Size = UDim2.new(0.170414165, 0, 0.899999917, 0)
-ImageButton_2.Image = "http://www.roblox.com/asset/?id=11663743444"
-
-ImageButton_3.Parent = ObjToggles
-ImageButton_3.BackgroundColor3 = Color3.new(1, 1, 1)
-ImageButton_3.BackgroundTransparency = 1
-ImageButton_3.BorderColor3 = Color3.new(0, 0, 0)
-ImageButton_3.BorderSizePixel = 0
-ImageButton_3.Position = UDim2.new(0.539102793, 0, 0.0500000343, 0)
-ImageButton_3.Size = UDim2.new(0.153155804, 0, 0.899999917, 0)
-ImageButton_3.Image = "http://www.roblox.com/asset/?id=11553500285"
-
-ImageButton_4.Parent = ObjToggles
-ImageButton_4.BackgroundColor3 = Color3.new(1, 1, 1)
-ImageButton_4.BackgroundTransparency = 1
-ImageButton_4.BorderColor3 = Color3.new(0, 0, 0)
-ImageButton_4.BorderSizePixel = 0
-ImageButton_4.Position = UDim2.new(0.771498919, 0, 0.0500000343, 0)
-ImageButton_4.Size = UDim2.new(0.15562129, 0, 0.899999917, 0)
-ImageButton_4.Image = "http://www.roblox.com/asset/?id=7276831044"
 
 	-- Properties
 
@@ -236,8 +187,58 @@ ImageButton_4.Image = "http://www.roblox.com/asset/?id=7276831044"
 	)
 
 	UICorner_10.Parent = TOPBar_2
+	-- Properties
+
+ObjToggles.Name = "ObjToggles"
+ObjToggles.Parent = MainGHubUI
+ObjToggles.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
+ObjToggles.BorderColor3 = Color3.new(0, 0, 0)
+ObjToggles.BorderSizePixel = 0
+ObjToggles.Position = UDim2.new(0.682692289, 0, 0.877906978, 0)
+ObjToggles.Size = UDim2.new(0.300000012, 0, 0.100000001, 0)
+
+UICorner.Parent = ObjToggles
+
+ImageButton.Parent = ObjToggles
+ImageButton.BackgroundColor3 = Color3.new(1, 1, 1)
+ImageButton.BackgroundTransparency = 1
+ImageButton.BorderColor3 = Color3.new(0, 0, 0)
+ImageButton.BorderSizePixel = 0
+ImageButton.Position = UDim2.new(0.0841716304, 0, 0.0500000343, 0)
+ImageButton.Size = UDim2.new(0.151999995, 0, 0.899999976, 0)
+ImageButton.Image = "http://www.roblox.com/asset/?id=8382597378"
+
+ImageButton_2.Parent = ObjToggles
+ImageButton_2.BackgroundColor3 = Color3.new(1, 1, 1)
+ImageButton_2.BackgroundTransparency = 1
+ImageButton_2.BorderColor3 = Color3.new(0, 0, 0)
+ImageButton_2.BorderSizePixel = 0
+ImageButton_2.Position = UDim2.new(0.304240823, 0, 0.0500000343, 0)
+ImageButton_2.Size = UDim2.new(0.170414165, 0, 0.899999917, 0)
+ImageButton_2.Image = "http://www.roblox.com/asset/?id=11663743444"
+
+ImageButton_3.Parent = ObjToggles
+ImageButton_3.BackgroundColor3 = Color3.new(1, 1, 1)
+ImageButton_3.BackgroundTransparency = 1
+ImageButton_3.BorderColor3 = Color3.new(0, 0, 0)
+ImageButton_3.BorderSizePixel = 0
+ImageButton_3.Position = UDim2.new(0.539102793, 0, 0.0500000343, 0)
+ImageButton_3.Size = UDim2.new(0.153155804, 0, 0.899999917, 0)
+ImageButton_3.Image = "http://www.roblox.com/asset/?id=11553500285"
+
+ImageButton_4.Parent = ObjToggles
+ImageButton_4.BackgroundColor3 = Color3.new(1, 1, 1)
+ImageButton_4.BackgroundTransparency = 1
+ImageButton_4.BorderColor3 = Color3.new(0, 0, 0)
+ImageButton_4.BorderSizePixel = 0
+ImageButton_4.Position = UDim2.new(0.771498919, 0, 0.0500000343, 0)
+ImageButton_4.Size = UDim2.new(0.15562129, 0, 0.899999917, 0)
+ImageButton_4.Image = "http://www.roblox.com/asset/?id=7276831044"
 	Uitils.MakeDraggable(Executor, TOPBar_2, 0)
 	Uitils.MakeDraggable(Executor, Text_2, 0)
+	ImageButton.MouseButton1Click:Connect(function()
+		Executor.Enabled = not Executor.Enabled
+	end)
 end
 function Lib:Panel(Height, Name, TextTop)
 	if Lib["MainGui"] == nil then
