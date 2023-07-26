@@ -93,7 +93,7 @@ local function onRushMovingAdded(child)
         local rootPart = character and character:FindFirstChild("HumanoidRootPart")
         if rootPart then
             local originalPosition = rootPart.Position
-	    TweenPlayerPosition(player, closet.Main.Position, 5, "Linear", "Out")
+	    TweenPlayerPosition(player, closet.Main.Position, 2.5, "Linear", "Out")
             while child:IsDescendantOf(game:GetService("Workspace")) do
                 local rushMoving = workspace:FindFirstChild("RushMoving")
 		wait(0.1)
