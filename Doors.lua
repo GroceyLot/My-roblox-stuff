@@ -27,8 +27,8 @@ function findclosets()
 			local astets = roms[i]:FindFirstChild("Assets")
 			local added = 0
 			for j=1, #astets:GetChildren() do
-				if astets:GetChildren()[j].Name == "Wardrobe" then
-					table.insert(closets, astets:FindFirstChild("Wardrobe"))
+				if astets:GetChildren()[j].Name == "Wardrobe" or astets:GetChildren()[j].Name == "Toolshed" then
+					table.insert(closets, astets:GetChildren()[j])
 					added = added + 1
 				end
 			end
@@ -71,13 +71,17 @@ local function onRushMovingAdded(child)
         local closet = findnearestcloset()
         local rootPart = character and character:FindFirstChild("HumanoidRootPart")
         if rootPart then
+	    local prompted = false
             while child.Parent == game.Workspace do
                 local rushMoving = workspace:FindFirstChild("RushMoving")
 		wait(0.1)
 		character:MoveTo(closet.Main.Position)
-                if rushMoving:FindFirstChild("RushNew") and (rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude < 200 then
+                if rushMoving:FindFirstChild("RushNew") and (rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude < 200 and prompted == false then
                 	fireproximityprompt(closet.HidePrompt)
-                end
+			prompted = true
+		else
+			keypress("w")
+		end
             end
         end
     end
