@@ -98,7 +98,7 @@ local function onRushMovingAdded(child)
             while child.Parent == game.Workspace do
                 local rushMoving = workspace:FindFirstChild("RushMoving")
 		wait(0.1)
-		character:SetPrimaryPartCFrame(CFrame.new(closet.Main.Position))
+		character:MoveTo(closet.Main.Position)
                 if rushMoving:FindFirstChild("RushNew") and (rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude < 200 then
                 	fireproximityprompt(closet.HidePrompt)
                 end
