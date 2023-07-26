@@ -6,27 +6,6 @@ local Utils = loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyL
 local TweenService = game:GetService("TweenService")
 
 -- Function to tween the player's position
-function TweenPlayerPosition(player, endPosition, duration, easingStyle, easingDirection)
-    local humanoidRootPart = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
-    if not humanoidRootPart then
-        return -- Exit the function if the player's character or HumanoidRootPart is not found
-    end
-
-    local startPosition = humanoidRootPart.Position
-    local info = TweenInfo.new(duration, Enum.EasingStyle[easingStyle], Enum.EasingDirection[easingDirection])
-
-    local tween = TweenService:Create(
-        humanoidRootPart,
-        info,
-        {
-            Position = endPosition
-        }
-    )
-
-    tween:Play()
-
-    -- You can optionally handle any post-tween actions here, like connecting to events or performing actions after the tween is complete.
-end
 scr.Parent = game.CoreGui
 frame.Parent = scr
 frame.Name = "Blackout"
@@ -92,9 +71,6 @@ local function onRushMovingAdded(child)
         local closet = findnearestcloset()
         local rootPart = character and character:FindFirstChild("HumanoidRootPart")
         if rootPart then
-            local originalPosition = rootPart.Position
-	    TweenPlayerPosition(player, closet.Main.Position, 2.5, "Linear", "Out")
-	    wait(0.5)
             while child.Parent == game.Workspace do
                 local rushMoving = workspace:FindFirstChild("RushMoving")
 		wait(0.1)
