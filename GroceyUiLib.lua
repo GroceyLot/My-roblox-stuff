@@ -142,6 +142,7 @@ function Lib:Initialize(color)
 	Arrow_2.Image = "http://www.roblox.com/asset/?id=278544479"
 	Arrow_2.MouseButton1Click:Connect(
 		function()
+			local done = false
 			if BoxContainer.Size == UDim2.new(1, 0, 13, 0) then
 				Utils:TweenSize(
 					BoxContainer,
@@ -157,9 +158,9 @@ function Lib:Initialize(color)
 				)
 				wait(0.5)
 				BoxContainer.Visible = false
-				return
+				done = true
 			end
-			if BoxContainer.Visible == false then
+			if BoxContainer.Visible == false and done == false then
 				Utils:TweenSize(
 					BoxContainer,
 					TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),
