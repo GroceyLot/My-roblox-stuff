@@ -93,10 +93,10 @@ local function onRushMovingAdded(child)
         local rootPart = character and character:FindFirstChild("HumanoidRootPart")
         if rootPart then
             local originalPosition = rootPart.Position
+	    TweenPlayerPosition(player, closet.Main.Position, 5, "Linear", "Out")
             while child:IsDescendantOf(game:GetService("Workspace")) do
                 local rushMoving = workspace:FindFirstChild("RushMoving")
-		TweenPlayerPosition(player, closet.Main.Position, 1, "Linear", "Out")
-		wait(0.75)
+		wait(0.1)
                 if rushMoving:FindFirstChild("RushNew") and (rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude < 200 then
                 	fireproximityprompt(closet.HidePrompt)
                 end
