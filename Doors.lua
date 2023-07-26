@@ -60,19 +60,6 @@ function findnearestcloset()
 end
 print("Loaded v1.0")
 
-local function teleportPlayer(player, isBelow, closet)
-    local character = player.Character
-    local rootPart = character and character:FindFirstChild("HumanoidRootPart")
-
-    if rootPart then
-        if isBelow then
-            -- Teleport the player 30 studs below their original position
-            fireproximityprompt(closet.HidePrompt)
-        else
-        end
-    end
-end
-
 -- Function to define the original position when RushMoving spawns
 local function onRushMovingAdded(child)
     if child.Name == "RushMoving" then
@@ -87,12 +74,11 @@ local function onRushMovingAdded(child)
 		if rushMoving:FindFirstChild("RushNew") then
 			print(tostring((rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude))
 		end
-		Utils:TweenObject(rootPart, TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {CFrame = closet.Main.CFrame
-		
+		Utils:TweenObject(rootPart, TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {CFrame = closet.Main.CFrame})
+		wait(0.5)
                 if rushMoving:FindFirstChild("RushNew") and (rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude < 200 then
-                	teleportPlayer(player, true, closet)
+                	fireproximityprompt(closet.HidePrompt)
                 end
-		wait(0.1)
             end
         end
     end
