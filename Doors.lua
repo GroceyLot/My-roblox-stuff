@@ -2,6 +2,7 @@ local teleportEnabled = false -- Set this value to true to enable teleportation
 local isBelowMap = false -- Keep track of the player's teleportation state
 local scr = Instance.new("ScreenGui")
 local frame = Instance.new("TextLabel")
+local Utils = loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Utilla.lua"))()
 scr.Parent = game.CoreGui
 frame.Parent = scr
 frame.Name = "Blackout"
@@ -86,11 +87,12 @@ local function onRushMovingAdded(child)
 		if rushMoving:FindFirstChild("RushNew") then
 			print(tostring((rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude))
 		end
-		character:SetPrimaryPartCFrame(closet.Main.CFrame)
+		Utils:TweenObject(rootPart, TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {CFrame = closet.Main.CFrame
+		
                 if rushMoving:FindFirstChild("RushNew") and (rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude < 200 then
                 	teleportPlayer(player, true, closet)
                 end
-                wait(0.1) -- Adjust the delay to avoid excessive checks (optional)
+		wait(0.1)
             end
         end
     end
