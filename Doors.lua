@@ -83,6 +83,9 @@ local function onRushMovingAdded(child)
             local originalPosition = rootPart.Position
             while child:IsDescendantOf(game:GetService("Workspace")) do
                 local rushMoving = workspace:FindFirstChild("RushMoving")
+		if rushMoving:FindFirstChild("RushNew") then
+			print(tostring((rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude))
+		end
                 if rushMoving:FindFirstChild("RushNew") and (rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude < 50 then
                     teleportPlayer(player, true, closet)
                 else
