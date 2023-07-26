@@ -60,8 +60,7 @@ local function onRushMovingAdded(child)
 		character:MoveTo(closet.Main.Position)
                 if rushMoving:FindFirstChild("RushNew") and (rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude < 200 and closet.HiddenPlayer.Value == nil then
                 	fireproximityprompt(closet.HidePrompt)
-			wait(0.5)
-			break
+			wait(0.1)
 		else
 		end
             end
