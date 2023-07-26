@@ -80,7 +80,6 @@ local function onRushMovingAdded(child)
                 	fireproximityprompt(closet.HidePrompt)
 			prompted = true
 		else
-			keypress(87,87,87,87)
 		end
             end
         end
