@@ -194,7 +194,7 @@ function Lib:Panel(Height, Name, TextTop)
 	local Text = Instance.new("TextLabel")
 	local Arrow = Instance.new("ImageButton")
 	local UICorner_8 = Instance.new("UICorner")
-	
+
 	Panel.Name = Name
 	Panel.Parent = Lib["MainGui"]
 	Panel.BackgroundColor3 = Color3.new(1, 1, 1)
@@ -315,7 +315,7 @@ function Lib:Panel(Height, Name, TextTop)
 		Toggle.TextColor3 = Color3.new(1, 1, 1)
 		Toggle.TextScaled = true
 		Toggle.TextWrapped = true
-		
+
 		Triggered.Parent = Toggle
 		Triggered.Value = TriggeredDefault
 
@@ -342,6 +342,31 @@ function Lib:Panel(Height, Name, TextTop)
 			end
 			Function(Triggered.Value)
 		end)
+	end
+	function PanelTable:Button(Text, Name, Function)
+		local Toggle = Instance.new("TextButton")
+		local UICorner_2 = Instance.new("UICorner")
+		local frame = PanelTable["PanelUI"].SCRContainer.ScrollingFrame
+		local framechids = frame:GetChildren()
+		Toggle.Parent = frame
+		Toggle.Name = Name
+		Toggle.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+		Toggle.BorderColor3 = Color3.new(0, 0, 0)
+		Toggle.BorderSizePixel = 0
+		Toggle.Position = UDim2.new(0, 0, 0, (#framechids * 35) + (#framechids * 2) + Panel.AbsoluteSize.Y)
+		Toggle.Size = UDim2.new(1, 0, 0, 35)
+		Toggle.Font = Enum.Font.Cartoon
+		Toggle.Text = Text
+		local r = ((1 - Lib.AccentColour.R) / 2) + Lib.AccentColour.R
+		local g = ((1 - Lib.AccentColour.G) / 2) + Lib.AccentColour.G
+		local b = ((1 - Lib.AccentColour.B) / 2) + Lib.AccentColour.B
+		Toggle.TextColor3 = Color3.new(r,g,b)
+		Toggle.TextScaled = true
+		Toggle.TextWrapped = true
+
+		UICorner_2.Parent = Toggle
+		Toggle.MouseButton1Click:Connect(Function)
+		
 	end
 	Uitils.MakeDraggable(Panel, TOPBar, 0)
 	Uitils.MakeDraggable(Panel, Text, 0)
