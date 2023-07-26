@@ -1,21 +1,4 @@
-local teleportEnabled = false -- Set this value to true to enable teleportation
-local isBelowMap = false -- Keep track of the player's teleportation state
-local scr = Instance.new("ScreenGui")
-local frame = Instance.new("TextLabel")
-local Utils = loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Utilla.lua"))()
-local TweenService = game:GetService("TweenService")
 
--- Function to tween the player's position
-scr.Parent = game.CoreGui
-frame.Parent = scr
-frame.Name = "Blackout"
-frame.Size = UDim2.new(1, 0, 1, 0)
-frame.BackgroundColor3 = Color3.fromRGB(13, 12, 20)
-frame.BorderColor3 = Color3.fromRGB(13, 12, 20)
-frame.Text = "Avoiding Rush / Ambush"
-frame.TextScaled = true
-frame.TextColor3 = Color3.new(1,1,1)
-scr.Enabled = false
 local player = game.Players.LocalPlayer
 local char = player.Character
 function findclosets()
@@ -77,6 +60,8 @@ local function onRushMovingAdded(child)
 		character:MoveTo(closet.Main.Position)
                 if rushMoving:FindFirstChild("RushNew") and (rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude < 200 and closet.HiddenPlayer.Value == nil then
                 	fireproximityprompt(closet.HidePrompt)
+			wait(0.5)
+			break
 		else
 		end
             end
