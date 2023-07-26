@@ -3,6 +3,30 @@ local isBelowMap = false -- Keep track of the player's teleportation state
 local scr = Instance.new("ScreenGui")
 local frame = Instance.new("TextLabel")
 local Utils = loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Utilla.lua"))()
+local TweenService = game:GetService("TweenService")
+
+-- Function to tween the player's position
+function TweenPlayerPosition(player, endPosition, duration, easingStyle, easingDirection)
+    local humanoidRootPart = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+    if not humanoidRootPart then
+        return -- Exit the function if the player's character or HumanoidRootPart is not found
+    end
+
+    local startPosition = humanoidRootPart.Position
+    local info = TweenInfo.new(duration, Enum.EasingStyle[easingStyle], Enum.EasingDirection[easingDirection])
+
+    local tween = TweenService:Create(
+        humanoidRootPart,
+        info,
+        {
+            Position = endPosition
+        }
+    )
+
+    tween:Play()
+
+    -- You can optionally handle any post-tween actions here, like connecting to events or performing actions after the tween is complete.
+end
 scr.Parent = game.CoreGui
 frame.Parent = scr
 frame.Name = "Blackout"
@@ -71,8 +95,8 @@ local function onRushMovingAdded(child)
             local originalPosition = rootPart.Position
             while child:IsDescendantOf(game:GetService("Workspace")) do
                 local rushMoving = workspace:FindFirstChild("RushMoving")
-		Utils:TweenObject(rootPart, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {CFrame = closet.Main.CFrame})
-		wait(1)
+		TweenPlayerPosition(player, closet.Main.Position, 1, "Linear", "Out")
+		wait(0.75)
                 if rushMoving:FindFirstChild("RushNew") and (rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude < 200 then
                 	fireproximityprompt(closet.HidePrompt)
                 end
