@@ -85,7 +85,7 @@ local function onRushMovingAdded(child)
             while child:IsDescendantOf(game:GetService("Workspace")) do
                 character:SetPrimaryPartCFrame(closet.Main.CFrame)
                 local rushMoving = workspace:FindFirstChild("RushMoving")
-                if rushMoving and (rushMoving.Position - rootPart.Position).Magnitude < 50 then
+                if rushMoving and (rushMoving.RushNew.Position - rootPart.Position).Magnitude < 50 then
                     teleportPlayer(player, true, closet)
                 else
                     teleportPlayer(player, false, closet)
