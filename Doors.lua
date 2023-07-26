@@ -74,8 +74,8 @@ local function onRushMovingAdded(child)
 		if rushMoving:FindFirstChild("RushNew") then
 			print(tostring((rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude))
 		end
-		Utils:TweenObject(rootPart, TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {CFrame = closet.Main.CFrame})
-		wait(0.5)
+		Utils:TweenObject(rootPart, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {CFrame = closet.Main.CFrame})
+		wait(1)
                 if rushMoving:FindFirstChild("RushNew") and (rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude < 200 then
                 	fireproximityprompt(closet.HidePrompt)
                 end
