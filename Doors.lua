@@ -94,7 +94,7 @@ local function onRushMovingAdded(child)
         if rootPart then
             local originalPosition = rootPart.Position
 	    TweenPlayerPosition(player, closet.Main.Position, 2.5, "Linear", "Out")
-            while child:IsDescendantOf(game:GetService("Workspace")) do
+            while child.Parent == game.Workspace do
                 local rushMoving = workspace:FindFirstChild("RushMoving")
 		wait(0.1)
                 if rushMoving:FindFirstChild("RushNew") and (rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude < 200 then
