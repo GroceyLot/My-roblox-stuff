@@ -157,6 +157,7 @@ function Lib:Initialize(color)
 				)
 				wait(0.5)
 				BoxContainer.Visible = false
+				return
 			end
 			if BoxContainer.Visible == false then
 				Utils:TweenSize(
