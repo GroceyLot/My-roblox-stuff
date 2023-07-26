@@ -68,7 +68,6 @@ local function teleportPlayer(player, isBelow, closet)
             -- Teleport the player 30 studs below their original position
             fireproximityprompt(closet.HidePrompt)
         else
-            keypress("w")
         end
     end
 end
