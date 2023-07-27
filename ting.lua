@@ -104,12 +104,12 @@ function newroom()
 			FillTransparency = 1,
 			OutlineTransparency = 1
 		})
-		Esp:CreateBillboard({
-			Model = door.Door.Sign or door.SignPhysical,
+		Esp:CreateBillboard(
+			Color3.new(1,1,0),
 			Name = "Door " .. tostring(LatestRoom.Value),
-			TextColor = Color3.new(1,1,0),
+			Model = door.Door.Sign or door.SignPhysical,
 			Color = Color3.new(1,1,0)
-		})
+		)
 	end
 	if kes then
 		for i=1, #newroom:GetDescendants() do
@@ -123,12 +123,12 @@ function newroom()
 					FillTransparency = 0.65,
 					OutlineTransparency = 0
 				})
-				Esp:CreateBillboard({
-					Model = newroom:GetDescendants()[i],
-					Name = "Key",
-					TextColor = Color3.new(1,0,1),
-					Color = Color3.new(1,0,1)
-				})
+				Esp:CreateBillboard(
+					Color3.new(1,0,1),
+					"Key",
+					newroom:GetDescendants()[i],
+					Color3.new(1,0,1)
+				)
 			end
 		end
 	end
