@@ -1,5 +1,5 @@
 local CF = CFrame.new
-local Esp = loadstring(game:HttpGet("https://github.com/mstudio45/MSDOORS/raw/main/ESP/Source.lua"))()
+local Esp = loadstring(game:HttpGet("https://github.com/GroceyLot/My-roblox-stuff/raw/Things/mshubespedited.lua"))()
 local LatestRoom = game:GetService("ReplicatedStorage").GameData.LatestRoom
 local ChaseStart = game:GetService("ReplicatedStorage").GameData.ChaseStart
 local ws = 2
@@ -16,31 +16,31 @@ function fb()
 	fbd[1] = lighting.Ambient
 	fbd[2] = lighting.Brightness
 	fbd[3] = lighting.FogEnd
-    lighting.Ambient = Color3.fromRGB(255, 255, 255);
-    lighting.Brightness = 1;
-    lighting.FogEnd = 1e10;
-    for i, v in pairs(lighting:GetDescendants()) do
-        if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("SunRaysEffect") then
-            v.Enabled = false;
-        end;
-    end;
-    fbd[4] = lighting.Changed:Connect(function()
-        lighting.Ambient = Color3.fromRGB(255, 255, 255);
-        lighting.Brightness = 1;
-        lighting.FogEnd = 1e10;
-    end);
+	lighting.Ambient = Color3.fromRGB(255, 255, 255);
+	lighting.Brightness = 1;
+	lighting.FogEnd = 1e10;
+    	for i, v in pairs(lighting:GetDescendants()) do
+        	if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("SunRaysEffect") then
+            		v.Enabled = false;
+        	end;
+    	end;
+    	fbd[4] = lighting.Changed:Connect(function()
+        	lighting.Ambient = Color3.fromRGB(255, 255, 255);
+        	lighting.Brightness = 1;
+        	lighting.FogEnd = 1e10;
+    	end);
 end
 function unfb()
 	local lighting = game:GetService("Lighting");
-    lighting.Ambient = fbd[1];
-    lighting.Brightness = fbd[2];
-    lighting.FogEnd = fbd[3];
-    for i, v in pairs(lighting:GetDescendants()) do
-        if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("SunRaysEffect") then
-            v.Enabled = true;
-        end;
-    end;
-    fbd[4]:Disconnect()
+    	lighting.Ambient = fbd[1];
+    	lighting.Brightness = fbd[2];
+    	lighting.FogEnd = fbd[3];
+    	for i, v in pairs(lighting:GetDescendants()) do
+        	if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("SunRaysEffect") then
+            		v.Enabled = true;
+        	end;
+    	end;
+    	fbd[4]:Disconnect()
 end
 --// ok actual code starts here
  
@@ -96,8 +96,17 @@ function newroom()
 	local door = newroom.Door
 	if des then
 		Esp:HighlightESP({
-			Model = door.Door.Sign or door.SignPhysical,
-			Name = "Door " .. tostring(LatestRoom.Value),
+			Model = door.Door,
+			Name = "",
+			FillColor = Color3.new(1,1,0),
+			OutlineColor = Color3.new(1,1,0),
+			TextColor = Color3.new(1,1,0),
+			FillTransparency = 1,
+			OutlineTransparency = 1
+		})
+		Esp:CreateBillboard({
+			Model = door.Door,
+			Name = "",
 			FillColor = Color3.new(1,1,0),
 			OutlineColor = Color3.new(1,1,0),
 			TextColor = Color3.new(1,1,0),
