@@ -1,5 +1,5 @@
-local CoreGUI = game:GetService("CoreGui")
-local CoreGui = game:GetService("CoreGui")
+local CoreGUI = game.CoreGui
+local CoreGui = CoreGUI
 
 local RunService = game:GetService("RunService")
 
