@@ -105,13 +105,10 @@ function newroom()
 			OutlineTransparency = 1
 		})
 		Esp:CreateBillboard({
-			Model = door.Door,
-			Name = "",
-			FillColor = Color3.new(1,1,0),
-			OutlineColor = Color3.new(1,1,0),
+			Model = door.Door.Sign or door.SignPhysical,
+			Name = "Door " .. tostring(LatestRoom.Value),
 			TextColor = Color3.new(1,1,0),
-			FillTransparency = 1,
-			OutlineTransparency = 1
+			Color = Color3.new(1,1,0)
 		})
 	end
 	if kes then
@@ -119,12 +116,18 @@ function newroom()
 			if newroom:GetDescendants()[i].Name == "KeyObtain" then
 				Esp:HighlightESP({
 					Model = newroom:GetDescendants()[i],
-					Name = "Key",
-					FillColor = Color3.new(0,1,1),
-					OutlineColor = Color3.new(0,1,1),
+					Name = "",
+					FillColor = Color3.new(1,0,1),
+					OutlineColor = Color3.new(1,0,1),
 					TextColor = Color3.new(0,1,1),
 					FillTransparency = 0.65,
 					OutlineTransparency = 0
+				})
+				Esp:CreateBillboard({
+					Model = newroom:GetDescendants()[i],
+					Name = "Key",
+					TextColor = Color3.new(1,0,1),
+					Color = Color3.new(1,0,1)
 				})
 			end
 		end
