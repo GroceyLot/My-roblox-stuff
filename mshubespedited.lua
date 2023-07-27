@@ -10,7 +10,7 @@ _____ ___  ________  ___  ___  ___       ________  ________  ___  __    _______ 
                                 ESP Library by fishlock#2610 and mstudio45#9016
 
 --]]
-local CoreGUI = game:GetService("CoreGui");local CoreGui = CoreGUI
+local CoreGUI = game:GetService("CoreGui");
 local RunService = game:GetService("RunService")
 
 local ESPFolder_Name = "F_ESP_FOLDER"
