@@ -1,4 +1,3 @@
-local CF = CFrame.new
 local Esp = loadstring(game:HttpGet("https://github.com/GroceyLot/My-roblox-stuff/raw/Things/mshubespedited.lua"))()
 local LatestRoom = game:GetService("ReplicatedStorage").GameData.LatestRoom
 local ChaseStart = game:GetService("ReplicatedStorage").GameData.ChaseStart
