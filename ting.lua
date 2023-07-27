@@ -97,7 +97,7 @@ function newroom()
 	if des then
 		Esp:HighlightESP({
 			Model = door.Door,
-			Name = "",
+			Name = "hi",
 			FillColor = Color3.new(1,1,0),
 			OutlineColor = Color3.new(1,1,0),
 			TextColor = Color3.new(1,1,0),
@@ -116,7 +116,7 @@ function newroom()
 			if newroom:GetDescendants()[i].Name == "KeyObtain" then
 				Esp:HighlightESP({
 					Model = newroom:GetDescendants()[i],
-					Name = "",
+					Name = "hi",
 					FillColor = Color3.new(1,0,1),
 					OutlineColor = Color3.new(1,0,1),
 					TextColor = Color3.new(0,1,1),
