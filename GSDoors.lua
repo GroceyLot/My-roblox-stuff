@@ -1129,7 +1129,7 @@ function newroom()
 	end
 	updateesp()
 	if curval == 50 then
-		wait(30)
+		wait(100)
 		updateesp()
 	end
 end
