@@ -119,20 +119,38 @@ local _2_9 = Instance.new("UICorner")
 local TextButton_11 = Instance.new("TextButton")
 local _2_10 = Instance.new("UICorner")
 local UIStroke = Instance.new("UIStroke")
+local TextLabel_8 = Instance.new("TextLabel")
+local TextLabel_9 = Instance.new("TextLabel")
+
 
 -- Properties
-
+ScreenGui.Name = "GSDOORSUI"
 ScreenGui.Parent = game.CoreGui
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global
 
 Frame.Parent = ScreenGui
-Frame.AnchorPoint = Vector2.new(0.5, 0.5)
 Frame.BackgroundColor3 = Color3.new(0.117647, 0.0666667, 0.0627451)
 Frame.BackgroundTransparency = 0.10000000149011612
-Frame.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
 Frame.BorderSizePixel = 0
-Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
-Frame.Size = UDim2.new(0.300000012, 0, 0.699999988, 0)
+Frame.Position = UDim2.new(0.35, 0, 0.15, 0)
+Frame.Size = UDim2.new(0.3, 0, 0.7, 0)
+
+local UserInputService = game:GetService("UserInputService")
+
+-- Function to be executed when the keybind is triggered
+local function onShiftKeyPress()
+  	ScreenGui.Enabled = not ScreenGui.Enabled
+end
+
+-- Bind the key press event
+UserInputService.InputBegan:Connect(function(input, isProcessed)
+    if input.UserInputType == Enum.UserInputType.Keyboard then
+        if input.KeyCode == Enum.KeyCode.LeftShift or input.KeyCode == Enum.KeyCode.RightShift then
+            onShiftKeyPress()
+        end
+    end
+end)
+
 
 UIStroke.Parent = Frame
 UIStroke.Color = Color3.fromRGB(255, 222, 189)
@@ -902,6 +920,33 @@ end)
 TextButton_11.MouseButton1Click:Connect(function()
 	toggle(TextButton_11)
 end)
+TextLabel_8.Parent = ScrollingFrame
+TextLabel_8.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel_8.BackgroundTransparency = 1
+TextLabel_8.BorderColor3 = Color3.new(0, 0, 0)
+TextLabel_8.BorderSizePixel = 0
+TextLabel_8.Size = UDim2.new(0.959999979, 0, 0.162, 0)
+TextLabel_8.Font = Enum.Font.Oswald
+TextLabel_8.Text = "Thank you for using GSDoors"
+TextLabel_8.TextColor3 = Color3.new(1, 0.866667, 0.737255)
+TextLabel_8.TextScaled = true
+TextLabel_8.TextSize = 14
+TextLabel_8.TextWrapped = true
+
+TextLabel_9.Parent = ScrollingFrame
+TextLabel_9.AnchorPoint = Vector2.new(0.5, 0)
+TextLabel_9.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel_9.BackgroundTransparency = 1
+TextLabel_9.BorderColor3 = Color3.new(0, 0, 0)
+TextLabel_9.BorderSizePixel = 0
+TextLabel_9.Position = UDim2.new(0.479999959, 0, 0.838000059, 0)
+TextLabel_9.Size = UDim2.new(0.960000038, 0, 0.116313323, 0)
+TextLabel_9.Font = Enum.Font.Oswald
+TextLabel_9.Text = "Press left shift to show and hide the ui"
+TextLabel_9.TextColor3 = Color3.new(1, 0.866667, 0.737255)
+TextLabel_9.TextScaled = true
+TextLabel_9.TextSize = 14
+TextLabel_9.TextWrapped = true
 
 _2_10.Name = "2"
 _2_10.Parent = TextButton_11
