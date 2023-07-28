@@ -9,6 +9,8 @@ local it = false
 local hbw = false
 local arc
 local fbd = {}
+local Player = Players.LocalPlayer
+local Mouse = Player:GetMouse()
 
 local Utils = loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Utilla.lua"))()
 local Uitils = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/UI.lua"))()
@@ -262,7 +264,7 @@ TextButton.InputBegan:Connect(function(input, processed)
                 end)
 
                 TextButton.InputEnded:Connect(function(input, processed)
-                    if not processed and input.UserInputType == Enum.UserInputType.MouseButton1 and settings.fireOnUnfocus then
+                    if not processed and input.UserInputType == Enum.UserInputType.MouseButton1 then
                         local percent = math.clamp((Mouse.X - TextButton.AbsolutePosition.X) / TextButton.AbsoluteSize.X, 0, 1)
                         updateVisual(math.floor((0 + (percent * (50 - 0))) * 10) / 10, TextButton)
                     end
