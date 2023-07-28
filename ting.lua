@@ -131,7 +131,6 @@ Frame.BackgroundTransparency = 0.10000000149011612
 Frame.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
 Frame.BorderSizePixel = 0
 Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
-Frame.ZIndex = 2100000
 Frame.Size = UDim2.new(0.300000012, 0, 0.699999988, 0)
 
 UIStroke.Parent = Frame
