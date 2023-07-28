@@ -26,6 +26,17 @@ function toggle(toggle)
 	end
 end
 
+--[[
+
+		Gui2Lua™
+		10zOfficial
+		Version 1.0.0
+
+]]
+
+
+-- Instances
+
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -49,6 +60,8 @@ local TextLabel_2 = Instance.new("TextLabel")
 local UICorner_7 = Instance.new("UICorner")
 local TextLabel_3 = Instance.new("TextLabel")
 local UICorner_8 = Instance.new("UICorner")
+local Die = Instance.new("TextButton")
+local UICorner2 = Instance.new("UICorner")
 local Entities = Instance.new("Frame")
 local UICorner_9 = Instance.new("UICorner")
 local TextLabel_4 = Instance.new("TextLabel")
@@ -75,10 +88,42 @@ local Frame_7 = Instance.new("Frame")
 local UICorner_18 = Instance.new("UICorner")
 local TextButton_6 = Instance.new("TextButton")
 local UICorner_19 = Instance.new("UICorner")
+local Fullbright = Instance.new("TextLabel")
+local Frame_8 = Instance.new("Frame")
+local _2 = Instance.new("UICorner")
+local TextButton_7 = Instance.new("TextButton")
+local _2_2 = Instance.new("UICorner")
+local ESP = Instance.new("Frame")
+local UICorner2_2 = Instance.new("UICorner")
+local Door = Instance.new("TextLabel")
+local Frame_9 = Instance.new("Frame")
+local UICorner_20 = Instance.new("UICorner")
+local TextButton_8 = Instance.new("TextButton")
+local UICorner_21 = Instance.new("UICorner")
+local TextLabel_6 = Instance.new("TextLabel")
+local _2_3 = Instance.new("UICorner")
+local TextLabel_7 = Instance.new("TextLabel")
+local _2_4 = Instance.new("UICorner")
+local KeySwitchBookBreaker = Instance.new("TextLabel")
+local Frame_10 = Instance.new("Frame")
+local _2_5 = Instance.new("UICorner")
+local TextButton_9 = Instance.new("TextButton")
+local _2_6 = Instance.new("UICorner")
+local GoldItems = Instance.new("TextLabel")
+local Frame_11 = Instance.new("Frame")
+local _2_7 = Instance.new("UICorner")
+local TextButton_10 = Instance.new("TextButton")
+local _2_8 = Instance.new("UICorner")
+local Entities_2 = Instance.new("TextLabel")
+local Frame_12 = Instance.new("Frame")
+local _2_9 = Instance.new("UICorner")
+local TextButton_11 = Instance.new("TextButton")
+local _2_10 = Instance.new("UICorner")
 local UIStroke = Instance.new("UIStroke")
+
 -- Properties
 
-ScreenGui.Parent = game.CoreGui
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Frame.Parent = ScreenGui
@@ -121,7 +166,6 @@ TextLabel.TextSize = 14
 TextLabel.TextWrapped = true
 TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-
 ScrollingFrame.Parent = Frame
 ScrollingFrame.Active = true
 ScrollingFrame.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -131,6 +175,7 @@ ScrollingFrame.BorderColor3 = Color3.new(0, 0, 0)
 ScrollingFrame.BorderSizePixel = 0
 ScrollingFrame.Position = UDim2.new(0.49999997, 0, 0.572877347, 0)
 ScrollingFrame.Size = UDim2.new(0.949999988, 0, 0.818081737, 0)
+ScrollingFrame.CanvasPosition = Vector2.new(0, 39.0928955)
 ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
 ScrollingFrame.AutomaticCanvasSize = Enum.AutomaticSize.XY
 
@@ -232,17 +277,13 @@ TextButton_2.Font = Enum.Font.SourceSans
 TextButton_2.Text = ""
 TextButton_2.TextColor3 = Color3.new(0, 0, 0)
 TextButton_2.TextSize = 14
-TextButton_2.MouseButton1Click:Connect(function()
-	toggle(TextButton_2)
-	it = TextButton_2:GetAttribute("v")
-end)
 
 UICorner_6.Parent = TextButton_2
 UICorner_6.CornerRadius = UDim.new(0, 10000)
 
 TextLabel_2.Parent = Player
 TextLabel_2.AnchorPoint = Vector2.new(0.5, 0.5)
-TextLabel_2.BackgroundColor3 = Color3.new(0.670588, 0.443137, 0.388235)
+TextLabel_2.BackgroundColor3 = Color3.new(0.666667, 0.439216, 0.384314)
 TextLabel_2.BackgroundTransparency = 0.75
 TextLabel_2.BorderColor3 = Color3.new(0, 0, 0)
 TextLabel_2.BorderSizePixel = 0
@@ -272,6 +313,25 @@ TextLabel_3.TextWrapped = true
 TextLabel_3.TextXAlignment = Enum.TextXAlignment.Left
 
 UICorner_8.Parent = TextLabel_3
+
+Die.Name = "Die"
+Die.Parent = Player
+Die.AnchorPoint = Vector2.new(0.5, 0.5)
+Die.BackgroundColor3 = Color3.new(0.666667, 0.439216, 0.384314)
+Die.BackgroundTransparency = 0.8999999761581421
+Die.BorderColor3 = Color3.new(0, 0, 0)
+Die.BorderSizePixel = 0
+Die.Position = UDim2.new(0.5, 0, 0.850000024, 0)
+Die.Size = UDim2.new(0.927999973, 0, 0.200000003, 0)
+Die.Font = Enum.Font.Oswald
+Die.Text = "Kill"
+Die.TextColor3 = Color3.new(1, 0.866667, 0.737255)
+Die.TextScaled = true
+Die.TextSize = 14
+Die.TextWrapped = true
+
+UICorner2.Name = "UICorner2"
+UICorner2.Parent = Die
 
 Entities.Name = "Entities"
 Entities.Parent = ScrollingFrame
@@ -357,10 +417,7 @@ TextButton_3.Font = Enum.Font.SourceSans
 TextButton_3.Text = ""
 TextButton_3.TextColor3 = Color3.new(0, 0, 0)
 TextButton_3.TextSize = 14
-TextButton_3.MouseButton1Click:Connect(function()
-	toggle(TextButton_3)
-	st = TextButton_3:GetAttribute("v")
-end)
+
 UICorner_13.Parent = TextButton_3
 UICorner_13.CornerRadius = UDim.new(0, 10000)
 
@@ -404,10 +461,7 @@ TextButton_4.Font = Enum.Font.SourceSans
 TextButton_4.Text = ""
 TextButton_4.TextColor3 = Color3.new(0, 0, 0)
 TextButton_4.TextSize = 14
-TextButton_4.MouseButton1Click:Connect(function()
-	toggle(TextButton_4)
-	nso = TextButton_4:GetAttribute("v")
-end)
+
 UICorner_15.Parent = TextButton_4
 UICorner_15.CornerRadius = UDim.new(0, 10000)
 
@@ -451,10 +505,7 @@ TextButton_5.Font = Enum.Font.SourceSans
 TextButton_5.Text = ""
 TextButton_5.TextColor3 = Color3.new(0, 0, 0)
 TextButton_5.TextSize = 14
-TextButton_5.MouseButton1Click:Connect(function()
-	toggle(TextButton_5)
-	hbw = TextButton_5:GetAttribute("v")
-end)
+
 UICorner_17.Parent = TextButton_5
 UICorner_17.CornerRadius = UDim.new(0, 10000)
 
@@ -498,14 +549,287 @@ TextButton_6.Font = Enum.Font.SourceSans
 TextButton_6.Text = ""
 TextButton_6.TextColor3 = Color3.new(0, 0, 0)
 TextButton_6.TextSize = 14
-TextButton_6.MouseButton1Click:Connect(function()
-	toggle(TextButton_6)
-	arc = TextButton_6:GetAttribute("v")
-end)
+
 UICorner_19.Parent = TextButton_6
 UICorner_19.CornerRadius = UDim.new(0, 10000)
+
+Fullbright.Name = "Fullbright"
+Fullbright.Parent = ScrollingFrame
+Fullbright.AnchorPoint = Vector2.new(0.5, 0.5)
+Fullbright.BackgroundColor3 = Color3.new(1, 1, 1)
+Fullbright.BackgroundTransparency = 1
+Fullbright.BorderColor3 = Color3.new(0, 0, 0)
+Fullbright.BorderSizePixel = 0
+Fullbright.Position = UDim2.new(0.479999959, 0, 0.880963922, 0)
+Fullbright.Size = UDim2.new(0.960000038, 0, 0.161927789, 0)
+Fullbright.Font = Enum.Font.Oswald
+Fullbright.Text = "Fullbright"
+Fullbright.TextColor3 = Color3.new(1, 0.866667, 0.737255)
+Fullbright.TextScaled = true
+Fullbright.TextSize = 14
+Fullbright.TextWrapped = true
+Fullbright.TextXAlignment = Enum.TextXAlignment.Left
+
+Frame_8.Parent = Fullbright
+Frame_8.AnchorPoint = Vector2.new(0.5, 0.5)
+Frame_8.BackgroundColor3 = Color3.new(0.670588, 0.443137, 0.388235)
+Frame_8.BackgroundTransparency = 0.550000011920929
+Frame_8.BorderColor3 = Color3.new(0, 0, 0)
+Frame_8.BorderSizePixel = 0
+Frame_8.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
+Frame_8.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
+
+_2.Name = "2"
+_2.Parent = Frame_8
+_2.CornerRadius = UDim.new(0, 10000)
+
+TextButton_7.Parent = Frame_8
+TextButton_7.AnchorPoint = Vector2.new(0.5, 0.5)
+TextButton_7.BackgroundColor3 = Color3.new(1, 0.866667, 0.737255)
+TextButton_7.BorderColor3 = Color3.new(0, 0, 0)
+TextButton_7.BorderSizePixel = 0
+TextButton_7.Position = UDim2.new(0.239999995, 0, 0.5, 0)
+TextButton_7.Size = UDim2.new(0.467999995, 0, 1, 0)
+TextButton_7.Font = Enum.Font.SourceSans
+TextButton_7.Text = ""
+TextButton_7.TextColor3 = Color3.new(0, 0, 0)
+TextButton_7.TextSize = 14
+
+_2_2.Name = "2"
+_2_2.Parent = TextButton_7
+_2_2.CornerRadius = UDim.new(0, 10000)
+
+ESP.Name = "ESP"
+ESP.Parent = ScrollingFrame
+ESP.BackgroundColor3 = Color3.new(0.117647, 0.0666667, 0.0627451)
+ESP.BackgroundTransparency = 0.5
+ESP.BorderColor3 = Color3.new(0, 0, 0)
+ESP.BorderSizePixel = 0
+ESP.Position = UDim2.new(-7.92006034e-08, 0, -4.27012665e-08, 0)
+ESP.Size = UDim2.new(0.959999979, 0, 0.699999988, 0)
+
+UICorner2_2.Name = "UICorner2"
+UICorner2_2.Parent = ESP
+
+Door.Name = "Door"
+Door.Parent = ESP
+Door.AnchorPoint = Vector2.new(0.5, 0.5)
+Door.BackgroundColor3 = Color3.new(1, 1, 1)
+Door.BackgroundTransparency = 1
+Door.BorderColor3 = Color3.new(0, 0, 0)
+Door.BorderSizePixel = 0
+Door.Position = UDim2.new(0.508296609, 0, 0.344372362, 0)
+Door.Size = UDim2.new(0.928373039, 0, 0.189122215, 0)
+Door.Font = Enum.Font.Oswald
+Door.Text = "Door"
+Door.TextColor3 = Color3.new(1, 0.866667, 0.737255)
+Door.TextScaled = true
+Door.TextSize = 14
+Door.TextWrapped = true
+Door.TextXAlignment = Enum.TextXAlignment.Left
+
+Frame_9.Parent = Door
+Frame_9.AnchorPoint = Vector2.new(0.5, 0.5)
+Frame_9.BackgroundColor3 = Color3.new(0.670588, 0.443137, 0.388235)
+Frame_9.BackgroundTransparency = 0.550000011920929
+Frame_9.BorderColor3 = Color3.new(0, 0, 0)
+Frame_9.BorderSizePixel = 0
+Frame_9.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
+Frame_9.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
+
+UICorner_20.Parent = Frame_9
+UICorner_20.CornerRadius = UDim.new(0, 10000)
+
+TextButton_8.Parent = Frame_9
+TextButton_8.AnchorPoint = Vector2.new(0.5, 0.5)
+TextButton_8.BackgroundColor3 = Color3.new(1, 0.866667, 0.737255)
+TextButton_8.BorderColor3 = Color3.new(0, 0, 0)
+TextButton_8.BorderSizePixel = 0
+TextButton_8.Position = UDim2.new(0.239999995, 0, 0.5, 0)
+TextButton_8.Size = UDim2.new(0.467999995, 0, 1, 0)
+TextButton_8.Font = Enum.Font.SourceSans
+TextButton_8.Text = ""
+TextButton_8.TextColor3 = Color3.new(0, 0, 0)
+TextButton_8.TextSize = 14
+
+UICorner_21.Parent = TextButton_8
+UICorner_21.CornerRadius = UDim.new(0, 10000)
+
+TextLabel_6.Parent = ESP
+TextLabel_6.AnchorPoint = Vector2.new(0.5, 0.5)
+TextLabel_6.BackgroundColor3 = Color3.new(0.666667, 0.439216, 0.384314)
+TextLabel_6.BackgroundTransparency = 0.75
+TextLabel_6.BorderColor3 = Color3.new(0, 0, 0)
+TextLabel_6.BorderSizePixel = 0
+TextLabel_6.Position = UDim2.new(0.5, 0, 0.150000006, 0)
+TextLabel_6.Size = UDim2.new(0.949999988, 0, 0.200000003, 0)
+TextLabel_6.Font = Enum.Font.Oswald
+TextLabel_6.Text = ""
+TextLabel_6.TextColor3 = Color3.new(1, 0.866667, 0.737255)
+TextLabel_6.TextSize = 1
+TextLabel_6.TextWrapped = true
+
+_2_3.Name = "2"
+_2_3.Parent = TextLabel_6
+
+TextLabel_7.Parent = TextLabel_6
+TextLabel_7.BackgroundColor3 = Color3.new(0.117647, 0.0666667, 0.0627451)
+TextLabel_7.BackgroundTransparency = 1
+TextLabel_7.BorderColor3 = Color3.new(0, 0, 0)
+TextLabel_7.BorderSizePixel = 0
+TextLabel_7.Position = UDim2.new(0.0227653123, 0, 0, 0)
+TextLabel_7.Size = UDim2.new(0.977234662, 0, 1, 0)
+TextLabel_7.Font = Enum.Font.Oswald
+TextLabel_7.Text = "ESP"
+TextLabel_7.TextColor3 = Color3.new(1, 0.866667, 0.737255)
+TextLabel_7.TextScaled = true
+TextLabel_7.TextSize = 14
+TextLabel_7.TextWrapped = true
+TextLabel_7.TextXAlignment = Enum.TextXAlignment.Left
+
+_2_4.Name = "2"
+_2_4.Parent = TextLabel_7
+
+KeySwitchBookBreaker.Name = "Key/Switch/Book/Breaker"
+KeySwitchBookBreaker.Parent = ESP
+KeySwitchBookBreaker.AnchorPoint = Vector2.new(0.5, 0.5)
+KeySwitchBookBreaker.BackgroundColor3 = Color3.new(1, 1, 1)
+KeySwitchBookBreaker.BackgroundTransparency = 1
+KeySwitchBookBreaker.BorderColor3 = Color3.new(0, 0, 0)
+KeySwitchBookBreaker.BorderSizePixel = 0
+KeySwitchBookBreaker.Position = UDim2.new(0.508296609, 0, 0.511164844, 0)
+KeySwitchBookBreaker.Size = UDim2.new(0.928373039, 0, 0.189122215, 0)
+KeySwitchBookBreaker.Font = Enum.Font.Oswald
+KeySwitchBookBreaker.Text = "Key, book etc"
+KeySwitchBookBreaker.TextColor3 = Color3.new(1, 0.866667, 0.737255)
+KeySwitchBookBreaker.TextScaled = true
+KeySwitchBookBreaker.TextSize = 14
+KeySwitchBookBreaker.TextWrapped = true
+KeySwitchBookBreaker.TextXAlignment = Enum.TextXAlignment.Left
+
+Frame_10.Parent = KeySwitchBookBreaker
+Frame_10.AnchorPoint = Vector2.new(0.5, 0.5)
+Frame_10.BackgroundColor3 = Color3.new(0.670588, 0.443137, 0.388235)
+Frame_10.BackgroundTransparency = 0.550000011920929
+Frame_10.BorderColor3 = Color3.new(0, 0, 0)
+Frame_10.BorderSizePixel = 0
+Frame_10.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
+Frame_10.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
+
+_2_5.Name = "2"
+_2_5.Parent = Frame_10
+_2_5.CornerRadius = UDim.new(0, 10000)
+
+TextButton_9.Parent = Frame_10
+TextButton_9.AnchorPoint = Vector2.new(0.5, 0.5)
+TextButton_9.BackgroundColor3 = Color3.new(1, 0.866667, 0.737255)
+TextButton_9.BorderColor3 = Color3.new(0, 0, 0)
+TextButton_9.BorderSizePixel = 0
+TextButton_9.Position = UDim2.new(0.239999995, 0, 0.5, 0)
+TextButton_9.Size = UDim2.new(0.467999995, 0, 1, 0)
+TextButton_9.Font = Enum.Font.SourceSans
+TextButton_9.Text = ""
+TextButton_9.TextColor3 = Color3.new(0, 0, 0)
+TextButton_9.TextSize = 14
+
+_2_6.Name = "2"
+_2_6.Parent = TextButton_9
+_2_6.CornerRadius = UDim.new(0, 10000)
+
+GoldItems.Name = "Gold/Items"
+GoldItems.Parent = ESP
+GoldItems.AnchorPoint = Vector2.new(0.5, 0.5)
+GoldItems.BackgroundColor3 = Color3.new(1, 1, 1)
+GoldItems.BackgroundTransparency = 1
+GoldItems.BorderColor3 = Color3.new(0, 0, 0)
+GoldItems.BorderSizePixel = 0
+GoldItems.Position = UDim2.new(0.508000016, 0, 0.677999973, 0)
+GoldItems.Size = UDim2.new(0.928373039, 0, 0.189122215, 0)
+GoldItems.Font = Enum.Font.Oswald
+GoldItems.Text = "Gold, items"
+GoldItems.TextColor3 = Color3.new(1, 0.866667, 0.737255)
+GoldItems.TextScaled = true
+GoldItems.TextSize = 14
+GoldItems.TextWrapped = true
+GoldItems.TextXAlignment = Enum.TextXAlignment.Left
+
+Frame_11.Parent = GoldItems
+Frame_11.AnchorPoint = Vector2.new(0.5, 0.5)
+Frame_11.BackgroundColor3 = Color3.new(0.670588, 0.443137, 0.388235)
+Frame_11.BackgroundTransparency = 0.550000011920929
+Frame_11.BorderColor3 = Color3.new(0, 0, 0)
+Frame_11.BorderSizePixel = 0
+Frame_11.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
+Frame_11.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
+
+_2_7.Name = "2"
+_2_7.Parent = Frame_11
+_2_7.CornerRadius = UDim.new(0, 10000)
+
+TextButton_10.Parent = Frame_11
+TextButton_10.AnchorPoint = Vector2.new(0.5, 0.5)
+TextButton_10.BackgroundColor3 = Color3.new(1, 0.866667, 0.737255)
+TextButton_10.BorderColor3 = Color3.new(0, 0, 0)
+TextButton_10.BorderSizePixel = 0
+TextButton_10.Position = UDim2.new(0.239999995, 0, 0.5, 0)
+TextButton_10.Size = UDim2.new(0.467999995, 0, 1, 0)
+TextButton_10.Font = Enum.Font.SourceSans
+TextButton_10.Text = ""
+TextButton_10.TextColor3 = Color3.new(0, 0, 0)
+TextButton_10.TextSize = 14
+
+_2_8.Name = "2"
+_2_8.Parent = TextButton_10
+_2_8.CornerRadius = UDim.new(0, 10000)
+
+Entities_2.Name = "Entities"
+Entities_2.Parent = ESP
+Entities_2.AnchorPoint = Vector2.new(0.5, 0.5)
+Entities_2.BackgroundColor3 = Color3.new(1, 1, 1)
+Entities_2.BackgroundTransparency = 1
+Entities_2.BorderColor3 = Color3.new(0, 0, 0)
+Entities_2.BorderSizePixel = 0
+Entities_2.Position = UDim2.new(0.508000016, 0, 0.845000029, 0)
+Entities_2.Size = UDim2.new(0.928373039, 0, 0.189122215, 0)
+Entities_2.Font = Enum.Font.Oswald
+Entities_2.Text = "Entities"
+Entities_2.TextColor3 = Color3.new(1, 0.866667, 0.737255)
+Entities_2.TextScaled = true
+Entities_2.TextSize = 14
+Entities_2.TextWrapped = true
+Entities_2.TextXAlignment = Enum.TextXAlignment.Left
+
+Frame_12.Parent = Entities_2
+Frame_12.AnchorPoint = Vector2.new(0.5, 0.5)
+Frame_12.BackgroundColor3 = Color3.new(0.670588, 0.443137, 0.388235)
+Frame_12.BackgroundTransparency = 0.550000011920929
+Frame_12.BorderColor3 = Color3.new(0, 0, 0)
+Frame_12.BorderSizePixel = 0
+Frame_12.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
+Frame_12.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
+
+_2_9.Name = "2"
+_2_9.Parent = Frame_12
+_2_9.CornerRadius = UDim.new(0, 10000)
+
+TextButton_11.Parent = Frame_12
+TextButton_11.AnchorPoint = Vector2.new(0.5, 0.5)
+TextButton_11.BackgroundColor3 = Color3.new(1, 0.866667, 0.737255)
+TextButton_11.BorderColor3 = Color3.new(0, 0, 0)
+TextButton_11.BorderSizePixel = 0
+TextButton_11.Position = UDim2.new(0.239999995, 0, 0.5, 0)
+TextButton_11.Size = UDim2.new(0.467999995, 0, 1, 0)
+TextButton_11.Font = Enum.Font.SourceSans
+TextButton_11.Text = ""
+TextButton_11.TextColor3 = Color3.new(0, 0, 0)
+TextButton_11.TextSize = 14
+
+_2_10.Name = "2"
+_2_10.Parent = TextButton_11
+_2_10.CornerRadius = UDim.new(0, 10000)
 Uitils:MakeDraggable(Frame, Top, 0)
 Uitils:MakeDraggable(Frame, TextLabel, 0)
+Uitils:MakeDraggable(Frame, Frame, 0)
 function fb()
 	local lighting = game:GetService("Lighting");
 	fbd = {}
