@@ -1026,24 +1026,14 @@ workspace.CurrentCamera.ChildAdded:Connect(function(child)
         child:Destroy()
     end
 end)
-function updateesp(d)
-	local things = {"Lockpick", "Vitamins", "Crucifix", "GoldPile", "Lighter", "Flashlight", "SkeletonKey", "Door"}
-	local done = false
-	for i=1, #things do
-		if d.Name == things[i] then
-			done = true
-		end
-	end
-	if not done then
-		return
-	end
+function updateesp()
 	esp:Clear()
 	local curval = LatestRoom.Value
 	local newroom = game.Workspace.CurrentRooms[tostring(LatestRoom.Value)]
 	local door = newroom.Door
 	if des then
 		esp:AddHighlight(door.Door, Color3.new(1,1,0))
-		esp:AddText(door.Door.Sign, Color3.new(1,1,0), "Door " .. tostring(LatestRoom.Value + 1))
+		esp:AddText(door.Door.Sign or door.SignPhysical, Color3.new(1,1,0), "Door " .. tostring(LatestRoom.Value + 1))
 	end
 	if kes then
 		local desc = newroom:GetDescendants()
@@ -1081,7 +1071,7 @@ function updateesp(d)
 			end
 			if n.Name == "Lockpick" and n.Parent.Name ~= "Handle" then
 				esp:AddHighlight(n, Color3.new(1,0,1))
-				esp:AddText(n, Color3.new(1,0,1), "Candle")
+				esp:AddText(n, Color3.new(1,0,1), "Lockpick")
 			end
 			if n.Name == "Crucifix" then
 				esp:AddHighlight(n, Color3.new(1,0,1))
@@ -1103,12 +1093,22 @@ function updateesp(d)
 				esp:AddHighlight(n, Color3.new(1,0,1))
 				esp:AddText(n, Color3.new(1,0,1), "Skeleton Key")
 			end
+			if n.Name == "Batteries" then
+				esp:AddHighlight(n, Color3.new(1,0,1))
+				esp:AddText(n, Color3.new(1,0,1), "Batteries")
+			end
 		end
 	end
-	newroom.DescendantAdded:Once(updateesp)
+	if ees then
+		if curval == 50 then
+			esp:AddHighlight(newroom.FigureSetup.FigureRagdoll, Color3.new(1,0,0))
+			esp:AddText(newroom.FigureSetup.FigureRagdoll, Color3.new(1,0,0), "Figure")
+		end
+	end
 end
 function newroom()
-	local newroom = game.Workspace.CurrentRooms[tostring(LatestRoom.Value)]
+	local curval = LatestRoom.Value
+	local newroom = game.Workspace.CurrentRooms[tostring(curval)]
 	if nso then
 		local desc = newroom:GetDescendants()
 		for i=1, #desc do
@@ -1127,6 +1127,10 @@ function newroom()
 			end
 		end
 	end
-	updateesp(newroom.Door)
+	updateesp()
+	if curval == 50 then
+		wait(30)
+		updateesp()
+	end
 end
 LatestRoom:GetPropertyChangedSignal("Value"):Connect(newroom)
