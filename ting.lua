@@ -13,16 +13,16 @@ local fbd = {}
 local Utils = loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Utilla.lua"))()
 local Uitils = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/UI.lua"))()
 function toggle(toggle) 
-	if toggle:GetAttribute("v") ~= nil then
+	if toggle:GetAttribute("v") == nil then
+		toggle:SetAttribute("v", true)
+		Utils:TweenPos(toggle, TweenInfo.new(0.5,Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), toggle.Position, UDim2.new(0.76, toggle.Position.X.Offset, toggle.Position.Y.Scale, toggle.Position.Y.Offset)) 
+	else
 		toggle:SetAttribute("v", not toggle:GetAttribute("v"))
 		if toggle:GetAttribute("v") then
 			Utils:TweenPos(toggle, TweenInfo.new(0.5,Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), toggle.Position, UDim2.new(0.76, toggle.Position.X.Offset, toggle.Position.Y.Scale, toggle.Position.Y.Offset)) 
 		else
 			Utils:TweenPos(toggle, TweenInfo.new(0.5,Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), toggle.Position, UDim2.new(0.24, toggle.Position.X.Offset, toggle.Position.Y.Scale, toggle.Position.Y.Offset)) 
 		end
-	else
-		toggle:SetAttribute("v", true)
-		Utils:TweenPos(toggle, TweenInfo.new(0.5,Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), toggle.Position, UDim2.new(0.76, toggle.Position.X.Offset, toggle.Position.Y.Scale, toggle.Position.Y.Offset)) 
 	end
 end
 
