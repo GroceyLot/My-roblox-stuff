@@ -935,7 +935,7 @@ function unfb()
     	lighting.FogEnd = fbd[3];
     	for i, v in pairs(lighting:GetDescendants()) do
         	if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("SunRaysEffect") then
-            		v.Enabled = v:GetAttribute("e");
+            		v.Enabled = v:GetAttribute("e") or v.Enabled;
         	end;
     	end;
     	fbd[4]:Disconnect()
