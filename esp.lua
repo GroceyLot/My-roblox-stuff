@@ -5,7 +5,7 @@ function ESP:Clear()
 end
 function ESP:AddHighlight(obj, color)
   local esp = Instance.new("Highlight")
-  esp.DepthMode = Enum.DepthMode.AlwaysOnTop
+  esp.AlwaysOnTop = true
   esp.FillColor = color
   esp.OutlineColor = color
   esp.FillTransparency = 0.65
