@@ -1,5 +1,7 @@
 local ESP = {}
 local espfolder = Instance.new("Folder")
+espfolder.Name = tostring(math.random(10000000,99999999))
+espfolder.Parent = game.Workspace
 function ESP:Clear()
   espfolder:ClearAllChildren()
 end
