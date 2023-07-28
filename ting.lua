@@ -1,5 +1,6 @@
 local LatestRoom = game:GetService("ReplicatedStorage").GameData.LatestRoom
 local ChaseStart = game:GetService("ReplicatedStorage").GameData.ChaseStart
+local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/esp.lua"))()
 local ws = 2
 local des = false
 local kes = false
@@ -989,11 +990,11 @@ workspace.CurrentCamera.ChildAdded:Connect(function(child)
 end)
 
 function newroom()
-	Esp:ClearESP()
+	ESP:ClearESP()
 	local newroom = game.Workspace.CurrentRooms[tostring(LatestRoom.Value)]
 	local door = newroom.Door
 	if des then
-		
+		ESP:AddHighlight
 	end
 	if kes then
 		
