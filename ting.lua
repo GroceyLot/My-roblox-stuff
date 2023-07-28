@@ -498,6 +498,7 @@ TextButton_6.MouseButton1Click:Connect(function()
 end)
 UICorner_19.Parent = TextButton_6
 UICorner_19.CornerRadius = UDim.new(0, 22)
+Uitils:MakeDraggable(Frame, Top, 0)
 function fb()
 	local lighting = game:GetService("Lighting");
 	fbd = {}
