@@ -11,8 +11,7 @@ local it = false
 local hbw = false
 local arc
 local fbd = {}
-local Player = game.Players.LocalPlayer
-local Mouse = Player:GetMouse()
+
 
 local Utils = loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Utilla.lua"))()
 local Uitils = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/UI.lua"))()
@@ -337,7 +336,7 @@ Die.TextScaled = true
 Die.TextSize = 14
 Die.TextWrapped = true
 Die.MouseButton1Click:Connect(function()
-	Player.Character.Humanoid.Health = 0
+	game.Players.LocalPlayer.Character.Humanoid.Health = 0
 end)
 	
 UICorner2.Name = "UICorner2"
@@ -429,7 +428,7 @@ TextButton_3.TextColor3 = Color3.new(0, 0, 0)
 TextButton_3.TextSize = 14
 TextButton_3:SetAttribute("v", false)
 TextButton_3:GetAttributeChangedSignal("v"):Connect(function()
-	st = TextButton_2:GetAttribute("v")
+	st = TextButton_3:GetAttribute("v")
 end)
 TextButton_3.MouseButton1Click:Connect(function()
 	toggle(TextButton_3)
