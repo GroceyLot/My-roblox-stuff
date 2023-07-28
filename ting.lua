@@ -257,7 +257,6 @@ TextButton.InputBegan:Connect(function(input, processed)
                             local percent = math.clamp((Mouse.X - TextButton.AbsolutePosition.X) / TextButton.AbsoluteSize.X, 0, 1)
                             local sliderValue = math.floor((0 + (percent * (50 - 0))) * 10) / 10
                             updateVisual(sliderValue, TextButton)
-                            end
                             game:GetService("RunService").Stepped:Wait()
                         until not game:GetService("UserInputService"):IsMouseButtonPressed(Enum.UserInputType.MouseButton1)
                     end
