@@ -36,7 +36,7 @@ local function updateVisual(val, button)
 	
                     local percent = 1 - ((50 - val) / (50 - 0))
 
-                    local pointPadding = 1 / Slider.Slider.Holder.AbsoluteSize.X * 5
+                    local pointPadding = 1 / TextButton.AbsoluteSize.X * 5
                     game:GetService("TweenService"):Create(button, TweenInfo.new(.25, Enum.EasingStyle.Quint), {
                         Position = UDim2.new(math.clamp(percent, pointPadding, 1 - pointPadding), 0, .5, 0),
                     }):Play()
