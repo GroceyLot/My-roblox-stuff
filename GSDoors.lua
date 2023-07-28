@@ -1034,7 +1034,7 @@ function updateesp(d)
 			done = true
 		end
 	end
-	if done then
+	if not done then
 		return
 	end
 	esp:Clear()
