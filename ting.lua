@@ -25,6 +25,22 @@ function toggle(toggle)
 		end
 	end
 end
+local function getValidValue(val)
+	val = math.clamp(val, 0, 50)
+        val = math.round(val)
+
+        return val
+end
+local function updateVisual(val, button)
+                    val = getValidValue(val)
+	
+                    local percent = 1 - ((50 - val) / (50 - 0))
+
+                    local pointPadding = 1 / Slider.Slider.Holder.AbsoluteSize.X * 5
+                    game:GetService("TweenService"):Create(button, TweenInfo.new(.25, Enum.EasingStyle.Quint), {
+                        Position = UDim2.new(math.clamp(percent, pointPadding, 1 - pointPadding), 0, .5, 0),
+                    }):Play()
+                end
 
 --[[
 
@@ -233,6 +249,24 @@ TextButton.Font = Enum.Font.SourceSans
 TextButton.Text = ""
 TextButton.TextColor3 = Color3.new(0, 0, 0)
 TextButton.TextSize = 14
+TextButton.InputBegan:Connect(function(input, processed)
+                    if not processed and input.UserInputType == Enum.UserInputType.MouseButton1 then
+                        repeat
+                            local percent = math.clamp((Mouse.X - TextButton.AbsolutePosition.X) / TextButton.AbsoluteSize.X, 0, 1)
+                            local sliderValue = math.floor((0 + (percent * (50 - 0))) * 10) / 10
+                            updateVisual(sliderValue, TextButton)
+                            end
+                            game:GetService("RunService").Stepped:Wait()
+                        until not game:GetService("UserInputService"):IsMouseButtonPressed(Enum.UserInputType.MouseButton1)
+                    end
+                end)
+
+                TextButton.InputEnded:Connect(function(input, processed)
+                    if not processed and input.UserInputType == Enum.UserInputType.MouseButton1 and settings.fireOnUnfocus then
+                        local percent = math.clamp((Mouse.X - TextButton.AbsolutePosition.X) / TextButton.AbsoluteSize.X, 0, 1)
+                        updateVisual(math.floor((0 + (percent * (50 - 0))) * 10) / 10, TextButton)
+                    end
+                end)
 
 UICorner_4.Parent = TextButton
 UICorner_4.CornerRadius = UDim.new(0, 22)
