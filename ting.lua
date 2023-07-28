@@ -236,7 +236,7 @@ TextButton_2.MouseButton1Click:Connect(function()
 end)
 
 UICorner_6.Parent = TextButton_2
-UICorner_6.CornerRadius = UDim.new(0, 22)
+UICorner_6.CornerRadius = UDim.new(0, 10000)
 
 TextLabel_2.Parent = Player
 TextLabel_2.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -497,7 +497,7 @@ TextButton_6.MouseButton1Click:Connect(function()
 	toggle(TextButton_6)
 end)
 UICorner_19.Parent = TextButton_6
-UICorner_19.CornerRadius = UDim.new(0, 22)
+UICorner_19.CornerRadius = UDim.new(0, 10000)
 Uitils:MakeDraggable(Frame, Top, 0)
 function fb()
 	local lighting = game:GetService("Lighting");
@@ -584,42 +584,10 @@ function newroom()
 	local newroom = game.Workspace.CurrentRooms[tostring(LatestRoom.Value)]
 	local door = newroom.Door
 	if des then
-		Esp:HighlightESP({
-			Model = door.Door,
-			Name = "hi",
-			FillColor = Color3.new(1,1,0),
-			OutlineColor = Color3.new(1,1,0),
-			TextColor = Color3.new(1,1,0),
-			FillTransparency = 1,
-			OutlineTransparency = 1
-		})
-		Esp:CreateBillboard(
-			Color3.new(1,1,0),
-			Name = "Door " .. tostring(LatestRoom.Value),
-			Model = door.Door.Sign or door.SignPhysical,
-			Color = Color3.new(1,1,0)
-		)
+		
 	end
 	if kes then
-		for i=1, #newroom:GetDescendants() do
-			if newroom:GetDescendants()[i].Name == "KeyObtain" then
-				Esp:HighlightESP({
-					Model = newroom:GetDescendants()[i],
-					Name = "hi",
-					FillColor = Color3.new(1,0,1),
-					OutlineColor = Color3.new(1,0,1),
-					TextColor = Color3.new(0,1,1),
-					FillTransparency = 0.65,
-					OutlineTransparency = 0
-				})
-				Esp:CreateBillboard(
-					Color3.new(1,0,1),
-					"Key",
-					newroom:GetDescendants()[i],
-					Color3.new(1,0,1)
-				)
-			end
-		end
+		
 	end
 end
 LatestRoom:GetPropertyChangedSignal("Value"):Connect(newroom)
