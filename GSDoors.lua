@@ -1190,15 +1190,15 @@ local function onRushMovingAdded(child)
         local character = player.Character
         local closet = findnearestcloset()
         local rootPart = character and character:FindFirstChild("HumanoidRootPart")
-	while not rushMoving:FindFirstChild("RushNew") do
+	while not child:FindFirstChild("RushNew") do
 		wait()
 	end
-	if (rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude > 9999 then
+	if (child:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude > 9999 then
 		return
 	end
 	if ees then
-		esp:AddHighlight(rushMoving:FindFirstChild("RushNew"), Color3.new(1,0,0))
-		esp:AddText(rushMoving:FindFirstChild("RushNew"), Color3.new(1,0,0), "Rush")
+		esp:AddHighlight(child:FindFirstChild("RushNew"), Color3.new(1,0,0))
+		esp:AddText(child:FindFirstChild("RushNew"), Color3.new(1,0,0), "Rush")
 	end
         if rootPart and arc then
             while child.Parent == game.Workspace do
