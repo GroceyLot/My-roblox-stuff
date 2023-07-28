@@ -906,7 +906,7 @@ _2_10.Name = "2"
 _2_10.Parent = TextButton_11
 _2_10.CornerRadius = UDim.new(0, 10000)
 Uitils.MakeDraggable(Frame, Top, 0)
-Uitils.MakeDraggable(Frame, TextLabel, 0)
+
 function fb()
 	local lighting = game:GetService("Lighting");
 	fbd = {}
