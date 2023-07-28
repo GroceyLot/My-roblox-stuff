@@ -1,12 +1,13 @@
 local LatestRoom = game:GetService("ReplicatedStorage").GameData.LatestRoom
 local ChaseStart = game:GetService("ReplicatedStorage").GameData.ChaseStart
 local ws = 2
-local des = true
-local kes = true
-local st = true
-local nso = true
-local it = true
-local hbw = true
+local des = false
+local kes = false
+local st = false
+local nso = false
+local it = false
+local hbw = false
+local arc
 local fbd = {}
 
 local Utils = loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Utilla.lua"))()
@@ -233,6 +234,7 @@ TextButton_2.TextColor3 = Color3.new(0, 0, 0)
 TextButton_2.TextSize = 14
 TextButton_2.MouseButton1Click:Connect(function()
 	toggle(TextButton_2)
+	it = TextButton_2:GetAttribute("v")
 end)
 
 UICorner_6.Parent = TextButton_2
@@ -357,6 +359,7 @@ TextButton_3.TextColor3 = Color3.new(0, 0, 0)
 TextButton_3.TextSize = 14
 TextButton_3.MouseButton1Click:Connect(function()
 	toggle(TextButton_3)
+	st = TextButton_3:GetAttribute("v")
 end)
 UICorner_13.Parent = TextButton_3
 UICorner_13.CornerRadius = UDim.new(0, 10000)
@@ -403,6 +406,7 @@ TextButton_4.TextColor3 = Color3.new(0, 0, 0)
 TextButton_4.TextSize = 14
 TextButton_4.MouseButton1Click:Connect(function()
 	toggle(TextButton_4)
+	nso = TextButton_4:GetAttribute("v")
 end)
 UICorner_15.Parent = TextButton_4
 UICorner_15.CornerRadius = UDim.new(0, 10000)
@@ -449,6 +453,7 @@ TextButton_5.TextColor3 = Color3.new(0, 0, 0)
 TextButton_5.TextSize = 14
 TextButton_5.MouseButton1Click:Connect(function()
 	toggle(TextButton_5)
+	hbw = TextButton_5:GetAttribute("v")
 end)
 UICorner_17.Parent = TextButton_5
 UICorner_17.CornerRadius = UDim.new(0, 10000)
@@ -495,6 +500,7 @@ TextButton_6.TextColor3 = Color3.new(0, 0, 0)
 TextButton_6.TextSize = 14
 TextButton_6.MouseButton1Click:Connect(function()
 	toggle(TextButton_6)
+	arc = TextButton_6:GetAttribute("v")
 end)
 UICorner_19.Parent = TextButton_6
 UICorner_19.CornerRadius = UDim.new(0, 10000)
