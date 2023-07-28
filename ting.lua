@@ -505,6 +505,7 @@ end)
 UICorner_19.Parent = TextButton_6
 UICorner_19.CornerRadius = UDim.new(0, 10000)
 Uitils:MakeDraggable(Frame, Top, 0)
+Uitils:MakeDraggable(Frame, TextLabel, 0)
 function fb()
 	local lighting = game:GetService("Lighting");
 	fbd = {}
