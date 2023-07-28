@@ -1033,7 +1033,9 @@ function updateesp()
 	local door = newroom.Door
 	if des then
 		esp:AddHighlight(door.Door, Color3.new(1,1,0))
-		esp:AddText(door.Door.Sign or door.SignPhysical, Color3.new(1,1,0), "Door " .. tostring(LatestRoom.Value + 1))
+		if curval ~= 50 then
+			esp:AddText(door.Door.Sign, Color3.new(1,1,0), "Door " .. tostring(LatestRoom.Value + 1))
+		end
 	end
 	if kes then
 		local desc = newroom:GetDescendants()
