@@ -1163,10 +1163,12 @@ function findclosets()
 end
 function findnearestcloset()
 	local closets = findclosets()
+	local rootPart = char and char:FindFirstChild("HumanoidRootPart")
 	local distances = {}
 	for i=1, #closets do
+		
 		local mainpos = closets[i].Main.Position
-		table.insert(distances, (mainpos - char.PrimaryPart.Position).magnitude)
+		table.insert(distances, (mainpos - rootPart.Position).magnitude)
 	end
 	local lowest = 1000000000000000
 	local lowestindex = 0
