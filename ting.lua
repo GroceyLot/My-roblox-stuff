@@ -994,10 +994,18 @@ function newroom()
 	local newroom = game.Workspace.CurrentRooms[tostring(LatestRoom.Value)]
 	local door = newroom.Door
 	if des then
-		ESP:AddHighlight
+		ESP:AddHighlight(door.Door, Color3.new(1,1,0))
+		ESP:AddText(door.Door.Sign, Color3.new(1,1,0), "Door " .. tostring(LatestRoom.Value + 1))
 	end
 	if kes then
-		
+		local desc = game.Workspace.newroom:GetDescendants()
+		for i=1, #desc do
+			local n = desc[i]
+			if n.Name = "KeyObtain" then
+				ESP:AddHighlight(n, Color3.new(1,0,1))
+				ESP:AddText(n, Color3.new(1,0,1), "Key")
+			end
+		end
 	end
 end
 LatestRoom:GetPropertyChangedSignal("Value"):Connect(newroom)
