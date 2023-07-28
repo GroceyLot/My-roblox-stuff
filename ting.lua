@@ -218,7 +218,7 @@ Frame_3.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
 Frame_3.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
 
 UICorner_5.Parent = Frame_3
-UICorner_5.CornerRadius = UDim.new(0, 22)
+UICorner_5.CornerRadius = UDim.new(0, 10000)
 
 TextButton_2.Parent = Frame_3
 TextButton_2.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -342,7 +342,7 @@ Frame_4.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
 Frame_4.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
 
 UICorner_12.Parent = Frame_4
-UICorner_12.CornerRadius = UDim.new(0, 22)
+UICorner_12.CornerRadius = UDim.new(0, 10000)
 
 TextButton_3.Parent = Frame_4
 TextButton_3.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -359,7 +359,7 @@ TextButton_3.MouseButton1Click:Connect(function()
 	toggle(TextButton_3)
 end)
 UICorner_13.Parent = TextButton_3
-UICorner_13.CornerRadius = UDim.new(0, 22)
+UICorner_13.CornerRadius = UDim.new(0, 10000)
 
 NoSFireArms.Name = "NoSFireArms"
 NoSFireArms.Parent = Entities
@@ -388,7 +388,7 @@ Frame_5.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
 Frame_5.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
 
 UICorner_14.Parent = Frame_5
-UICorner_14.CornerRadius = UDim.new(0, 22)
+UICorner_14.CornerRadius = UDim.new(0, 10000)
 
 TextButton_4.Parent = Frame_5
 TextButton_4.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -405,7 +405,7 @@ TextButton_4.MouseButton1Click:Connect(function()
 	toggle(TextButton_4)
 end)
 UICorner_15.Parent = TextButton_4
-UICorner_15.CornerRadius = UDim.new(0, 22)
+UICorner_15.CornerRadius = UDim.new(0, 10000)
 
 AutoHeartBeat.Name = "AutoHeartBeat"
 AutoHeartBeat.Parent = Entities
@@ -434,7 +434,7 @@ Frame_6.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
 Frame_6.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
 
 UICorner_16.Parent = Frame_6
-UICorner_16.CornerRadius = UDim.new(0, 22)
+UICorner_16.CornerRadius = UDim.new(0, 10000)
 
 TextButton_5.Parent = Frame_6
 TextButton_5.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -451,7 +451,7 @@ TextButton_5.MouseButton1Click:Connect(function()
 	toggle(TextButton_5)
 end)
 UICorner_17.Parent = TextButton_5
-UICorner_17.CornerRadius = UDim.new(0, 22)
+UICorner_17.CornerRadius = UDim.new(0, 10000)
 
 AutoRushCloset.Name = "AutoRushCloset"
 AutoRushCloset.Parent = Entities
@@ -480,7 +480,7 @@ Frame_7.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
 Frame_7.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
 
 UICorner_18.Parent = Frame_7
-UICorner_18.CornerRadius = UDim.new(0, 22)
+UICorner_18.CornerRadius = UDim.new(0, 10000)
 
 TextButton_6.Parent = Frame_7
 TextButton_6.AnchorPoint = Vector2.new(0.5, 0.5)
