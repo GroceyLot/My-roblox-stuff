@@ -279,6 +279,8 @@ TextButton_2.TextSize = 14
 TextButton_2:SetAttribute("v", false)
 TextButton_2:GetAttributeChangedSignal("v"):Connect(function()
 	it = TextButton_2:GetAttribute("v")
+	print(it)
+	print(TextButton_2:GetAttribute("v"))
 end)
 TextButton_2.MouseButton1Click:Connect(function()
 	toggle(TextButton_2)
