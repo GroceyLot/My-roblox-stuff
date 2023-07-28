@@ -1,6 +1,6 @@
 local LatestRoom = game:GetService("ReplicatedStorage").GameData.LatestRoom
 local ChaseStart = game:GetService("ReplicatedStorage").GameData.ChaseStart
-local ESP = loadstring(game:HttpGet("https://github.com/GroceyLot/My-roblox-stuff/raw/Things/esp.lua"))()
+local esp = loadstring(game:HttpGet("https://github.com/GroceyLot/My-roblox-stuff/raw/Things/esp.lua"))()
 local ws = 2
 local des = false
 local kes = false
@@ -951,14 +951,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
     end)
 end)
  
-game:GetService("Workspace").CurrentRooms.DescendantAdded:Connect(function(descendant)
-    if nso == true and descendant.Name == ("Seek_Arm" or "ChandelierObstruction") then
-        task.spawn(function()
-            wait()
-            descendant:Destroy()
-        end)
-    end
-end)
+
  
 game:GetService("ProximityPromptService").PromptButtonHoldBegan:Connect(function(prompt)
     if it == true then
@@ -988,24 +981,107 @@ workspace.CurrentCamera.ChildAdded:Connect(function(child)
         child:Destroy()
     end
 end)
-
-function newroom()
-	ESP:ClearESP()
+function updateesp(d)
+	local things = {"Lockpick", "Vitamins", "Crucifix", "GoldPile", "Lighter", "Flashlight", "SkeletonKey", "Door"}
+	local done = false
+	for i=1, #things do
+		if d.Name == things[i] then
+			done = true
+		end
+	end
+	if done then
+		return
+	end
+	esp:Clear()
+	local curval = LatestRoom.Value
 	local newroom = game.Workspace.CurrentRooms[tostring(LatestRoom.Value)]
 	local door = newroom.Door
 	if des then
-		ESP:AddHighlight(door.Door, Color3.new(1,1,0))
-		ESP:AddText(door.Door.Sign, Color3.new(1,1,0), "Door " .. tostring(LatestRoom.Value + 1))
+		esp:AddHighlight(door.Door, Color3.new(1,1,0))
+		esp:AddText(door.Door.Sign, Color3.new(1,1,0), "Door " .. tostring(LatestRoom.Value + 1))
 	end
 	if kes then
-		local desc = game.Workspace.newroom:GetDescendants()
+		local desc = newroom:GetDescendants()
 		for i=1, #desc do
 			local n = desc[i]
-			if n.Name = "KeyObtain" then
-				ESP:AddHighlight(n, Color3.new(1,0,1))
-				ESP:AddText(n, Color3.new(1,0,1), "Key")
+			if n.Name == "KeyObtain" then
+				esp:AddHighlight(n, Color3.new(0,1,1))
+				esp:AddText(n, Color3.new(0,1,1), "Key")
+			end
+			if n.Name == "LeverForGate" then
+				esp:AddHighlight(n, Color3.new(0,1,1))
+				esp:AddText(n, Color3.new(0,1,1), "Gate switch")
+			end
+			if n.Name == "LiveHintBook" then
+				esp:AddHighlight(n, Color3.new(0,1,1))
+				esp:AddText(n, Color3.new(0,1,1), "Book")
 			end
 		end
 	end
+	if ies then
+		local desc = newroom:GetDescendants()
+		for i=1, #desc do
+			local n = desc[i]
+			if n.Name == "GoldPile" then
+				esp:AddHighlight(n, Color3.new(1,0,1))
+				esp:AddText(n, Color3.new(1,0,1), "Gold")
+			end
+			if n.Name == "Lighter" and n.Parent.Name ~= "Bookcase" then
+				esp:AddHighlight(n, Color3.new(1,0,1))
+				esp:AddText(n, Color3.new(1,0,1), "Lighter")
+			end
+			if n.Name == "Candle" and n.Parent.Name ~= "Handle" then
+				esp:AddHighlight(n, Color3.new(1,0,1))
+				esp:AddText(n, Color3.new(1,0,1), "Candle")
+			end
+			if n.Name == "Lockpick" and n.Parent.Name ~= "Handle" then
+				esp:AddHighlight(n, Color3.new(1,0,1))
+				esp:AddText(n, Color3.new(1,0,1), "Candle")
+			end
+			if n.Name == "Crucifix" then
+				esp:AddHighlight(n, Color3.new(1,0,1))
+				esp:AddText(n, Color3.new(1,0,1), "Crucifix")
+			end
+			if n.Name == "CrucifixOnTheWall" then
+				esp:AddHighlight(n, Color3.new(1,0,1))
+				esp:AddText(n, Color3.new(1,0,1), "Crucifix")
+			end
+			if n.Name == "Flashlight" then
+				esp:AddHighlight(n, Color3.new(1,0,1))
+				esp:AddText(n, Color3.new(1,0,1), "Flashlight")
+			end
+			if n.Name == "Vitamins" then
+				esp:AddHighlight(n, Color3.new(1,0,1))
+				esp:AddText(n, Color3.new(1,0,1), "Vitamins")
+			end
+			if n.Name == "SkeletonKey" then
+				esp:AddHighlight(n, Color3.new(1,0,1))
+				esp:AddText(n, Color3.new(1,0,1), "Skeleton Key")
+			end
+		end
+	end
+	newroom.DescendantAdded:Once(updateesp)
+end
+function newroom()
+	local newroom = game.Workspace.CurrentRooms[tostring(LatestRoom.Value)]
+	if nso then
+		local desc = newroom:GetDescendants()
+		for i=1, #desc do
+			local n = desc[i]
+			if n.Name == "Seek_Arm" then
+				task.spawn(function()
+            		wait()
+            		n:Destroy()
+        		end)
+			end
+			if n.Name == "ChandelierObstruction" then
+				task.spawn(function()
+            		wait()
+            		n:Destroy()
+        		end)
+			end
+		end
+	end
+	updateesp(newroom.Door)
 end
 LatestRoom:GetPropertyChangedSignal("Value"):Connect(newroom)
