@@ -3,46 +3,27 @@ local ChaseStart = game:GetService("ReplicatedStorage").GameData.ChaseStart
 local ws = 2
 local des = false
 local kes = false
+local ies = false
+local ees = false
 local st = false
 local nso = false
 local it = false
 local hbw = false
 local arc
 local fbd = {}
-local Player = Players.LocalPlayer
+local Player = game.Players.LocalPlayer
 local Mouse = Player:GetMouse()
 
 local Utils = loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Utilla.lua"))()
 local Uitils = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/UI.lua"))()
 function toggle(toggle) 
-	if toggle:GetAttribute("v") == nil then
-		toggle:SetAttribute("v", true)
+	toggle:SetAttribute("v", not toggle:GetAttribute("v"))
+	if toggle:GetAttribute("v") then
 		Utils:TweenPos(toggle, TweenInfo.new(0.5,Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), toggle.Position, UDim2.new(0.76, toggle.Position.X.Offset, toggle.Position.Y.Scale, toggle.Position.Y.Offset)) 
 	else
-		toggle:SetAttribute("v", not toggle:GetAttribute("v"))
-		if toggle:GetAttribute("v") then
-			Utils:TweenPos(toggle, TweenInfo.new(0.5,Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), toggle.Position, UDim2.new(0.76, toggle.Position.X.Offset, toggle.Position.Y.Scale, toggle.Position.Y.Offset)) 
-		else
-			Utils:TweenPos(toggle, TweenInfo.new(0.5,Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), toggle.Position, UDim2.new(0.24, toggle.Position.X.Offset, toggle.Position.Y.Scale, toggle.Position.Y.Offset)) 
-		end
+		Utils:TweenPos(toggle, TweenInfo.new(0.5,Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), toggle.Position, UDim2.new(0.24, toggle.Position.X.Offset, toggle.Position.Y.Scale, toggle.Position.Y.Offset)) 
 	end
 end
-local function getValidValue(val)
-	val = math.clamp(val, 0, 50)
-        val = math.round(val)
-
-        return val
-end
-local function updateVisual(val, button)
-                    val = getValidValue(val)
-	
-                    local percent = 1 - ((50 - val) / (50 - 0))
-
-                    local pointPadding = 1 / TextButton.AbsoluteSize.X * 5
-                    game:GetService("TweenService"):Create(button, TweenInfo.new(.25, Enum.EasingStyle.Quint), {
-                        Position = UDim2.new(math.clamp(percent, pointPadding, 1 - pointPadding), 0, .5, 0),
-                    }):Play()
-                end
 
 --[[
 
@@ -251,23 +232,7 @@ TextButton.Font = Enum.Font.SourceSans
 TextButton.Text = ""
 TextButton.TextColor3 = Color3.new(0, 0, 0)
 TextButton.TextSize = 14
-TextButton.InputBegan:Connect(function(input, processed)
-                    if not processed and input.UserInputType == Enum.UserInputType.MouseButton1 then
-                        repeat
-                            local percent = math.clamp((Mouse.X - TextButton.AbsolutePosition.X) / TextButton.AbsoluteSize.X, 0, 1)
-                            local sliderValue = math.floor((0 + (percent * (50 - 0))) * 10) / 10
-                            updateVisual(sliderValue, TextButton)
-                            game:GetService("RunService").Stepped:Wait()
-                        until not game:GetService("UserInputService"):IsMouseButtonPressed(Enum.UserInputType.MouseButton1)
-                    end
-                end)
 
-                TextButton.InputEnded:Connect(function(input, processed)
-                    if not processed and input.UserInputType == Enum.UserInputType.MouseButton1 then
-                        local percent = math.clamp((Mouse.X - TextButton.AbsolutePosition.X) / TextButton.AbsoluteSize.X, 0, 1)
-                        updateVisual(math.floor((0 + (percent * (50 - 0))) * 10) / 10, TextButton)
-                    end
-                end)
 
 UICorner_4.Parent = TextButton
 UICorner_4.CornerRadius = UDim.new(0, 22)
@@ -312,6 +277,13 @@ TextButton_2.Font = Enum.Font.SourceSans
 TextButton_2.Text = ""
 TextButton_2.TextColor3 = Color3.new(0, 0, 0)
 TextButton_2.TextSize = 14
+TextButton_2:SetAttribute("v", false)
+TextButton_2:GetAttributeChangedSignal("v"):Connect(function()
+	it = TextButton_2:GetAttribute("v")
+end)
+TextButton_2.MouseButton1Click:Connect(function()
+	toggle(TextButton_2)
+end)
 
 UICorner_6.Parent = TextButton_2
 UICorner_6.CornerRadius = UDim.new(0, 10000)
@@ -364,7 +336,10 @@ Die.TextColor3 = Color3.new(1, 0.866667, 0.737255)
 Die.TextScaled = true
 Die.TextSize = 14
 Die.TextWrapped = true
-
+Die.MouseButton1Click:Connect(function()
+	Player.Character.Humanoid.Health = 0
+end)
+	
 UICorner2.Name = "UICorner2"
 UICorner2.Parent = Die
 
@@ -452,6 +427,13 @@ TextButton_3.Font = Enum.Font.SourceSans
 TextButton_3.Text = ""
 TextButton_3.TextColor3 = Color3.new(0, 0, 0)
 TextButton_3.TextSize = 14
+TextButton_3:SetAttribute("v", false)
+TextButton_3:GetAttributeChangedSignal("v"):Connect(function()
+	st = TextButton_2:GetAttribute("v")
+end)
+TextButton_3.MouseButton1Click:Connect(function()
+	toggle(TextButton_3)
+end)
 
 UICorner_13.Parent = TextButton_3
 UICorner_13.CornerRadius = UDim.new(0, 10000)
@@ -496,6 +478,13 @@ TextButton_4.Font = Enum.Font.SourceSans
 TextButton_4.Text = ""
 TextButton_4.TextColor3 = Color3.new(0, 0, 0)
 TextButton_4.TextSize = 14
+TextButton_4:SetAttribute("v", false)
+TextButton_4:GetAttributeChangedSignal("v"):Connect(function()
+	nso = TextButton_4:GetAttribute("v")
+end)
+TextButton_4.MouseButton1Click:Connect(function()
+	toggle(TextButton_4)
+end)
 
 UICorner_15.Parent = TextButton_4
 UICorner_15.CornerRadius = UDim.new(0, 10000)
@@ -540,6 +529,13 @@ TextButton_5.Font = Enum.Font.SourceSans
 TextButton_5.Text = ""
 TextButton_5.TextColor3 = Color3.new(0, 0, 0)
 TextButton_5.TextSize = 14
+TextButton_5:SetAttribute("v", false)
+TextButton_5:GetAttributeChangedSignal("v"):Connect(function()
+	hbw = TextButton_5:GetAttribute("v")
+end)
+TextButton_5.MouseButton1Click:Connect(function()
+	toggle(TextButton_5)
+end)
 
 UICorner_17.Parent = TextButton_5
 UICorner_17.CornerRadius = UDim.new(0, 10000)
@@ -584,6 +580,13 @@ TextButton_6.Font = Enum.Font.SourceSans
 TextButton_6.Text = ""
 TextButton_6.TextColor3 = Color3.new(0, 0, 0)
 TextButton_6.TextSize = 14
+TextButton_6:SetAttribute("v", false)
+TextButton_6:GetAttributeChangedSignal("v"):Connect(function()
+	arc = TextButton_6:GetAttribute("v")
+end)
+TextButton_6.MouseButton1Click:Connect(function()
+	toggle(TextButton_6)
+end)
 
 UICorner_19.Parent = TextButton_6
 UICorner_19.CornerRadius = UDim.new(0, 10000)
@@ -629,6 +632,17 @@ TextButton_7.Font = Enum.Font.SourceSans
 TextButton_7.Text = ""
 TextButton_7.TextColor3 = Color3.new(0, 0, 0)
 TextButton_7.TextSize = 14
+TextButton_7:SetAttribute("v", false)
+TextButton_7:GetAttributeChangedSignal("v"):Connect(function()
+	if TextButton_7:GetAttribute("v") then
+		fb()
+	else
+		unfb()
+	end
+end)
+TextButton_7.MouseButton1Click:Connect(function()
+	toggle(TextButton_7)
+end)
 
 _2_2.Name = "2"
 _2_2.Parent = TextButton_7
@@ -686,6 +700,13 @@ TextButton_8.Font = Enum.Font.SourceSans
 TextButton_8.Text = ""
 TextButton_8.TextColor3 = Color3.new(0, 0, 0)
 TextButton_8.TextSize = 14
+TextButton_8:SetAttribute("v", false)
+TextButton_8:GetAttributeChangedSignal("v"):Connect(function()
+	des = TextButton_8:GetAttribute("v")
+end)
+TextButton_8.MouseButton1Click:Connect(function()
+	toggle(TextButton_8)
+end)
 
 UICorner_21.Parent = TextButton_8
 UICorner_21.CornerRadius = UDim.new(0, 10000)
@@ -766,6 +787,13 @@ TextButton_9.Font = Enum.Font.SourceSans
 TextButton_9.Text = ""
 TextButton_9.TextColor3 = Color3.new(0, 0, 0)
 TextButton_9.TextSize = 14
+TextButton_9:SetAttribute("v", false)
+TextButton_9:GetAttributeChangedSignal("v"):Connect(function()
+	kes = TextButton_9:GetAttribute("v")
+end)
+TextButton_9.MouseButton1Click:Connect(function()
+	toggle(TextButton_9)
+end)
 
 _2_6.Name = "2"
 _2_6.Parent = TextButton_9
@@ -812,6 +840,13 @@ TextButton_10.Font = Enum.Font.SourceSans
 TextButton_10.Text = ""
 TextButton_10.TextColor3 = Color3.new(0, 0, 0)
 TextButton_10.TextSize = 14
+TextButton_10:SetAttribute("v", false)
+TextButton_10:GetAttributeChangedSignal("v"):Connect(function()
+	ies = TextButton_10:GetAttribute("v")
+end)
+TextButton_10.MouseButton1Click:Connect(function()
+	toggle(TextButton_10)
+end)
 
 _2_8.Name = "2"
 _2_8.Parent = TextButton_10
@@ -858,6 +893,13 @@ TextButton_11.Font = Enum.Font.SourceSans
 TextButton_11.Text = ""
 TextButton_11.TextColor3 = Color3.new(0, 0, 0)
 TextButton_11.TextSize = 14
+TextButton_11:SetAttribute("v", false)
+TextButton_11:GetAttributeChangedSignal("v"):Connect(function()
+	ees = TextButton_11:GetAttribute("v")
+end)
+TextButton_11.MouseButton1Click:Connect(function()
+	toggle(TextButton_11)
+end)
 
 _2_10.Name = "2"
 _2_10.Parent = TextButton_11
@@ -957,4 +999,3 @@ function newroom()
 	end
 end
 LatestRoom:GetPropertyChangedSignal("Value"):Connect(newroom)
-fb()
