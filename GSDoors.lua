@@ -24,7 +24,16 @@ function toggle(toggle)
 		Utils:TweenPos(toggle, TweenInfo.new(0.5,Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), toggle.Position, UDim2.new(0.24, toggle.Position.X.Offset, toggle.Position.Y.Scale, toggle.Position.Y.Offset)) 
 	end
 end
-
+function contoggle(toggle, val)
+	toggle:SetAttribute("v", false)
+toggle:GetAttributeChangedSignal("v"):Connect(function()
+	val = toggle:GetAttribute("v")
+	print(toggle:GetAttribute("v"))
+end)
+toggle.MouseButton1Click:Connect(function()
+	toggle(toggle)
+end)
+end
 --[[
 
 		Gui2Lua™
