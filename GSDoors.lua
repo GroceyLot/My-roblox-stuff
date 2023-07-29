@@ -1072,7 +1072,7 @@ function updateesp()
 				esp:AddHighlight(n, Color3.new(1,0,1))
 				esp:AddText(n, Color3.new(1,0,1), "Gold")
 			end
-			if n.Name == "Lighter" and n.Parent.Name ~= "Bookcase" then
+			if n.Name == "Lighter" and n.Parent.Name ~= "Bookcase" and n.Parent.Name ~= "BookcaseFake" then
 				esp:AddHighlight(n, Color3.new(1,0,1))
 				esp:AddText(n, Color3.new(1,0,1), "Lighter")
 			end
@@ -1085,10 +1085,6 @@ function updateesp()
 				esp:AddText(n, Color3.new(1,0,1), "Lockpick")
 			end
 			if n.Name == "Crucifix" then
-				esp:AddHighlight(n, Color3.new(1,0,1))
-				esp:AddText(n, Color3.new(1,0,1), "Crucifix")
-			end
-			if n.Name == "CrucifixOnTheWall" then
 				esp:AddHighlight(n, Color3.new(1,0,1))
 				esp:AddText(n, Color3.new(1,0,1), "Crucifix")
 			end
