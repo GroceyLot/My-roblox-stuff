@@ -20,6 +20,9 @@ local fbd = {}
 
 local Utils = loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Utilla.lua"))()
 local Uitils = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/UI.lua"))()
+local Achievements = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
+
+-- Creates and displays your custom achievement
 function toggle(toggle) 
 	toggle:SetAttribute("v", not toggle:GetAttribute("v"))
 	if toggle:GetAttribute("v") then
@@ -1467,7 +1470,7 @@ local function onRushMovingAdded(child)
 			end
 		end
 	end
-	if child.Name == "AmbushMoving" then
+	if child.Name == "AmbushMoving"  then
 		local player = game.Players.LocalPlayer
 		local character = player.Character
 		local closet = findnearestcloset()
@@ -1487,6 +1490,12 @@ end
 
 -- Connect the function to be called whenever a new child is added to workspace
 game:GetService("Workspace").ChildAdded:Connect(onRushMovingAdded)
+Achievements.Get({
+    Title = "Locked and Loaded",
+    Desc = "ya",
+    Reason = "You executed the example script.",
+    Image = "https://images.emojiterra.com/twitter/v13.1/512px/1f913.png",
+})
 while true do
 	if vs["st"] then
 		screechremote.Parent = nil
