@@ -2,19 +2,19 @@ local LatestRoom = game:GetService("ReplicatedStorage").GameData.LatestRoom
 local ChaseStart = game:GetService("ReplicatedStorage").GameData.ChaseStart
 local esp = loadstring(game:HttpGet("https://github.com/GroceyLot/My-roblox-stuff/raw/Things/esp.lua"))()
 local vs = {ws = 2,
-des = false,
-kes = false,
-ies = false,
-ees = false,
-st = false,
-nso = false,
-it = false,
-ne = false,
-af = false,
-pa = false,
-no = false,
-hbw = false,
-arc = false}
+	des = false,
+	kes = false,
+	ies = false,
+	ees = false,
+	st = false,
+	nso = false,
+	it = false,
+	ne = false,
+	af = false,
+	pa = false,
+	no = false,
+	hbw = false,
+	arc = false}
 local fbd = {}
 
 
@@ -30,13 +30,13 @@ function toggle(toggle)
 end
 function contoggle(toggle, val)
 	toggle:SetAttribute("v", false)
-toggle:GetAttributeChangedSignal("v"):Connect(function()
-	vs[val] = toggle:GetAttribute("v")
-	print(toggle:GetAttribute("v"))
-end)
-toggle.MouseButton1Click:Connect(function()
-	toggle(toggle)
-end)
+	toggle:GetAttributeChangedSignal("v"):Connect(function()
+		vs[val] = toggle:GetAttribute("v")
+		print(toggle:GetAttribute("v"))
+	end)
+	toggle.MouseButton1Click:Connect(function()
+		toggle(toggle)
+	end)
 end
 --[[
 
@@ -59,47 +59,50 @@ local UIListLayout = Instance.new("UIListLayout")
 local Player = Instance.new("Frame")
 local UICorner_2 = Instance.new("UICorner")
 local Speed = Instance.new("TextLabel")
-local Frame_2 = Instance.new("Frame")
+local TextBox = Instance.new("TextBox")
 local UICorner_3 = Instance.new("UICorner")
-local TextButton = Instance.new("TextButton")
-local UICorner_4 = Instance.new("UICorner")
 local InstantPrompts = Instance.new("TextLabel")
-local Frame_3 = Instance.new("Frame")
+local Frame_2 = Instance.new("Frame")
+local UICorner_4 = Instance.new("UICorner")
+local TextButton = Instance.new("TextButton")
 local UICorner_5 = Instance.new("UICorner")
-local TextButton_2 = Instance.new("TextButton")
-local UICorner_6 = Instance.new("UICorner")
 local TextLabel_2 = Instance.new("TextLabel")
-local UICorner_7 = Instance.new("UICorner")
+local UICorner_6 = Instance.new("UICorner")
 local TextLabel_3 = Instance.new("TextLabel")
-local UICorner_8 = Instance.new("UICorner")
+local UICorner_7 = Instance.new("UICorner")
 local Die = Instance.new("TextButton")
 local UICorner2 = Instance.new("UICorner")
 local Entities = Instance.new("Frame")
-local UICorner_9 = Instance.new("UICorner")
+local UICorner_8 = Instance.new("UICorner")
 local TextLabel_4 = Instance.new("TextLabel")
-local UICorner_10 = Instance.new("UICorner")
+local UICorner_9 = Instance.new("UICorner")
 local TextLabel_5 = Instance.new("TextLabel")
+local UICorner_10 = Instance.new("UICorner")
+local AntiEntity = Instance.new("TextLabel")
+local Frame_3 = Instance.new("Frame")
 local UICorner_11 = Instance.new("UICorner")
-local NoScreech = Instance.new("TextLabel")
-local Frame_4 = Instance.new("Frame")
+local TextButton_2 = Instance.new("TextButton")
 local UICorner_12 = Instance.new("UICorner")
-local TextButton_3 = Instance.new("TextButton")
+local Notify = Instance.new("TextLabel")
+local Frame_4 = Instance.new("Frame")
 local UICorner_13 = Instance.new("UICorner")
-local NoSFireArms = Instance.new("TextLabel")
-local Frame_5 = Instance.new("Frame")
+local TextButton_3 = Instance.new("TextButton")
 local UICorner_14 = Instance.new("UICorner")
-local TextButton_4 = Instance.new("TextButton")
-local UICorner_15 = Instance.new("UICorner")
 local AutoHeartBeat = Instance.new("TextLabel")
-local Frame_6 = Instance.new("Frame")
+local Frame_5 = Instance.new("Frame")
+local UICorner_15 = Instance.new("UICorner")
+local TextButton_4 = Instance.new("TextButton")
 local UICorner_16 = Instance.new("UICorner")
-local TextButton_5 = Instance.new("TextButton")
+local AutoGoUpFigure = Instance.new("TextLabel")
+local Frame_6 = Instance.new("Frame")
 local UICorner_17 = Instance.new("UICorner")
+local TextButton_5 = Instance.new("TextButton")
+local UICorner_18 = Instance.new("UICorner")
 local AutoRushCloset = Instance.new("TextLabel")
 local Frame_7 = Instance.new("Frame")
-local UICorner_18 = Instance.new("UICorner")
-local TextButton_6 = Instance.new("TextButton")
 local UICorner_19 = Instance.new("UICorner")
+local TextButton_6 = Instance.new("TextButton")
+local UICorner_20 = Instance.new("UICorner")
 local Fullbright = Instance.new("TextLabel")
 local Frame_8 = Instance.new("Frame")
 local _2 = Instance.new("UICorner")
@@ -109,9 +112,9 @@ local ESP = Instance.new("Frame")
 local UICorner2_2 = Instance.new("UICorner")
 local Door = Instance.new("TextLabel")
 local Frame_9 = Instance.new("Frame")
-local UICorner_20 = Instance.new("UICorner")
-local TextButton_8 = Instance.new("TextButton")
 local UICorner_21 = Instance.new("UICorner")
+local TextButton_8 = Instance.new("TextButton")
+local UICorner_22 = Instance.new("UICorner")
 local TextLabel_6 = Instance.new("TextLabel")
 local _2_3 = Instance.new("UICorner")
 local TextLabel_7 = Instance.new("TextLabel")
@@ -131,6 +134,29 @@ local Frame_12 = Instance.new("Frame")
 local _2_9 = Instance.new("UICorner")
 local TextButton_11 = Instance.new("TextButton")
 local _2_10 = Instance.new("UICorner")
+local World = Instance.new("Frame")
+local UICorner2_3 = Instance.new("UICorner")
+local RemoveGenralOb = Instance.new("TextLabel")
+local Frame_13 = Instance.new("Frame")
+local UICorner_23 = Instance.new("UICorner")
+local TextButton_12 = Instance.new("TextButton")
+local UICorner_24 = Instance.new("UICorner")
+local TextLabel_8 = Instance.new("TextLabel")
+local _2_11 = Instance.new("UICorner")
+local TextLabel_9 = Instance.new("TextLabel")
+local _2_12 = Instance.new("UICorner")
+local PickupAura = Instance.new("TextLabel")
+local Frame_14 = Instance.new("Frame")
+local _2_13 = Instance.new("UICorner")
+local TextButton_13 = Instance.new("TextButton")
+local _2_14 = Instance.new("UICorner")
+local NoSeekOb = Instance.new("TextLabel")
+local Frame_15 = Instance.new("Frame")
+local _2_15 = Instance.new("UICorner")
+local TextButton_14 = Instance.new("TextButton")
+local _2_16 = Instance.new("UICorner")
+local TextLabel_10 = Instance.new("TextLabel")
+local TextLabel_11 = Instance.new("TextLabel")
 local UIStroke = Instance.new("UIStroke")
 
 
@@ -153,16 +179,16 @@ local UserInputService = game:GetService("UserInputService")
 
 -- Function to be executed when the keybind is triggered
 local function onShiftKeyPress()
-  	ScreenGui.Enabled = not ScreenGui.Enabled
+	ScreenGui.Enabled = not ScreenGui.Enabled
 end
 
 -- Bind the key press event
 UserInputService.InputBegan:Connect(function(input, isProcessed)
-    if input.UserInputType == Enum.UserInputType.Keyboard then
-        if input.KeyCode == Enum.KeyCode.LeftShift or input.KeyCode == Enum.KeyCode.RightShift then
-            onShiftKeyPress()
-        end
-    end
+	if input.UserInputType == Enum.UserInputType.Keyboard then
+		if input.KeyCode == Enum.KeyCode.LeftShift or input.KeyCode == Enum.KeyCode.RightShift then
+			onShiftKeyPress()
+		end
+	end
 end)
 
 
@@ -256,7 +282,7 @@ TextBox.TextScaled = true
 TextBox.TextSize = 14
 TextBox.TextWrapped = true
 TextBox:GetPropertyChangedSignal("ContentText"):Connect(function()
-	if tonumber(TextBox.ContentText) and TextBox.ContentText:len < 2 then
+	if tonumber(TextBox.ContentText) and TextBox.ContentText:len() < 2 then
 		vs["ws"] = tonumber(TextBox.ContentText)
 	else
 		TextBox.Text = "0"
@@ -1149,69 +1175,69 @@ function fb()
 	lighting.Ambient = Color3.fromRGB(255, 255, 255);
 	lighting.Brightness = 1;
 	lighting.FogEnd = 1e10;
-    	for i, v in pairs(lighting:GetDescendants()) do
-        	if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("SunRaysEffect") then
+	for i, v in pairs(lighting:GetDescendants()) do
+		if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("SunRaysEffect") then
 			v:SetAttribute("e", v.Enabled)
-            		v.Enabled = false;
-        	end;
-    	end;
-    	fbd[4] = lighting.Changed:Connect(function()
-        	lighting.Ambient = Color3.fromRGB(255, 255, 255);
-        	lighting.Brightness = 1;
-        	lighting.FogEnd = 1e10;
-    	end);
+			v.Enabled = false;
+		end;
+	end;
+	fbd[4] = lighting.Changed:Connect(function()
+		lighting.Ambient = Color3.fromRGB(255, 255, 255);
+		lighting.Brightness = 1;
+		lighting.FogEnd = 1e10;
+	end);
 end
 function unfb()
 	local lighting = game:GetService("Lighting");
-    	lighting.Ambient = fbd[1];
-    	lighting.Brightness = fbd[2];
-    	lighting.FogEnd = fbd[3];
-    	for i, v in pairs(lighting:GetDescendants()) do
-        	if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("SunRaysEffect") then
-            		v.Enabled = v:GetAttribute("e") or v.Enabled;
-        	end;
-    	end;
-    	fbd[4]:Disconnect()
+	lighting.Ambient = fbd[1];
+	lighting.Brightness = fbd[2];
+	lighting.FogEnd = fbd[3];
+	for i, v in pairs(lighting:GetDescendants()) do
+		if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("SunRaysEffect") then
+			v.Enabled = v:GetAttribute("e") or v.Enabled;
+		end;
+	end;
+	fbd[4]:Disconnect()
 end
 --// ok actual code starts here
- 
-game:GetService("RunService").RenderStepped:Connect(function()
-    pcall(function()
-        if game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
-            game.Players.LocalPlayer.Character:TranslateBy(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * vs["ws"]/50)
-        end
-    end)
-end)
- 
 
- 
-game:GetService("ProximityPromptService").PromptButtonHoldBegan:Connect(function(prompt)
-    if vs["it"] then
-        fireproximityprompt(prompt)
-    end
+game:GetService("RunService").RenderStepped:Connect(function()
+	pcall(function()
+		if game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
+			game.Players.LocalPlayer.Character:TranslateBy(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * vs["ws"]/50)
+		end
+	end)
 end)
- 
+
+
+
+game:GetService("ProximityPromptService").PromptButtonHoldBegan:Connect(function(prompt)
+	if vs["it"] then
+		fireproximityprompt(prompt)
+	end
+end)
+
 local old
 old = hookmetamethod(game,"__namecall",newcclosure(function(self,...)
-    local args = {...}
-    local method = getnamecallmethod()
-   
-    if tostring(self) == 'Screech' and method == "FireServer" and vs["st"] then
-        args[1] = true
-        return old(self,unpack(args))
-    end
-    if tostring(self) == 'ClutchHeartbeat' and method == "FireServer" and vs["hbw"] then
-        args[2] = true
-        return old(self,unpack(args))
-    end
-   
-    return old(self,...)
+	local args = {...}
+	local method = getnamecallmethod()
+
+	if tostring(self) == 'Screech' and method == "FireServer" and vs["st"] then
+		args[1] = true
+		return old(self,unpack(args))
+	end
+	if tostring(self) == 'ClutchHeartbeat' and method == "FireServer" and vs["hbw"] then
+		args[2] = true
+		return old(self,unpack(args))
+	end
+
+	return old(self,...)
 end))
- 
+
 workspace.CurrentCamera.ChildAdded:Connect(function(child)
-    if child.Name == "Screech" and vs["st"] then
-        child:Destroy()
-    end
+	if child.Name == "Screech" and vs["st"] then
+		child:Destroy()
+	end
 
 end)
 local screechremote = game.ReplicatedStorage.EntityInfo:FindFirstChild("Screech")
@@ -1253,24 +1279,24 @@ function updateesp()
 	if vs["ies"] then
 		local desc = newroom:GetDescendants()
 		local function check(v)
-            		if v:IsA("Model") and (v:GetAttribute("Pickup") or v:GetAttribute("PropType")) then
-                		task.wait(0.1)
-                		local goldvalue = v:GetAttribute("GoldValue")
-                
-                		if goldvalue then
-                    			esp:AddHighlight(v, Color3.new(1,0,1))
+			if v:IsA("Model") and (v:GetAttribute("Pickup") or v:GetAttribute("PropType")) then
+				task.wait(0.1)
+				local goldvalue = v:GetAttribute("GoldValue")
+
+				if goldvalue then
+					esp:AddHighlight(v, Color3.new(1,0,1))
 					esp:AddText(v, Color3.new(1,0,1), tostring(goldvalue) .. " Gold")
 				end
-                		local part = (v:FindFirstChild("Handle") or v:FindFirstChild("Prop"))
-                		esp:AddHighlight(part, Color3.new(1,0,1))
+				local part = (v:FindFirstChild("Handle") or v:FindFirstChild("Prop"))
+				esp:AddHighlight(part, Color3.new(1,0,1))
 				esp:AddText(part, Color3.new(1,0,1), v.Name)
-           		end
-       		end
+			end
+		end
 		for i=1, #desc do
 			check(desc[i])
 		end
 		if newroom:WaitForChild("Assets") then
-			d = newroom.Assets:DescendantAdded:Connect(function(v)
+			d = newroom.Assets:DescendantAdded():Connect(function(v)
 				check(v)
 			end)
 		end
@@ -1283,7 +1309,7 @@ function updateesp()
 		if newroom:WaitForChild("Assets") then
 			local ad = newroom.Assets:GetDescendants()
 			for i=1, #ad do
-				if ad[i].Name = "Snare" then
+				if ad[i].Name == "Snare" then
 					esp:AddHighlight(ad[i], Color3.new(1,0,1))
 					esp:AddText(ad[i], Color3.new(1,0,1), "Snare")
 				end
@@ -1304,116 +1330,116 @@ function newroom()
 			local n = desc[i]
 			if n.Name == "Seek_Arm" then
 				task.spawn(function()
-            		wait()
-            		n:Destroy()
-        		end)
+					wait()
+					n:Destroy()
+				end)
 			end
 			if n.Name == "ChandelierObstruction" then
 				task.spawn(function()
-            		wait()
-            		n:Destroy()
-        		end)
+					wait()
+					n:Destroy()
+				end)
 			end
 		end
 	end
 	if vs["st"] then
 		local trigger = newroom:WaitForChild("TriggerEventCollision",2)
-            
-           	if trigger then
-                	trigger:Destroy() 
-            	end
+
+		if trigger then
+			trigger:Destroy() 
+		end
 	end
 	if vs["pa"] then
-            local function check(v)
-                if v:IsA("Model") then
-                    if v.Name == "DrawerContainer" then
-                        local knob = v:WaitForChild("Knobs")
-                        
-                        if knob then
-                            local prompt = knob:WaitForChild("ActivateEventPrompt")
-                            local interactions = prompt:GetAttribute("Interactions")
-                            
-                            if not interactions then
-                                task.spawn(function()
-                                    repeat task.wait(0.1)
-                                        if game.Players.LocalPlayer:DistanceFromCharacter(knob.Position) <= 12 then
-                                            fireproximityprompt(prompt)
-                                        end
-                                    until prompt:GetAttribute("Interactions") or not vs["pa"]
-                                end)
-                            end
-                        end
-                    elseif v.Name == "GoldPile" then
-                        local prompt = v:WaitForChild("LootPrompt")
-                        local interactions = prompt:GetAttribute("Interactions")
-                            
-                        if not interactions then
-                            task.spawn(function()
-                                repeat task.wait(0.1)
-                                    if game.Players.LocalPlayer:DistanceFromCharacter(v.PrimaryPart.Position) <= 12 then
-                                        fireproximityprompt(prompt) 
-                                    end
-                                until prompt:GetAttribute("Interactions") or not vs["pa"]
-                            end)
-                        end
-                    elseif v.Name:sub(1,8) == "ChestBox" then
-                        local prompt = v:WaitForChild("ActivateEventPrompt")
-                        local interactions = prompt:GetAttribute("Interactions")
-                        
-                        if not interactions then
-                            task.spawn(function()
-                                repeat task.wait(0.1)
-                                    if game.Players.LocalPlayer:DistanceFromCharacter(v.PrimaryPart.Position) <= 12 then
-                                        fireproximityprompt(prompt)
-                                    end
-                                until prompt:GetAttribute("Interactions") or not vs["pa"]
-                            end)
-                        end
-                    elseif v.Name == "RolltopContainer" then
-                        local prompt = v:WaitForChild("ActivateEventPrompt")
-                        local interactions = prompt:GetAttribute("Interactions")
-                        
-                        if not interactions then
-                            task.spawn(function()
-                                repeat task.wait(0.1)
-                                    if game.Players.LocalPlayer:DistanceFromCharacter(v.PrimaryPart.Position) <= 12 then
-                                        fireproximityprompt(prompt)
-                                    end
-                                until prompt:GetAttribute("Interactions") or not vs["pa"]
-                            end)
-                        end
-                    end 
-                end
-            end
+		local function check(v)
+			if v:IsA("Model") then
+				if v.Name == "DrawerContainer" then
+					local knob = v:WaitForChild("Knobs")
+
+					if knob then
+						local prompt = knob:WaitForChild("ActivateEventPrompt")
+						local interactions = prompt:GetAttribute("Interactions")
+
+						if not interactions then
+							task.spawn(function()
+								repeat task.wait(0.1)
+									if game.Players.LocalPlayer:DistanceFromCharacter(knob.Position) <= 12 then
+										fireproximityprompt(prompt)
+									end
+								until prompt:GetAttribute("Interactions") or not vs["pa"]
+							end)
+						end
+					end
+				elseif v.Name == "GoldPile" then
+					local prompt = v:WaitForChild("LootPrompt")
+					local interactions = prompt:GetAttribute("Interactions")
+
+					if not interactions then
+						task.spawn(function()
+							repeat task.wait(0.1)
+								if game.Players.LocalPlayer:DistanceFromCharacter(v.PrimaryPart.Position) <= 12 then
+									fireproximityprompt(prompt) 
+								end
+							until prompt:GetAttribute("Interactions") or not vs["pa"]
+						end)
+					end
+				elseif v.Name:sub(1,8) == "ChestBox" then
+					local prompt = v:WaitForChild("ActivateEventPrompt")
+					local interactions = prompt:GetAttribute("Interactions")
+
+					if not interactions then
+						task.spawn(function()
+							repeat task.wait(0.1)
+								if game.Players.LocalPlayer:DistanceFromCharacter(v.PrimaryPart.Position) <= 12 then
+									fireproximityprompt(prompt)
+								end
+							until prompt:GetAttribute("Interactions") or not vs["pa"]
+						end)
+					end
+				elseif v.Name == "RolltopContainer" then
+					local prompt = v:WaitForChild("ActivateEventPrompt")
+					local interactions = prompt:GetAttribute("Interactions")
+
+					if not interactions then
+						task.spawn(function()
+							repeat task.wait(0.1)
+								if game.Players.LocalPlayer:DistanceFromCharacter(v.PrimaryPart.Position) <= 12 then
+									fireproximityprompt(prompt)
+								end
+							until prompt:GetAttribute("Interactions") or not vs["pa"]
+						end)
+					end
+				end 
+			end
+		end
 		e = newroom.DescendantAdded:Connect(function(v)
-                	check(v) 
-            	end)
+			check(v) 
+		end)
 	end
 	if vs["no"] then
 		local gate = newroom:WaitForChild("Gate",2)
-            
-            	if gate then
-                	local door = gate:WaitForChild("ThingToOpen",2)
-                
-                	if door then
-                    		door:Destroy() 
-                	end
-            	end
+
+		if gate then
+			local door = gate:WaitForChild("ThingToOpen",2)
+
+			if door then
+				door:Destroy() 
+			end
+		end
 		local assets = newroom:WaitForChild("Assets")
-            	local paintings = assets:WaitForChild("Paintings",2)
-            
-            	if paintings then
-                	local door = paintings:WaitForChild("MovingDoor",2)
-            
-                	if door then
-                    		door:Destroy() 
-                	end 
-            	end
+		local paintings = assets:WaitForChild("Paintings",2)
+
+		if paintings then
+			local door = paintings:WaitForChild("MovingDoor",2)
+
+			if door then
+				door:Destroy() 
+			end 
+		end
 		local door = newroom:WaitForChild("Wax_Door",2)
-            
-            	if door then
-                	door:Destroy() 
-            	end
+
+		if door then
+			door:Destroy() 
+		end
 	end
 	e:Disconnect()
 	updateesp()
@@ -1451,7 +1477,7 @@ function findnearestcloset()
 	local rootPart = char and char:FindFirstChild("HumanoidRootPart")
 	local distances = {}
 	for i=1, #closets do
-		
+
 		local mainpos = closets[i].Main.Position
 		table.insert(distances, (mainpos - rootPart.Position).magnitude)
 	end
@@ -1470,50 +1496,50 @@ print("Loaded v1.0")
 
 -- Function to define the original position when RushMoving spawns
 local function onRushMovingAdded(child)
-    if child.Name == "RushMoving" then
-        local player = game.Players.LocalPlayer
-        local character = player.Character
-        local closet = findnearestcloset()
-        local rootPart = character and character:FindFirstChild("HumanoidRootPart")
-	while not child:FindFirstChild("RushNew") do
-		wait()
-	end
-	if (child:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude > 9999 then
-		return
-	end
-	if vs["ees"] then
-		esp:AddHighlight(child:FindFirstChild("RushNew"), Color3.new(1,0,0))
-		esp:AddText(child:FindFirstChild("RushNew"), Color3.new(1,0,0), "Rush")
-	end
-        if rootPart and vs["arc"] then
-            while child.Parent == game.Workspace do
-                local rushMoving = workspace:FindFirstChild("RushMoving")
-		wait(0.1)
-		character:MoveTo(closet.Main.Position)
-                if rushMoving:FindFirstChild("RushNew") and (rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude < 200 and closet.HiddenPlayer.Value == nil then
-                	fireproximityprompt(closet.HidePrompt)
-			wait(0.1)
-		else
+	if child.Name == "RushMoving" then
+		local player = game.Players.LocalPlayer
+		local character = player.Character
+		local closet = findnearestcloset()
+		local rootPart = character and character:FindFirstChild("HumanoidRootPart")
+		while not child:FindFirstChild("RushNew") do
+			wait()
 		end
-            end
-        end
-    end
-    if child.Name == "AmbushMoving" then
-        local player = game.Players.LocalPlayer
-        local character = player.Character
-        local closet = findnearestcloset()
-        local rootPart = character and character:FindFirstChild("HumanoidRootPart")
-	while not child:FindFirstChild("RushNew") do
-		wait()
+		if (child:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude > 9999 then
+			return
+		end
+		if vs["ees"] then
+			esp:AddHighlight(child:FindFirstChild("RushNew"), Color3.new(1,0,0))
+			esp:AddText(child:FindFirstChild("RushNew"), Color3.new(1,0,0), "Rush")
+		end
+		if rootPart and vs["arc"] then
+			while child.Parent == game.Workspace do
+				local rushMoving = workspace:FindFirstChild("RushMoving")
+				wait(0.1)
+				character:MoveTo(closet.Main.Position)
+				if rushMoving:FindFirstChild("RushNew") and (rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude < 200 and closet.HiddenPlayer.Value == nil then
+					fireproximityprompt(closet.HidePrompt)
+					wait(0.1)
+				else
+				end
+			end
+		end
 	end
-	if (child:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude > 9999 then
-		return
+	if child.Name == "AmbushMoving" then
+		local player = game.Players.LocalPlayer
+		local character = player.Character
+		local closet = findnearestcloset()
+		local rootPart = character and character:FindFirstChild("HumanoidRootPart")
+		while not child:FindFirstChild("RushNew") do
+			wait()
+		end
+		if (child:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude > 9999 then
+			return
+		end
+		if vs["ees"] then
+			esp:AddHighlight(child:FindFirstChild("RushNew"), Color3.new(1,0,0))
+			esp:AddText(child:FindFirstChild("RushNew"), Color3.new(1,0,0), "Ambush")
+		end
 	end
-	if vs["ees"] then
-		esp:AddHighlight(child:FindFirstChild("RushNew"), Color3.new(1,0,0))
-		esp:AddText(child:FindFirstChild("RushNew"), Color3.new(1,0,0), "Ambush")
-	end
-    end
 end
 
 -- Connect the function to be called whenever a new child is added to workspace
@@ -1522,7 +1548,7 @@ while true do
 	if vs["st"] then
 		screechremote.Parent = nil
 	else
-		screechremote.Parent = entityinfo
+		screechremote.Parent = game.ReplicatedStorage.EntityInfo
 	end
 	wait(0.1)
 end
