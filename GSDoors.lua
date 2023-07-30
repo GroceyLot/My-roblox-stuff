@@ -1312,6 +1312,13 @@ function newroom()
 			end
 		end
 	end
+	if vs["st"] then
+		local trigger = newroom:WaitForChild("TriggerEventCollision",2)
+            
+           	if trigger then
+                	trigger:Destroy() 
+            	end
+	end
 	updateesp()
 end
 LatestRoom:GetPropertyChangedSignal("Value"):Connect(newroom)
