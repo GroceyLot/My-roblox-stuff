@@ -1212,7 +1212,10 @@ workspace.CurrentCamera.ChildAdded:Connect(function(child)
     if child.Name == "Screech" and vs["st"] then
         child:Destroy()
     end
+
 end)
+local screechremote = game.ReplicatedStorage.EntityInfo:FindFirstChild("Screech")
+
 function updateesp()
 	esp:Clear()
 	local curval = LatestRoom.Value
@@ -1294,6 +1297,7 @@ end
 function newroom()
 	local curval = LatestRoom.Value
 	local newroom = game.Workspace.CurrentRooms[tostring(curval)]
+	local e
 	if vs["nso"] then
 		local desc = newroom:GetDescendants()
 		for i=1, #desc do
@@ -1319,6 +1323,99 @@ function newroom()
                 	trigger:Destroy() 
             	end
 	end
+	if vs["pa"] then
+            local function check(v)
+                if v:IsA("Model") then
+                    if v.Name == "DrawerContainer" then
+                        local knob = v:WaitForChild("Knobs")
+                        
+                        if knob then
+                            local prompt = knob:WaitForChild("ActivateEventPrompt")
+                            local interactions = prompt:GetAttribute("Interactions")
+                            
+                            if not interactions then
+                                task.spawn(function()
+                                    repeat task.wait(0.1)
+                                        if game.Players.LocalPlayer:DistanceFromCharacter(knob.Position) <= 12 then
+                                            fireproximityprompt(prompt)
+                                        end
+                                    until prompt:GetAttribute("Interactions") or not vs["pa"]
+                                end)
+                            end
+                        end
+                    elseif v.Name == "GoldPile" then
+                        local prompt = v:WaitForChild("LootPrompt")
+                        local interactions = prompt:GetAttribute("Interactions")
+                            
+                        if not interactions then
+                            task.spawn(function()
+                                repeat task.wait(0.1)
+                                    if game.Players.LocalPlayer:DistanceFromCharacter(v.PrimaryPart.Position) <= 12 then
+                                        fireproximityprompt(prompt) 
+                                    end
+                                until prompt:GetAttribute("Interactions") or not vs["pa"]
+                            end)
+                        end
+                    elseif v.Name:sub(1,8) == "ChestBox" then
+                        local prompt = v:WaitForChild("ActivateEventPrompt")
+                        local interactions = prompt:GetAttribute("Interactions")
+                        
+                        if not interactions then
+                            task.spawn(function()
+                                repeat task.wait(0.1)
+                                    if game.Players.LocalPlayer:DistanceFromCharacter(v.PrimaryPart.Position) <= 12 then
+                                        fireproximityprompt(prompt)
+                                    end
+                                until prompt:GetAttribute("Interactions") or not vs["pa"]
+                            end)
+                        end
+                    elseif v.Name == "RolltopContainer" then
+                        local prompt = v:WaitForChild("ActivateEventPrompt")
+                        local interactions = prompt:GetAttribute("Interactions")
+                        
+                        if not interactions then
+                            task.spawn(function()
+                                repeat task.wait(0.1)
+                                    if game.Players.LocalPlayer:DistanceFromCharacter(v.PrimaryPart.Position) <= 12 then
+                                        fireproximityprompt(prompt)
+                                    end
+                                until prompt:GetAttribute("Interactions") or not vs["pa"]
+                            end)
+                        end
+                    end 
+                end
+            end
+		e = newroom.DescendantAdded:Connect(function(v)
+                	check(v) 
+            	end)
+	end
+	if vs["no"] then
+		local gate = newroom:WaitForChild("Gate",2)
+            
+            	if gate then
+                	local door = gate:WaitForChild("ThingToOpen",2)
+                
+                	if door then
+                    		door:Destroy() 
+                	end
+            	end
+		local assets = newroom:WaitForChild("Assets")
+            	local paintings = assets:WaitForChild("Paintings",2)
+            
+            	if paintings then
+                	local door = paintings:WaitForChild("MovingDoor",2)
+            
+                	if door then
+                    		door:Destroy() 
+                	end 
+            	end
+		local door = newroom:WaitForChild("Wax_Door",2)
+            
+            	if door then
+                	door:Destroy() 
+            	end
+	end
+	e:Disconnect()
 	updateesp()
 end
 LatestRoom:GetPropertyChangedSignal("Value"):Connect(newroom)
@@ -1421,4 +1518,11 @@ end
 
 -- Connect the function to be called whenever a new child is added to workspace
 game:GetService("Workspace").ChildAdded:Connect(onRushMovingAdded)
-
+while true do
+	if vs["st"] then
+		screechremote.Parent = nil
+	else
+		screechremote.Parent = entityinfo
+	end
+	wait(0.1)
+end
