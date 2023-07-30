@@ -1,7 +1,7 @@
 local LatestRoom = game:GetService("ReplicatedStorage").GameData.LatestRoom
 local ChaseStart = game:GetService("ReplicatedStorage").GameData.ChaseStart
 local esp = loadstring(game:HttpGet("https://github.com/GroceyLot/My-roblox-stuff/raw/Things/esp.lua"))()
-local vs = [ws = 2,
+local vs = {ws = 2,
 des = false,
 kes = false,
 ies = false,
@@ -14,7 +14,7 @@ af = false,
 pa = false,
 no = false,
 hbw = false,
-arc = false]
+arc = false}
 local fbd = {}
 
 
@@ -448,6 +448,7 @@ TextButton_2.Font = Enum.Font.SourceSans
 TextButton_2.Text = ""
 TextButton_2.TextColor3 = Color3.new(0, 0, 0)
 TextButton_2.TextSize = 14
+contoggle(TextButton_2, "st")
 
 UICorner_12.Parent = TextButton_2
 UICorner_12.CornerRadius = UDim.new(0, 10000)
@@ -492,6 +493,7 @@ TextButton_3.Font = Enum.Font.SourceSans
 TextButton_3.Text = ""
 TextButton_3.TextColor3 = Color3.new(0, 0, 0)
 TextButton_3.TextSize = 14
+contoggle(TextButton_3, "ne")
 
 UICorner_14.Parent = TextButton_3
 UICorner_14.CornerRadius = UDim.new(0, 10000)
@@ -536,6 +538,7 @@ TextButton_4.Font = Enum.Font.SourceSans
 TextButton_4.Text = ""
 TextButton_4.TextColor3 = Color3.new(0, 0, 0)
 TextButton_4.TextSize = 14
+contoggle(TextButton_4, "hbw")
 
 UICorner_16.Parent = TextButton_4
 UICorner_16.CornerRadius = UDim.new(0, 10000)
@@ -580,6 +583,7 @@ TextButton_5.Font = Enum.Font.SourceSans
 TextButton_5.Text = ""
 TextButton_5.TextColor3 = Color3.new(0, 0, 0)
 TextButton_5.TextSize = 14
+contoggle(TextButton_5, "af")
 
 UICorner_18.Parent = TextButton_5
 UICorner_18.CornerRadius = UDim.new(0, 10000)
@@ -624,6 +628,7 @@ TextButton_6.Font = Enum.Font.SourceSans
 TextButton_6.Text = ""
 TextButton_6.TextColor3 = Color3.new(0, 0, 0)
 TextButton_6.TextSize = 14
+contoggle(TextButton_6, "arc")
 
 UICorner_20.Parent = TextButton_6
 UICorner_20.CornerRadius = UDim.new(0, 10000)
@@ -669,6 +674,19 @@ TextButton_7.Font = Enum.Font.SourceSans
 TextButton_7.Text = ""
 TextButton_7.TextColor3 = Color3.new(0, 0, 0)
 TextButton_7.TextSize = 14
+TextButton_7:SetAttribute("v", false)
+TextButton_7:GetAttributeChangedSignal("v"):Connect(function()
+	local dooo = toggle:GetAttribute("v")
+	if dooo then
+		fb()
+	else
+		unfb()
+	end
+end)
+TextButton_7.MouseButton1Click:Connect(function()
+	toggle(TextButton_7)
+end)
+
 
 _2_2.Name = "2"
 _2_2.Parent = TextButton_7
@@ -726,6 +744,7 @@ TextButton_8.Font = Enum.Font.SourceSans
 TextButton_8.Text = ""
 TextButton_8.TextColor3 = Color3.new(0, 0, 0)
 TextButton_8.TextSize = 14
+contoggle(TextButton_8, "des")
 
 UICorner_22.Parent = TextButton_8
 UICorner_22.CornerRadius = UDim.new(0, 10000)
@@ -806,6 +825,7 @@ TextButton_9.Font = Enum.Font.SourceSans
 TextButton_9.Text = ""
 TextButton_9.TextColor3 = Color3.new(0, 0, 0)
 TextButton_9.TextSize = 14
+contoggle(TextButton_9, "kes")
 
 _2_6.Name = "2"
 _2_6.Parent = TextButton_9
@@ -852,6 +872,7 @@ TextButton_10.Font = Enum.Font.SourceSans
 TextButton_10.Text = ""
 TextButton_10.TextColor3 = Color3.new(0, 0, 0)
 TextButton_10.TextSize = 14
+contoggle(TextButton_10, "ies")
 
 _2_8.Name = "2"
 _2_8.Parent = TextButton_10
@@ -898,6 +919,7 @@ TextButton_11.Font = Enum.Font.SourceSans
 TextButton_11.Text = ""
 TextButton_11.TextColor3 = Color3.new(0, 0, 0)
 TextButton_11.TextSize = 14
+contoggle(TextButton_11, "ees")
 
 _2_10.Name = "2"
 _2_10.Parent = TextButton_11
@@ -955,6 +977,7 @@ TextButton_12.Font = Enum.Font.SourceSans
 TextButton_12.Text = ""
 TextButton_12.TextColor3 = Color3.new(0, 0, 0)
 TextButton_12.TextSize = 14
+contoggle(TextButton_12 "no")
 
 UICorner_24.Parent = TextButton_12
 UICorner_24.CornerRadius = UDim.new(0, 10000)
@@ -1035,6 +1058,7 @@ TextButton_13.Font = Enum.Font.SourceSans
 TextButton_13.Text = ""
 TextButton_13.TextColor3 = Color3.new(0, 0, 0)
 TextButton_13.TextSize = 14
+contoggle(TextButton_13, "pa")
 
 _2_14.Name = "2"
 _2_14.Parent = TextButton_13
@@ -1081,6 +1105,7 @@ TextButton_14.Font = Enum.Font.SourceSans
 TextButton_14.Text = ""
 TextButton_14.TextColor3 = Color3.new(0, 0, 0)
 TextButton_14.TextSize = 14
+contoggle(TextButton_14, "nso")
 
 _2_16.Name = "2"
 _2_16.Parent = TextButton_14
@@ -1153,7 +1178,7 @@ end
 game:GetService("RunService").RenderStepped:Connect(function()
     pcall(function()
         if game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
-            game.Players.LocalPlayer.Character:TranslateBy(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * ws/50)
+            game.Players.LocalPlayer.Character:TranslateBy(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * vs["ws"]/50)
         end
     end)
 end)
@@ -1161,7 +1186,7 @@ end)
 
  
 game:GetService("ProximityPromptService").PromptButtonHoldBegan:Connect(function(prompt)
-    if it == true then
+    if vs["it"] then
         fireproximityprompt(prompt)
     end
 end)
@@ -1171,11 +1196,11 @@ old = hookmetamethod(game,"__namecall",newcclosure(function(self,...)
     local args = {...}
     local method = getnamecallmethod()
    
-    if tostring(self) == 'Screech' and method == "FireServer" and st == true then
+    if tostring(self) == 'Screech' and method == "FireServer" and vs["st"] then
         args[1] = true
         return old(self,unpack(args))
     end
-    if tostring(self) == 'ClutchHeartbeat' and method == "FireServer" and hbw == true then
+    if tostring(self) == 'ClutchHeartbeat' and method == "FireServer" and vs["hbw"] then
         args[2] = true
         return old(self,unpack(args))
     end
@@ -1184,7 +1209,7 @@ old = hookmetamethod(game,"__namecall",newcclosure(function(self,...)
 end))
  
 workspace.CurrentCamera.ChildAdded:Connect(function(child)
-    if child.Name == "Screech" and st == true then
+    if child.Name == "Screech" and vs["st"] then
         child:Destroy()
     end
 end)
@@ -1193,13 +1218,14 @@ function updateesp()
 	local curval = LatestRoom.Value
 	local newroom = game.Workspace.CurrentRooms[tostring(LatestRoom.Value)]
 	local door = newroom.Door
-	if des then
+	local d
+	if vs["des"] then
 		esp:AddHighlight(door.Door, Color3.new(1,1,0))
 		if curval ~= 50 then
 			esp:AddText(door.Door.Sign, Color3.new(1,1,0), "Door " .. tostring(LatestRoom.Value + 1))
 		end
 	end
-	if kes then
+	if vs["kes"] then
 		local desc = newroom:GetDescendants()
 		for i=1, #desc do
 			local n = desc[i]
@@ -1215,61 +1241,60 @@ function updateesp()
 				esp:AddHighlight(n, Color3.new(0,1,1))
 				esp:AddText(n, Color3.new(0,1,1), "Book")
 			end
+			if n.Name == "LiveBreakerPolePickup" then
+				esp:AddHighlight(n, Color3.new(0,1,1))
+				esp:AddText(n, Color3.new(0,1,1), "Breaker")
+			end
 		end
 	end
-	if ies then
+	if vs["ies"] then
 		local desc = newroom:GetDescendants()
+		local function check(v)
+            		if v:IsA("Model") and (v:GetAttribute("Pickup") or v:GetAttribute("PropType")) then
+                		task.wait(0.1)
+                		local goldvalue = v:GetAttribute("GoldValue")
+                
+                		if goldvalue then
+                    			esp:AddHighlight(v, Color3.new(1,0,1))
+					esp:AddText(v, Color3.new(1,0,1), tostring(goldvalue) .. " Gold")
+				end
+                		local part = (v:FindFirstChild("Handle") or v:FindFirstChild("Prop"))
+                		esp:AddHighlight(part, Color3.new(1,0,1))
+				esp:AddText(part, Color3.new(1,0,1), v.Name)
+           		end
+       		end
 		for i=1, #desc do
-			local n = desc[i]
-			if n.Name == "GoldPile" then
-				esp:AddHighlight(n, Color3.new(1,0,1))
-				esp:AddText(n, Color3.new(1,0,1), "Gold")
-			end
-			if n.Name == "Lighter" and n.Parent.Name ~= "Bookcase" and n.Parent.Name ~= "BookcaseFake" then
-				esp:AddHighlight(n, Color3.new(1,0,1))
-				esp:AddText(n, Color3.new(1,0,1), "Lighter")
-			end
-			if n.Name == "Candle" and n.Parent.Name ~= "Handle" then
-				esp:AddHighlight(n, Color3.new(1,0,1))
-				esp:AddText(n, Color3.new(1,0,1), "Candle")
-			end
-			if n.Name == "Lockpick" and n.Parent.Name ~= "Handle" then
-				esp:AddHighlight(n, Color3.new(1,0,1))
-				esp:AddText(n, Color3.new(1,0,1), "Lockpick")
-			end
-			if n.Name == "Crucifix" then
-				esp:AddHighlight(n, Color3.new(1,0,1))
-				esp:AddText(n, Color3.new(1,0,1), "Crucifix")
-			end
-			if n.Name == "Flashlight" then
-				esp:AddHighlight(n, Color3.new(1,0,1))
-				esp:AddText(n, Color3.new(1,0,1), "Flashlight")
-			end
-			if n.Name == "Vitamins" then
-				esp:AddHighlight(n, Color3.new(1,0,1))
-				esp:AddText(n, Color3.new(1,0,1), "Vitamins")
-			end
-			if n.Name == "SkeletonKey" then
-				esp:AddHighlight(n, Color3.new(1,0,1))
-				esp:AddText(n, Color3.new(1,0,1), "Skeleton Key")
-			end
-			if n.Name == "Batteries" then
-				esp:AddHighlight(n, Color3.new(1,0,1))
-				esp:AddText(n, Color3.new(1,0,1), "Batteries")
-			end
+			check(desc[i])
+		end
+		if newroom:WaitForChild("Assets") then
+			d = newroom.Assets:DescendantAdded:Connect(function(v)
+				check(v)
+			end)
 		end
 	end
-	if ees then
+	if vs["ees"] then
 		if curval == 50 then
 			esp:AddHighlight(newroom.FigureSetup.FigureRagdoll, Color3.new(1,0,0))
 			esp:AddText(newroom.FigureSetup.FigureRagdoll, Color3.new(1,0,0), "Figure")
 		end
+		if newroom:WaitForChild("Assets") then
+			local ad = newroom.Assets:GetDescendants()
+			for i=1, #ad do
+				if ad[i].Name = "Snare" then
+					esp:AddHighlight(ad[i], Color3.new(1,0,1))
+					esp:AddText(ad[i], Color3.new(1,0,1), "Snare")
+				end
+			end
+		end
 	end
+	LatestRoom:GetPropertyChangedSignal("Value"):Connect(function()
+		d:Disconnect()
+	end)
 end
 function newroom()
 	local curval = LatestRoom.Value
 	local newroom = game.Workspace.CurrentRooms[tostring(curval)]
-	if nso then
+	if vs["nso"] then
 		local desc = newroom:GetDescendants()
 		for i=1, #desc do
 			local n = desc[i]
@@ -1288,10 +1313,6 @@ function newroom()
 		end
 	end
 	updateesp()
-	if curval == 50 then
-		wait(100)
-		updateesp()
-	end
 end
 LatestRoom:GetPropertyChangedSignal("Value"):Connect(newroom)
 local player = game.Players.LocalPlayer
@@ -1356,11 +1377,11 @@ local function onRushMovingAdded(child)
 	if (child:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude > 9999 then
 		return
 	end
-	if ees then
+	if vs["ees"] then
 		esp:AddHighlight(child:FindFirstChild("RushNew"), Color3.new(1,0,0))
 		esp:AddText(child:FindFirstChild("RushNew"), Color3.new(1,0,0), "Rush")
 	end
-        if rootPart and arc then
+        if rootPart and vs["arc"] then
             while child.Parent == game.Workspace do
                 local rushMoving = workspace:FindFirstChild("RushMoving")
 		wait(0.1)
@@ -1372,6 +1393,22 @@ local function onRushMovingAdded(child)
 		end
             end
         end
+    end
+    if child.Name == "AmbushMoving" then
+        local player = game.Players.LocalPlayer
+        local character = player.Character
+        local closet = findnearestcloset()
+        local rootPart = character and character:FindFirstChild("HumanoidRootPart")
+	while not child:FindFirstChild("RushNew") do
+		wait()
+	end
+	if (child:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude > 9999 then
+		return
+	end
+	if vs["ees"] then
+		esp:AddHighlight(child:FindFirstChild("RushNew"), Color3.new(1,0,0))
+		esp:AddText(child:FindFirstChild("RushNew"), Color3.new(1,0,0), "Ambush")
+	end
     end
 end
 
