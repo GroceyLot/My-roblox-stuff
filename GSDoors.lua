@@ -28,14 +28,14 @@ function toggle(toggle)
 		Utils:TweenPos(toggle, TweenInfo.new(0.5,Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), toggle.Position, UDim2.new(0.24, toggle.Position.X.Offset, toggle.Position.Y.Scale, toggle.Position.Y.Offset)) 
 	end
 end
-function contoggle(toggle, val)
-	toggle:SetAttribute("v", false)
-	toggle:GetAttributeChangedSignal("v"):Connect(function()
-		vs[val] = toggle:GetAttribute("v")
-		print(toggle:GetAttribute("v"))
+function contoggle(toggl, val)
+	toggl:SetAttribute("v", false)
+	toggl:GetAttributeChangedSignal("v"):Connect(function()
+		vs[val] = toggl:GetAttribute("v")
+		print(toggl:GetAttribute("v"))
 	end)
-	toggle.MouseButton1Click:Connect(function()
-		toggle(toggle)
+	toggl.MouseButton1Click:Connect(function()
+		toggle(toggl)
 	end)
 end
 --[[
@@ -233,6 +233,7 @@ ScrollingFrame.BorderSizePixel = 0
 ScrollingFrame.Position = UDim2.new(0.49999997, 0, 0.572877347, 0)
 ScrollingFrame.Size = UDim2.new(0.949999988, 0, 0.818081737, 0)
 ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+ScrollingFrame.AutomaticCanvasSize = Enum.AutomaticSize.XY
 
 UIListLayout.Parent = ScrollingFrame
 UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
@@ -702,7 +703,7 @@ TextButton_7.TextColor3 = Color3.new(0, 0, 0)
 TextButton_7.TextSize = 14
 TextButton_7:SetAttribute("v", false)
 TextButton_7:GetAttributeChangedSignal("v"):Connect(function()
-	local dooo = toggle:GetAttribute("v")
+	local dooo = TextButton_7:GetAttribute("v")
 	if dooo then
 		fb()
 	else
@@ -1003,7 +1004,7 @@ TextButton_12.Font = Enum.Font.SourceSans
 TextButton_12.Text = ""
 TextButton_12.TextColor3 = Color3.new(0, 0, 0)
 TextButton_12.TextSize = 14
-contoggle(TextButton_12 "no")
+contoggle(TextButton_12, "no")
 
 UICorner_24.Parent = TextButton_12
 UICorner_24.CornerRadius = UDim.new(0, 10000)
@@ -1247,7 +1248,6 @@ function updateesp()
 	local curval = LatestRoom.Value
 	local newroom = game.Workspace.CurrentRooms[tostring(LatestRoom.Value)]
 	local door = newroom.Door
-	local d
 	if vs["des"] then
 		esp:AddHighlight(door.Door, Color3.new(1,1,0))
 		if curval ~= 50 then
@@ -1277,27 +1277,38 @@ function updateesp()
 		end
 	end
 	if vs["ies"] then
-		local desc = newroom:GetDescendants()
-		local function check(v)
-			if v:IsA("Model") and (v:GetAttribute("Pickup") or v:GetAttribute("PropType")) then
-				task.wait(0.1)
-				local goldvalue = v:GetAttribute("GoldValue")
-
-				if goldvalue then
-					esp:AddHighlight(v, Color3.new(1,0,1))
-					esp:AddText(v, Color3.new(1,0,1), tostring(goldvalue) .. " Gold")
+		if newroom:FindFirstChild("Assets") then
+			local desc = newroom.Assets:GetDescendants()
+			for i=1, #desc do
+				local v = desc[i]
+				if v:IsA("Model") then
+					local goldvalue = v:GetAttribute("GoldValue")
+	
+					if goldvalue then
+						esp:AddHighlight(v, Color3.new(1,0,1))
+						esp:AddText(v, Color3.new(1,0,1), tostring(goldvalue) .. " Gold")
+					end
+					if (v:GetAttribute("Pickup") or v:GetAttribute("PropType")) then
+						local part = (v:FindFirstChild("Handle") or v:FindFirstChild("Prop"))
+						esp:AddHighlight(part, Color3.new(1,0,1))
+						esp:AddText(part, Color3.new(1,0,1), v.Name)
+					end
 				end
-				local part = (v:FindFirstChild("Handle") or v:FindFirstChild("Prop"))
-				esp:AddHighlight(part, Color3.new(1,0,1))
-				esp:AddText(part, Color3.new(1,0,1), v.Name)
 			end
-		end
-		for i=1, #desc do
-			check(desc[i])
-		end
-		if newroom:WaitForChild("Assets") then
-			d = newroom.Assets:DescendantAdded():Connect(function(v)
-				check(v)
+			newroom.Assets.DescendantAdded:Connect(function(v)
+				if v:IsA("Model") then
+					local goldvalue = v:GetAttribute("GoldValue")
+	
+					if goldvalue then
+						esp:AddHighlight(v, Color3.new(1,0,1))
+						esp:AddText(v, Color3.new(1,0,1), tostring(goldvalue) .. " Gold")
+					end
+					if (v:GetAttribute("Pickup") or v:GetAttribute("PropType")) then
+						local part = (v:FindFirstChild("Handle") or v:FindFirstChild("Prop"))
+						esp:AddHighlight(part, Color3.new(1,0,1))
+						esp:AddText(part, Color3.new(1,0,1), v.Name)
+					end
+				end
 			end)
 		end
 	end
@@ -1316,14 +1327,10 @@ function updateesp()
 			end
 		end
 	end
-	LatestRoom:GetPropertyChangedSignal("Value"):Connect(function()
-		d:Disconnect()
-	end)
 end
 function newroom()
 	local curval = LatestRoom.Value
 	local newroom = game.Workspace.CurrentRooms[tostring(curval)]
-	local e
 	if vs["nso"] then
 		local desc = newroom:GetDescendants()
 		for i=1, #desc do
@@ -1348,72 +1355,6 @@ function newroom()
 		if trigger then
 			trigger:Destroy() 
 		end
-	end
-	if vs["pa"] then
-		local function check(v)
-			if v:IsA("Model") then
-				if v.Name == "DrawerContainer" then
-					local knob = v:WaitForChild("Knobs")
-
-					if knob then
-						local prompt = knob:WaitForChild("ActivateEventPrompt")
-						local interactions = prompt:GetAttribute("Interactions")
-
-						if not interactions then
-							task.spawn(function()
-								repeat task.wait(0.1)
-									if game.Players.LocalPlayer:DistanceFromCharacter(knob.Position) <= 12 then
-										fireproximityprompt(prompt)
-									end
-								until prompt:GetAttribute("Interactions") or not vs["pa"]
-							end)
-						end
-					end
-				elseif v.Name == "GoldPile" then
-					local prompt = v:WaitForChild("LootPrompt")
-					local interactions = prompt:GetAttribute("Interactions")
-
-					if not interactions then
-						task.spawn(function()
-							repeat task.wait(0.1)
-								if game.Players.LocalPlayer:DistanceFromCharacter(v.PrimaryPart.Position) <= 12 then
-									fireproximityprompt(prompt) 
-								end
-							until prompt:GetAttribute("Interactions") or not vs["pa"]
-						end)
-					end
-				elseif v.Name:sub(1,8) == "ChestBox" then
-					local prompt = v:WaitForChild("ActivateEventPrompt")
-					local interactions = prompt:GetAttribute("Interactions")
-
-					if not interactions then
-						task.spawn(function()
-							repeat task.wait(0.1)
-								if game.Players.LocalPlayer:DistanceFromCharacter(v.PrimaryPart.Position) <= 12 then
-									fireproximityprompt(prompt)
-								end
-							until prompt:GetAttribute("Interactions") or not vs["pa"]
-						end)
-					end
-				elseif v.Name == "RolltopContainer" then
-					local prompt = v:WaitForChild("ActivateEventPrompt")
-					local interactions = prompt:GetAttribute("Interactions")
-
-					if not interactions then
-						task.spawn(function()
-							repeat task.wait(0.1)
-								if game.Players.LocalPlayer:DistanceFromCharacter(v.PrimaryPart.Position) <= 12 then
-									fireproximityprompt(prompt)
-								end
-							until prompt:GetAttribute("Interactions") or not vs["pa"]
-						end)
-					end
-				end 
-			end
-		end
-		e = newroom.DescendantAdded:Connect(function(v)
-			check(v) 
-		end)
 	end
 	if vs["no"] then
 		local gate = newroom:WaitForChild("Gate",2)
@@ -1441,8 +1382,8 @@ function newroom()
 			door:Destroy() 
 		end
 	end
-	e:Disconnect()
 	updateesp()
+	
 end
 LatestRoom:GetPropertyChangedSignal("Value"):Connect(newroom)
 local player = game.Players.LocalPlayer
