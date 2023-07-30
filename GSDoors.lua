@@ -1,7 +1,7 @@
 local LatestRoom = game:GetService("ReplicatedStorage").GameData.LatestRoom
 local ChaseStart = game:GetService("ReplicatedStorage").GameData.ChaseStart
 local esp = loadstring(game:HttpGet("https://github.com/GroceyLot/My-roblox-stuff/raw/Things/esp.lua"))()
-local vs = {ws = 2,
+local vs = {ws = 15,
 	des = false,
 	kes = false,
 	ies = false,
@@ -283,7 +283,7 @@ TextBox.TextScaled = true
 TextBox.TextSize = 14
 TextBox.TextWrapped = true
 TextBox:GetPropertyChangedSignal("ContentText"):Connect(function()
-	if tonumber(TextBox.ContentText) and TextBox.ContentText:len() < 2 then
+	if tonumber(TextBox.ContentText) then
 		vs["ws"] = tonumber(TextBox.ContentText)
 	else
 		TextBox.Text = "0"
@@ -1202,15 +1202,6 @@ function unfb()
 end
 --// ok actual code starts here
 
-game:GetService("RunService").RenderStepped:Connect(function()
-	pcall(function()
-		if game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
-			game.Players.LocalPlayer.Character:TranslateBy(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * vs["ws"]/50)
-		end
-	end)
-end)
-
-
 
 game:GetService("ProximityPromptService").PromptButtonHoldBegan:Connect(function(prompt)
 	if vs["it"] then
@@ -1274,6 +1265,10 @@ function updateesp()
 				esp:AddHighlight(n, Color3.new(0,1,1))
 				esp:AddText(n, Color3.new(0,1,1), "Breaker")
 			end
+			if n.Name == "PickupItem" then
+				esp:AddHighlight(n, Color3.new(0,1,1))
+				esp:AddText(n, Color3.new(0,1,1), "Library paper")
+			end
 		end
 	end
 	if vs["ies"] then
@@ -1295,21 +1290,6 @@ function updateesp()
 					end
 				end
 			end
-			newroom.Assets.DescendantAdded:Connect(function(v)
-				if v:IsA("Model") then
-					local goldvalue = v:GetAttribute("GoldValue")
-	
-					if goldvalue then
-						esp:AddHighlight(v, Color3.new(1,0,1))
-						esp:AddText(v, Color3.new(1,0,1), tostring(goldvalue) .. " Gold")
-					end
-					if (v:GetAttribute("Pickup") or v:GetAttribute("PropType")) then
-						local part = (v:FindFirstChild("Handle") or v:FindFirstChild("Prop"))
-						esp:AddHighlight(part, Color3.new(1,0,1))
-						esp:AddText(part, Color3.new(1,0,1), v.Name)
-					end
-				end
-			end)
 		end
 	end
 	if vs["ees"] then
@@ -1317,12 +1297,12 @@ function updateesp()
 			esp:AddHighlight(newroom.FigureSetup.FigureRagdoll, Color3.new(1,0,0))
 			esp:AddText(newroom.FigureSetup.FigureRagdoll, Color3.new(1,0,0), "Figure")
 		end
-		if newroom:WaitForChild("Assets") then
+		if newroom:FindFirstChild("Assets") then
 			local ad = newroom.Assets:GetDescendants()
 			for i=1, #ad do
 				if ad[i].Name == "Snare" then
-					esp:AddHighlight(ad[i], Color3.new(1,0,1))
-					esp:AddText(ad[i], Color3.new(1,0,1), "Snare")
+					esp:AddHighlight(ad[i], Color3.new(1,0,0))
+					esp:AddText(ad[i], Color3.new(1,0,0), "Snare")
 				end
 			end
 		end
@@ -1332,51 +1312,53 @@ function newroom()
 	local curval = LatestRoom.Value
 	local newroom = game.Workspace.CurrentRooms[tostring(curval)]
 	if vs["nso"] then
-		local desc = newroom:GetDescendants()
-		for i=1, #desc do
-			local n = desc[i]
-			if n.Name == "Seek_Arm" then
-				task.spawn(function()
-					wait()
-					n:Destroy()
-				end)
-			end
-			if n.Name == "ChandelierObstruction" then
-				task.spawn(function()
-					wait()
-					n:Destroy()
-				end)
+		if newroom:FindFirstChild("Assets") then
+			local desc = newroom.Assets:GetDescendants()
+			for i=1, #desc do
+				local n = desc[i]
+				if n.Name == "Seek_Arm" then
+					task.spawn(function()
+						wait()
+						n:Destroy()
+					end)
+				end
+				if n.Name == "ChandelierObstruction" then
+					task.spawn(function()
+						wait()
+						n:Destroy()
+					end)
+				end
 			end
 		end
 	end
 	if vs["st"] then
-		local trigger = newroom:WaitForChild("TriggerEventCollision",2)
+		local trigger = newroom:FindFirstChild("TriggerEventCollision")
 
 		if trigger then
 			trigger:Destroy() 
 		end
 	end
 	if vs["no"] then
-		local gate = newroom:WaitForChild("Gate",2)
+		local gate = newroom:FindFirstChild("Gate")
 
 		if gate then
-			local door = gate:WaitForChild("ThingToOpen",2)
+			local door = gate:FindFirstChild("ThingToOpen")
 
 			if door then
 				door:Destroy() 
 			end
 		end
-		local assets = newroom:WaitForChild("Assets")
-		local paintings = assets:WaitForChild("Paintings",2)
+		local assets = newroom:FindFirstChild("Assets")
+		local paintings = assets:FindFirstChild("Paintings")
 
 		if paintings then
-			local door = paintings:WaitForChild("MovingDoor",2)
+			local door = paintings:FindFirstChild("MovingDoor")
 
 			if door then
 				door:Destroy() 
 			end 
 		end
-		local door = newroom:WaitForChild("Wax_Door",2)
+		local door = newroom:FindFirstChild("Wax_Door")
 
 		if door then
 			door:Destroy() 
@@ -1456,7 +1438,7 @@ local function onRushMovingAdded(child)
 			while child.Parent == game.Workspace do
 				local rushMoving = workspace:FindFirstChild("RushMoving")
 				wait(0.1)
-				character:MoveTo(closet.Main.Position)
+				character:MoveTo(closet.Door1.Position)
 				if rushMoving:FindFirstChild("RushNew") and (rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude < 200 and closet.HiddenPlayer.Value == nil then
 					fireproximityprompt(closet.HidePrompt)
 					wait(0.1)
@@ -1492,4 +1474,5 @@ while true do
 		screechremote.Parent = game.ReplicatedStorage.EntityInfo
 	end
 	wait(0.1)
+	player.WalkSpeed = vs["ws"]
 end
