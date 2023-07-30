@@ -260,7 +260,7 @@ Speed.BorderSizePixel = 0
 Speed.Position = UDim2.new(0.510813534, 0, 0.37499994, 0)
 Speed.Size = UDim2.new(0.928372979, 0, 0.200000003, 0)
 Speed.Font = Enum.Font.Oswald
-Speed.Text = "Speed multiplier"
+Speed.Text = "Speed"
 Speed.TextColor3 = Color3.new(1, 0.866667, 0.737255)
 Speed.TextScaled = true
 Speed.TextSize = 14
@@ -277,16 +277,17 @@ TextBox.Position = UDim2.new(0.839773953, 0, 0.500000358, 0)
 TextBox.Size = UDim2.new(0.220452294, 0, 0.800000012, 0)
 TextBox.Font = Enum.Font.Oswald
 TextBox.PlaceholderColor3 = Color3.new(0.698039, 0.698039, 0.698039)
-TextBox.Text = "0"
+TextBox.Text = "15"
 TextBox.TextColor3 = Color3.new(1, 0.866667, 0.737255)
 TextBox.TextScaled = true
 TextBox.TextSize = 14
 TextBox.TextWrapped = true
 TextBox:GetPropertyChangedSignal("ContentText"):Connect(function()
-	if tonumber(TextBox.ContentText) then
-		vs["ws"] = tonumber(TextBox.ContentText)
+	if tonumber(TextBox.ContentText) or TextBox.ContentText == "" then
+		vs["ws"] = tonumber(TextBox.ContentText) or 0
 	else
-		TextBox.Text = "0"
+		TextBox.Text = "15"
+		vs["ws"] = 15
 	end
 end)
 
@@ -476,6 +477,25 @@ TextButton_2.Text = ""
 TextButton_2.TextColor3 = Color3.new(0, 0, 0)
 TextButton_2.TextSize = 14
 contoggle(TextButton_2, "st")
+TextButton_2:GetAttributeChangedSignal("v"):Connect(function()
+	if TextButton_2:GetAttribute("v") then
+		local objs = game.ReplicatedStorage.Entities.Spider:GetChildren()
+		for i=1,#objs do
+			if objs[i]:IsA("MeshPart") then
+				objs[i].Transparency = 1
+			end
+		end
+		game.ReplicatedStorage.Entities.Spider.ActualRoot.Sound.Volume = 0
+	else
+		local objs = game.ReplicatedStorage.Entities.Spider:GetChildren()
+		for i=1,#objs do
+			if objs[i]:IsA("MeshPart") then
+				objs[i].Transparency = 0
+			end
+		end
+		game.ReplicatedStorage.Entities.Spider.ActualRoot.Sound.Volume = 2
+	end
+end)
 
 UICorner_12.Parent = TextButton_2
 UICorner_12.CornerRadius = UDim.new(0, 10000)
@@ -1474,5 +1494,5 @@ while true do
 		screechremote.Parent = game.ReplicatedStorage.EntityInfo
 	end
 	wait(0.1)
-	player.WalkSpeed = vs["ws"]
+	char.Humanoid.WalkSpeed = vs["ws"]
 end
