@@ -1,16 +1,20 @@
 local LatestRoom = game:GetService("ReplicatedStorage").GameData.LatestRoom
 local ChaseStart = game:GetService("ReplicatedStorage").GameData.ChaseStart
 local esp = loadstring(game:HttpGet("https://github.com/GroceyLot/My-roblox-stuff/raw/Things/esp.lua"))()
-local ws = 2
-local des = false
-local kes = false
-local ies = false
-local ees = false
-local st = false
-local nso = false
-local it = false
-local hbw = false
-local arc
+local vs = [ws = 2,
+des = false,
+kes = false,
+ies = false,
+ees = false,
+st = false,
+nso = false,
+it = false,
+ne = false,
+af = false,
+pa = false,
+no = false,
+hbw = false,
+arc = false]
 local fbd = {}
 
 
@@ -27,7 +31,7 @@ end
 function contoggle(toggle, val)
 	toggle:SetAttribute("v", false)
 toggle:GetAttributeChangedSignal("v"):Connect(function()
-	val = toggle:GetAttribute("v")
+	vs[val] = toggle:GetAttribute("v")
 	print(toggle:GetAttribute("v"))
 end)
 toggle.MouseButton1Click:Connect(function()
@@ -128,18 +132,19 @@ local _2_9 = Instance.new("UICorner")
 local TextButton_11 = Instance.new("TextButton")
 local _2_10 = Instance.new("UICorner")
 local UIStroke = Instance.new("UIStroke")
-local TextLabel_8 = Instance.new("TextLabel")
-local TextLabel_9 = Instance.new("TextLabel")
+
 
 
 -- Properties
-ScreenGui.Name = "GSDOORSUI"
+
+
 ScreenGui.Parent = game.CoreGui
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Frame.Parent = ScreenGui
-Frame.BackgroundColor3 = Color3.new(0.117647, 0.0666667, 0.0627451)
+Frame.BackgroundColor3 = Color3.new(0.113725, 0.0666667, 0.0627451)
 Frame.BackgroundTransparency = 0.10000000149011612
+Frame.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
 Frame.BorderSizePixel = 0
 Frame.Position = UDim2.new(0.35, 0, 0.15, 0)
 Frame.Size = UDim2.new(0.3, 0, 0.7, 0)
@@ -185,7 +190,7 @@ TextLabel.BorderSizePixel = 0
 TextLabel.Position = UDim2.new(0.0271204598, 0, -1.06609782e-07, 0)
 TextLabel.Size = UDim2.new(0.786982298, 0, 1.00000012, 0)
 TextLabel.Font = Enum.Font.Oswald
-TextLabel.Text = "Gsdoors"
+TextLabel.Text = "GSDoors"
 TextLabel.TextColor3 = Color3.new(1, 0.866667, 0.737255)
 TextLabel.TextScaled = true
 TextLabel.TextSize = 14
@@ -195,15 +200,13 @@ TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 ScrollingFrame.Parent = Frame
 ScrollingFrame.Active = true
 ScrollingFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-ScrollingFrame.BackgroundColor3 = Color3.new(1, 1, 1)
+ScrollingFrame.BackgroundColor3 = Color3.new(0.113725, 0.0666667, 0.0627451)
 ScrollingFrame.BackgroundTransparency = 1
 ScrollingFrame.BorderColor3 = Color3.new(0, 0, 0)
 ScrollingFrame.BorderSizePixel = 0
 ScrollingFrame.Position = UDim2.new(0.49999997, 0, 0.572877347, 0)
 ScrollingFrame.Size = UDim2.new(0.949999988, 0, 0.818081737, 0)
-ScrollingFrame.CanvasPosition = Vector2.new(0, 39.0928955)
 ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
-ScrollingFrame.AutomaticCanvasSize = Enum.AutomaticSize.XY
 
 UIListLayout.Parent = ScrollingFrame
 UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
@@ -230,39 +233,37 @@ Speed.BorderSizePixel = 0
 Speed.Position = UDim2.new(0.510813534, 0, 0.37499994, 0)
 Speed.Size = UDim2.new(0.928372979, 0, 0.200000003, 0)
 Speed.Font = Enum.Font.Oswald
-Speed.Text = "Speed"
+Speed.Text = "Speed multiplier"
 Speed.TextColor3 = Color3.new(1, 0.866667, 0.737255)
 Speed.TextScaled = true
 Speed.TextSize = 14
 Speed.TextWrapped = true
 Speed.TextXAlignment = Enum.TextXAlignment.Left
 
-Frame_2.Parent = Speed
-Frame_2.AnchorPoint = Vector2.new(0.5, 0.5)
-Frame_2.BackgroundColor3 = Color3.new(0.670588, 0.443137, 0.388235)
-Frame_2.BackgroundTransparency = 0.550000011920929
-Frame_2.BorderColor3 = Color3.new(0, 0, 0)
-Frame_2.BorderSizePixel = 0
-Frame_2.Position = UDim2.new(0.699999988, 0, 0.5, 0)
-Frame_2.Size = UDim2.new(0.5, 0, 0.800000012, 0)
+TextBox.Parent = Speed
+TextBox.AnchorPoint = Vector2.new(0.5, 0.5)
+TextBox.BackgroundColor3 = Color3.new(0.666667, 0.439216, 0.384314)
+TextBox.BackgroundTransparency = 0.550000011920929
+TextBox.BorderColor3 = Color3.new(0, 0, 0)
+TextBox.BorderSizePixel = 0
+TextBox.Position = UDim2.new(0.839773953, 0, 0.500000358, 0)
+TextBox.Size = UDim2.new(0.220452294, 0, 0.800000012, 0)
+TextBox.Font = Enum.Font.Oswald
+TextBox.PlaceholderColor3 = Color3.new(0.698039, 0.698039, 0.698039)
+TextBox.Text = "0"
+TextBox.TextColor3 = Color3.new(1, 0.866667, 0.737255)
+TextBox.TextScaled = true
+TextBox.TextSize = 14
+TextBox.TextWrapped = true
+TextBox:GetPropertyChangedSignal("ContentText"):Connect(function()
+	if tonumber(TextBox.ContentText) and TextBox.ContentText:len < 2 then
+		vs["ws"] = tonumber(TextBox.ContentText)
+	else
+		TextBox.Text = "0"
+	end
+end)
 
-UICorner_3.Parent = Frame_2
-
-TextButton.Parent = Frame_2
-TextButton.AnchorPoint = Vector2.new(0.5, 0.5)
-TextButton.BackgroundColor3 = Color3.new(1, 0.866667, 0.737255)
-TextButton.BorderColor3 = Color3.new(0, 0, 0)
-TextButton.BorderSizePixel = 0
-TextButton.Position = UDim2.new(0.0209999997, 0, 0.5, 0)
-TextButton.Size = UDim2.new(0.0419999994, 0, 1, 0)
-TextButton.Font = Enum.Font.SourceSans
-TextButton.Text = ""
-TextButton.TextColor3 = Color3.new(0, 0, 0)
-TextButton.TextSize = 14
-
-
-UICorner_4.Parent = TextButton
-UICorner_4.CornerRadius = UDim.new(0, 22)
+UICorner_3.Parent = TextBox
 
 InstantPrompts.Name = "InstantPrompts"
 InstantPrompts.Parent = Player
@@ -281,41 +282,33 @@ InstantPrompts.TextSize = 14
 InstantPrompts.TextWrapped = true
 InstantPrompts.TextXAlignment = Enum.TextXAlignment.Left
 
-Frame_3.Parent = InstantPrompts
-Frame_3.AnchorPoint = Vector2.new(0.5, 0.5)
-Frame_3.BackgroundColor3 = Color3.new(0.670588, 0.443137, 0.388235)
-Frame_3.BackgroundTransparency = 0.550000011920929
-Frame_3.BorderColor3 = Color3.new(0, 0, 0)
-Frame_3.BorderSizePixel = 0
-Frame_3.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
-Frame_3.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
+Frame_2.Parent = InstantPrompts
+Frame_2.AnchorPoint = Vector2.new(0.5, 0.5)
+Frame_2.BackgroundColor3 = Color3.new(0.670588, 0.443137, 0.388235)
+Frame_2.BackgroundTransparency = 0.550000011920929
+Frame_2.BorderColor3 = Color3.new(0, 0, 0)
+Frame_2.BorderSizePixel = 0
+Frame_2.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
+Frame_2.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
 
-UICorner_5.Parent = Frame_3
+UICorner_4.Parent = Frame_2
+UICorner_4.CornerRadius = UDim.new(0, 10000)
+
+TextButton.Parent = Frame_2
+TextButton.AnchorPoint = Vector2.new(0.5, 0.5)
+TextButton.BackgroundColor3 = Color3.new(1, 0.866667, 0.737255)
+TextButton.BorderColor3 = Color3.new(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.239999995, 0, 0.5, 0)
+TextButton.Size = UDim2.new(0.467999995, 0, 1, 0)
+TextButton.Font = Enum.Font.SourceSans
+TextButton.Text = ""
+TextButton.TextColor3 = Color3.new(0, 0, 0)
+TextButton.TextSize = 14
+contoggle(TextButton, "it")
+
+UICorner_5.Parent = TextButton
 UICorner_5.CornerRadius = UDim.new(0, 10000)
-
-TextButton_2.Parent = Frame_3
-TextButton_2.AnchorPoint = Vector2.new(0.5, 0.5)
-TextButton_2.BackgroundColor3 = Color3.new(1, 0.866667, 0.737255)
-TextButton_2.BorderColor3 = Color3.new(0, 0, 0)
-TextButton_2.BorderSizePixel = 0
-TextButton_2.Position = UDim2.new(0.239999995, 0, 0.5, 0)
-TextButton_2.Size = UDim2.new(0.467999995, 0, 1, 0)
-TextButton_2.Font = Enum.Font.SourceSans
-TextButton_2.Text = ""
-TextButton_2.TextColor3 = Color3.new(0, 0, 0)
-TextButton_2.TextSize = 14
-TextButton_2:SetAttribute("v", false)
-TextButton_2:GetAttributeChangedSignal("v"):Connect(function()
-	it = TextButton_2:GetAttribute("v")
-	print(it)
-	print(TextButton_2:GetAttribute("v"))
-end)
-TextButton_2.MouseButton1Click:Connect(function()
-	toggle(TextButton_2)
-end)
-
-UICorner_6.Parent = TextButton_2
-UICorner_6.CornerRadius = UDim.new(0, 10000)
 
 TextLabel_2.Parent = Player
 TextLabel_2.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -331,7 +324,7 @@ TextLabel_2.TextColor3 = Color3.new(1, 0.866667, 0.737255)
 TextLabel_2.TextSize = 1
 TextLabel_2.TextWrapped = true
 
-UICorner_7.Parent = TextLabel_2
+UICorner_6.Parent = TextLabel_2
 
 TextLabel_3.Parent = TextLabel_2
 TextLabel_3.BackgroundColor3 = Color3.new(0.117647, 0.0666667, 0.0627451)
@@ -348,7 +341,7 @@ TextLabel_3.TextSize = 14
 TextLabel_3.TextWrapped = true
 TextLabel_3.TextXAlignment = Enum.TextXAlignment.Left
 
-UICorner_8.Parent = TextLabel_3
+UICorner_7.Parent = TextLabel_3
 
 Die.Name = "Die"
 Die.Parent = Player
@@ -368,7 +361,6 @@ Die.TextWrapped = true
 Die.MouseButton1Click:Connect(function()
 	game.Players.LocalPlayer.Character.Humanoid.Health = 0
 end)
-	
 UICorner2.Name = "UICorner2"
 UICorner2.Parent = Die
 
@@ -381,7 +373,7 @@ Entities.BorderSizePixel = 0
 Entities.Position = UDim2.new(-7.92006034e-08, 0, 0.299999893, 0)
 Entities.Size = UDim2.new(0.960000038, 0, 0.984039605, 0)
 
-UICorner_9.Parent = Entities
+UICorner_8.Parent = Entities
 
 TextLabel_4.Parent = Entities
 TextLabel_4.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -397,7 +389,7 @@ TextLabel_4.TextColor3 = Color3.new(1, 0.866667, 0.737255)
 TextLabel_4.TextSize = 1
 TextLabel_4.TextWrapped = true
 
-UICorner_10.Parent = TextLabel_4
+UICorner_9.Parent = TextLabel_4
 
 TextLabel_5.Parent = TextLabel_4
 TextLabel_5.BackgroundColor3 = Color3.new(0.117647, 0.0666667, 0.0627451)
@@ -414,26 +406,70 @@ TextLabel_5.TextSize = 14
 TextLabel_5.TextWrapped = true
 TextLabel_5.TextXAlignment = Enum.TextXAlignment.Left
 
-UICorner_11.Parent = TextLabel_5
+UICorner_10.Parent = TextLabel_5
 
-NoScreech.Name = "NoScreech"
-NoScreech.Parent = Entities
-NoScreech.AnchorPoint = Vector2.new(0.5, 0.5)
-NoScreech.BackgroundColor3 = Color3.new(1, 1, 1)
-NoScreech.BackgroundTransparency = 1
-NoScreech.BorderColor3 = Color3.new(0, 0, 0)
-NoScreech.BorderSizePixel = 0
-NoScreech.Position = UDim2.new(0.510999978, 0, 0.263000011, 0)
-NoScreech.Size = UDim2.new(0.928000033, 0, 0.138689741, 0)
-NoScreech.Font = Enum.Font.Oswald
-NoScreech.Text = "No screech"
-NoScreech.TextColor3 = Color3.new(1, 0.866667, 0.737255)
-NoScreech.TextScaled = true
-NoScreech.TextSize = 14
-NoScreech.TextWrapped = true
-NoScreech.TextXAlignment = Enum.TextXAlignment.Left
+AntiEntity.Name = "AntiEntity"
+AntiEntity.Parent = Entities
+AntiEntity.AnchorPoint = Vector2.new(0.5, 0.5)
+AntiEntity.BackgroundColor3 = Color3.new(1, 1, 1)
+AntiEntity.BackgroundTransparency = 1
+AntiEntity.BorderColor3 = Color3.new(0, 0, 0)
+AntiEntity.BorderSizePixel = 0
+AntiEntity.Position = UDim2.new(0.510999978, 0, 0.263000011, 0)
+AntiEntity.Size = UDim2.new(0.928000033, 0, 0.138689741, 0)
+AntiEntity.Font = Enum.Font.Oswald
+AntiEntity.Text = "Anti entities"
+AntiEntity.TextColor3 = Color3.new(1, 0.866667, 0.737255)
+AntiEntity.TextScaled = true
+AntiEntity.TextSize = 14
+AntiEntity.TextWrapped = true
+AntiEntity.TextXAlignment = Enum.TextXAlignment.Left
 
-Frame_4.Parent = NoScreech
+Frame_3.Parent = AntiEntity
+Frame_3.AnchorPoint = Vector2.new(0.5, 0.5)
+Frame_3.BackgroundColor3 = Color3.new(0.670588, 0.443137, 0.388235)
+Frame_3.BackgroundTransparency = 0.550000011920929
+Frame_3.BorderColor3 = Color3.new(0, 0, 0)
+Frame_3.BorderSizePixel = 0
+Frame_3.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
+Frame_3.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
+
+UICorner_11.Parent = Frame_3
+UICorner_11.CornerRadius = UDim.new(0, 10000)
+
+TextButton_2.Parent = Frame_3
+TextButton_2.AnchorPoint = Vector2.new(0.5, 0.5)
+TextButton_2.BackgroundColor3 = Color3.new(1, 0.866667, 0.737255)
+TextButton_2.BorderColor3 = Color3.new(0, 0, 0)
+TextButton_2.BorderSizePixel = 0
+TextButton_2.Position = UDim2.new(0.239999995, 0, 0.5, 0)
+TextButton_2.Size = UDim2.new(0.467999995, 0, 1, 0)
+TextButton_2.Font = Enum.Font.SourceSans
+TextButton_2.Text = ""
+TextButton_2.TextColor3 = Color3.new(0, 0, 0)
+TextButton_2.TextSize = 14
+
+UICorner_12.Parent = TextButton_2
+UICorner_12.CornerRadius = UDim.new(0, 10000)
+
+Notify.Name = "Notify"
+Notify.Parent = Entities
+Notify.AnchorPoint = Vector2.new(0.5, 0.5)
+Notify.BackgroundColor3 = Color3.new(1, 1, 1)
+Notify.BackgroundTransparency = 1
+Notify.BorderColor3 = Color3.new(0, 0, 0)
+Notify.BorderSizePixel = 0
+Notify.Position = UDim2.new(0.508296609, 0, 0.425496787, 0)
+Notify.Size = UDim2.new(0.928000033, 0, 0.138689741, 0)
+Notify.Font = Enum.Font.Oswald
+Notify.Text = "Notify entities"
+Notify.TextColor3 = Color3.new(1, 0.866667, 0.737255)
+Notify.TextScaled = true
+Notify.TextSize = 14
+Notify.TextWrapped = true
+Notify.TextXAlignment = Enum.TextXAlignment.Left
+
+Frame_4.Parent = Notify
 Frame_4.AnchorPoint = Vector2.new(0.5, 0.5)
 Frame_4.BackgroundColor3 = Color3.new(0.670588, 0.443137, 0.388235)
 Frame_4.BackgroundTransparency = 0.550000011920929
@@ -442,8 +478,8 @@ Frame_4.BorderSizePixel = 0
 Frame_4.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
 Frame_4.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
 
-UICorner_12.Parent = Frame_4
-UICorner_12.CornerRadius = UDim.new(0, 10000)
+UICorner_13.Parent = Frame_4
+UICorner_13.CornerRadius = UDim.new(0, 10000)
 
 TextButton_3.Parent = Frame_4
 TextButton_3.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -456,67 +492,9 @@ TextButton_3.Font = Enum.Font.SourceSans
 TextButton_3.Text = ""
 TextButton_3.TextColor3 = Color3.new(0, 0, 0)
 TextButton_3.TextSize = 14
-TextButton_3:SetAttribute("v", false)
-TextButton_3:GetAttributeChangedSignal("v"):Connect(function()
-	st = TextButton_3:GetAttribute("v")
-end)
-TextButton_3.MouseButton1Click:Connect(function()
-	toggle(TextButton_3)
-end)
 
-UICorner_13.Parent = TextButton_3
-UICorner_13.CornerRadius = UDim.new(0, 10000)
-
-NoSFireArms.Name = "NoSFireArms"
-NoSFireArms.Parent = Entities
-NoSFireArms.AnchorPoint = Vector2.new(0.5, 0.5)
-NoSFireArms.BackgroundColor3 = Color3.new(1, 1, 1)
-NoSFireArms.BackgroundTransparency = 1
-NoSFireArms.BorderColor3 = Color3.new(0, 0, 0)
-NoSFireArms.BorderSizePixel = 0
-NoSFireArms.Position = UDim2.new(0.508296609, 0, 0.425496787, 0)
-NoSFireArms.Size = UDim2.new(0.928000033, 0, 0.138689741, 0)
-NoSFireArms.Font = Enum.Font.Oswald
-NoSFireArms.Text = "No seek fire etc"
-NoSFireArms.TextColor3 = Color3.new(1, 0.866667, 0.737255)
-NoSFireArms.TextScaled = true
-NoSFireArms.TextSize = 14
-NoSFireArms.TextWrapped = true
-NoSFireArms.TextXAlignment = Enum.TextXAlignment.Left
-
-Frame_5.Parent = NoSFireArms
-Frame_5.AnchorPoint = Vector2.new(0.5, 0.5)
-Frame_5.BackgroundColor3 = Color3.new(0.670588, 0.443137, 0.388235)
-Frame_5.BackgroundTransparency = 0.550000011920929
-Frame_5.BorderColor3 = Color3.new(0, 0, 0)
-Frame_5.BorderSizePixel = 0
-Frame_5.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
-Frame_5.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
-
-UICorner_14.Parent = Frame_5
+UICorner_14.Parent = TextButton_3
 UICorner_14.CornerRadius = UDim.new(0, 10000)
-
-TextButton_4.Parent = Frame_5
-TextButton_4.AnchorPoint = Vector2.new(0.5, 0.5)
-TextButton_4.BackgroundColor3 = Color3.new(1, 0.866667, 0.737255)
-TextButton_4.BorderColor3 = Color3.new(0, 0, 0)
-TextButton_4.BorderSizePixel = 0
-TextButton_4.Position = UDim2.new(0.239999995, 0, 0.5, 0)
-TextButton_4.Size = UDim2.new(0.467999995, 0, 1, 0)
-TextButton_4.Font = Enum.Font.SourceSans
-TextButton_4.Text = ""
-TextButton_4.TextColor3 = Color3.new(0, 0, 0)
-TextButton_4.TextSize = 14
-TextButton_4:SetAttribute("v", false)
-TextButton_4:GetAttributeChangedSignal("v"):Connect(function()
-	nso = TextButton_4:GetAttribute("v")
-end)
-TextButton_4.MouseButton1Click:Connect(function()
-	toggle(TextButton_4)
-end)
-
-UICorner_15.Parent = TextButton_4
-UICorner_15.CornerRadius = UDim.new(0, 10000)
 
 AutoHeartBeat.Name = "AutoHeartBeat"
 AutoHeartBeat.Parent = Entities
@@ -535,7 +513,51 @@ AutoHeartBeat.TextSize = 14
 AutoHeartBeat.TextWrapped = true
 AutoHeartBeat.TextXAlignment = Enum.TextXAlignment.Left
 
-Frame_6.Parent = AutoHeartBeat
+Frame_5.Parent = AutoHeartBeat
+Frame_5.AnchorPoint = Vector2.new(0.5, 0.5)
+Frame_5.BackgroundColor3 = Color3.new(0.670588, 0.443137, 0.388235)
+Frame_5.BackgroundTransparency = 0.550000011920929
+Frame_5.BorderColor3 = Color3.new(0, 0, 0)
+Frame_5.BorderSizePixel = 0
+Frame_5.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
+Frame_5.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
+
+UICorner_15.Parent = Frame_5
+UICorner_15.CornerRadius = UDim.new(0, 10000)
+
+TextButton_4.Parent = Frame_5
+TextButton_4.AnchorPoint = Vector2.new(0.5, 0.5)
+TextButton_4.BackgroundColor3 = Color3.new(1, 0.866667, 0.737255)
+TextButton_4.BorderColor3 = Color3.new(0, 0, 0)
+TextButton_4.BorderSizePixel = 0
+TextButton_4.Position = UDim2.new(0.239999995, 0, 0.5, 0)
+TextButton_4.Size = UDim2.new(0.467999995, 0, 1, 0)
+TextButton_4.Font = Enum.Font.SourceSans
+TextButton_4.Text = ""
+TextButton_4.TextColor3 = Color3.new(0, 0, 0)
+TextButton_4.TextSize = 14
+
+UICorner_16.Parent = TextButton_4
+UICorner_16.CornerRadius = UDim.new(0, 10000)
+
+AutoGoUpFigure.Name = "AutoGoUpFigure"
+AutoGoUpFigure.Parent = Entities
+AutoGoUpFigure.AnchorPoint = Vector2.new(0.5, 0.5)
+AutoGoUpFigure.BackgroundColor3 = Color3.new(1, 1, 1)
+AutoGoUpFigure.BackgroundTransparency = 1
+AutoGoUpFigure.BorderColor3 = Color3.new(0, 0, 0)
+AutoGoUpFigure.BorderSizePixel = 0
+AutoGoUpFigure.Position = UDim2.new(0.510999978, 0, 0.753069758, 0)
+AutoGoUpFigure.Size = UDim2.new(0.928000033, 0, 0.138689741, 0)
+AutoGoUpFigure.Font = Enum.Font.Oswald
+AutoGoUpFigure.Text = "Avoid figure"
+AutoGoUpFigure.TextColor3 = Color3.new(1, 0.866667, 0.737255)
+AutoGoUpFigure.TextScaled = true
+AutoGoUpFigure.TextSize = 14
+AutoGoUpFigure.TextWrapped = true
+AutoGoUpFigure.TextXAlignment = Enum.TextXAlignment.Left
+
+Frame_6.Parent = AutoGoUpFigure
 Frame_6.AnchorPoint = Vector2.new(0.5, 0.5)
 Frame_6.BackgroundColor3 = Color3.new(0.670588, 0.443137, 0.388235)
 Frame_6.BackgroundTransparency = 0.550000011920929
@@ -544,8 +566,8 @@ Frame_6.BorderSizePixel = 0
 Frame_6.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
 Frame_6.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
 
-UICorner_16.Parent = Frame_6
-UICorner_16.CornerRadius = UDim.new(0, 10000)
+UICorner_17.Parent = Frame_6
+UICorner_17.CornerRadius = UDim.new(0, 10000)
 
 TextButton_5.Parent = Frame_6
 TextButton_5.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -558,16 +580,9 @@ TextButton_5.Font = Enum.Font.SourceSans
 TextButton_5.Text = ""
 TextButton_5.TextColor3 = Color3.new(0, 0, 0)
 TextButton_5.TextSize = 14
-TextButton_5:SetAttribute("v", false)
-TextButton_5:GetAttributeChangedSignal("v"):Connect(function()
-	hbw = TextButton_5:GetAttribute("v")
-end)
-TextButton_5.MouseButton1Click:Connect(function()
-	toggle(TextButton_5)
-end)
 
-UICorner_17.Parent = TextButton_5
-UICorner_17.CornerRadius = UDim.new(0, 10000)
+UICorner_18.Parent = TextButton_5
+UICorner_18.CornerRadius = UDim.new(0, 10000)
 
 AutoRushCloset.Name = "AutoRushCloset"
 AutoRushCloset.Parent = Entities
@@ -576,7 +591,7 @@ AutoRushCloset.BackgroundColor3 = Color3.new(1, 1, 1)
 AutoRushCloset.BackgroundTransparency = 1
 AutoRushCloset.BorderColor3 = Color3.new(0, 0, 0)
 AutoRushCloset.BorderSizePixel = 0
-AutoRushCloset.Position = UDim2.new(0.510999978, 0, 0.753069758, 0)
+AutoRushCloset.Position = UDim2.new(0.510999978, 0, 0.907828629, 0)
 AutoRushCloset.Size = UDim2.new(0.928000033, 0, 0.138689741, 0)
 AutoRushCloset.Font = Enum.Font.Oswald
 AutoRushCloset.Text = "Auto closet rush"
@@ -595,8 +610,8 @@ Frame_7.BorderSizePixel = 0
 Frame_7.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
 Frame_7.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
 
-UICorner_18.Parent = Frame_7
-UICorner_18.CornerRadius = UDim.new(0, 10000)
+UICorner_19.Parent = Frame_7
+UICorner_19.CornerRadius = UDim.new(0, 10000)
 
 TextButton_6.Parent = Frame_7
 TextButton_6.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -609,16 +624,9 @@ TextButton_6.Font = Enum.Font.SourceSans
 TextButton_6.Text = ""
 TextButton_6.TextColor3 = Color3.new(0, 0, 0)
 TextButton_6.TextSize = 14
-TextButton_6:SetAttribute("v", false)
-TextButton_6:GetAttributeChangedSignal("v"):Connect(function()
-	arc = TextButton_6:GetAttribute("v")
-end)
-TextButton_6.MouseButton1Click:Connect(function()
-	toggle(TextButton_6)
-end)
 
-UICorner_19.Parent = TextButton_6
-UICorner_19.CornerRadius = UDim.new(0, 10000)
+UICorner_20.Parent = TextButton_6
+UICorner_20.CornerRadius = UDim.new(0, 10000)
 
 Fullbright.Name = "Fullbright"
 Fullbright.Parent = ScrollingFrame
@@ -661,17 +669,6 @@ TextButton_7.Font = Enum.Font.SourceSans
 TextButton_7.Text = ""
 TextButton_7.TextColor3 = Color3.new(0, 0, 0)
 TextButton_7.TextSize = 14
-TextButton_7:SetAttribute("v", false)
-TextButton_7:GetAttributeChangedSignal("v"):Connect(function()
-	if TextButton_7:GetAttribute("v") then
-		fb()
-	else
-		unfb()
-	end
-end)
-TextButton_7.MouseButton1Click:Connect(function()
-	toggle(TextButton_7)
-end)
 
 _2_2.Name = "2"
 _2_2.Parent = TextButton_7
@@ -715,8 +712,8 @@ Frame_9.BorderSizePixel = 0
 Frame_9.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
 Frame_9.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
 
-UICorner_20.Parent = Frame_9
-UICorner_20.CornerRadius = UDim.new(0, 10000)
+UICorner_21.Parent = Frame_9
+UICorner_21.CornerRadius = UDim.new(0, 10000)
 
 TextButton_8.Parent = Frame_9
 TextButton_8.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -729,16 +726,9 @@ TextButton_8.Font = Enum.Font.SourceSans
 TextButton_8.Text = ""
 TextButton_8.TextColor3 = Color3.new(0, 0, 0)
 TextButton_8.TextSize = 14
-TextButton_8:SetAttribute("v", false)
-TextButton_8:GetAttributeChangedSignal("v"):Connect(function()
-	des = TextButton_8:GetAttribute("v")
-end)
-TextButton_8.MouseButton1Click:Connect(function()
-	toggle(TextButton_8)
-end)
 
-UICorner_21.Parent = TextButton_8
-UICorner_21.CornerRadius = UDim.new(0, 10000)
+UICorner_22.Parent = TextButton_8
+UICorner_22.CornerRadius = UDim.new(0, 10000)
 
 TextLabel_6.Parent = ESP
 TextLabel_6.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -816,13 +806,6 @@ TextButton_9.Font = Enum.Font.SourceSans
 TextButton_9.Text = ""
 TextButton_9.TextColor3 = Color3.new(0, 0, 0)
 TextButton_9.TextSize = 14
-TextButton_9:SetAttribute("v", false)
-TextButton_9:GetAttributeChangedSignal("v"):Connect(function()
-	kes = TextButton_9:GetAttribute("v")
-end)
-TextButton_9.MouseButton1Click:Connect(function()
-	toggle(TextButton_9)
-end)
 
 _2_6.Name = "2"
 _2_6.Parent = TextButton_9
@@ -869,13 +852,6 @@ TextButton_10.Font = Enum.Font.SourceSans
 TextButton_10.Text = ""
 TextButton_10.TextColor3 = Color3.new(0, 0, 0)
 TextButton_10.TextSize = 14
-TextButton_10:SetAttribute("v", false)
-TextButton_10:GetAttributeChangedSignal("v"):Connect(function()
-	ies = TextButton_10:GetAttribute("v")
-end)
-TextButton_10.MouseButton1Click:Connect(function()
-	toggle(TextButton_10)
-end)
 
 _2_8.Name = "2"
 _2_8.Parent = TextButton_10
@@ -922,44 +898,221 @@ TextButton_11.Font = Enum.Font.SourceSans
 TextButton_11.Text = ""
 TextButton_11.TextColor3 = Color3.new(0, 0, 0)
 TextButton_11.TextSize = 14
-TextButton_11:SetAttribute("v", false)
-TextButton_11:GetAttributeChangedSignal("v"):Connect(function()
-	ees = TextButton_11:GetAttribute("v")
-end)
-TextButton_11.MouseButton1Click:Connect(function()
-	toggle(TextButton_11)
-end)
-TextLabel_8.Parent = ScrollingFrame
-TextLabel_8.BackgroundColor3 = Color3.new(1, 1, 1)
-TextLabel_8.BackgroundTransparency = 1
-TextLabel_8.BorderColor3 = Color3.new(0, 0, 0)
-TextLabel_8.BorderSizePixel = 0
-TextLabel_8.Size = UDim2.new(0.959999979, 0, 0.162, 0)
-TextLabel_8.Font = Enum.Font.Oswald
-TextLabel_8.Text = "Thank you for using GSDoors"
-TextLabel_8.TextColor3 = Color3.new(1, 0.866667, 0.737255)
-TextLabel_8.TextScaled = true
-TextLabel_8.TextSize = 14
-TextLabel_8.TextWrapped = true
-
-TextLabel_9.Parent = ScrollingFrame
-TextLabel_9.AnchorPoint = Vector2.new(0.5, 0)
-TextLabel_9.BackgroundColor3 = Color3.new(1, 1, 1)
-TextLabel_9.BackgroundTransparency = 1
-TextLabel_9.BorderColor3 = Color3.new(0, 0, 0)
-TextLabel_9.BorderSizePixel = 0
-TextLabel_9.Position = UDim2.new(0.479999959, 0, 0.838000059, 0)
-TextLabel_9.Size = UDim2.new(0.960000038, 0, 0.116313323, 0)
-TextLabel_9.Font = Enum.Font.Oswald
-TextLabel_9.Text = "Press left shift to show and hide the ui"
-TextLabel_9.TextColor3 = Color3.new(1, 0.866667, 0.737255)
-TextLabel_9.TextScaled = true
-TextLabel_9.TextSize = 14
-TextLabel_9.TextWrapped = true
 
 _2_10.Name = "2"
 _2_10.Parent = TextButton_11
 _2_10.CornerRadius = UDim.new(0, 10000)
+
+World.Name = "World"
+World.Parent = ScrollingFrame
+World.BackgroundColor3 = Color3.new(0.117647, 0.0666667, 0.0627451)
+World.BackgroundTransparency = 0.5
+World.BorderColor3 = Color3.new(0, 0, 0)
+World.BorderSizePixel = 0
+World.Position = UDim2.new(-7.92006034e-08, 0, -4.27012665e-08, 0)
+World.Size = UDim2.new(0.959999979, 0, 0.699999988, 0)
+
+UICorner2_3.Name = "UICorner2"
+UICorner2_3.Parent = World
+
+RemoveGenralOb.Name = "RemoveGenralOb"
+RemoveGenralOb.Parent = World
+RemoveGenralOb.AnchorPoint = Vector2.new(0.5, 0.5)
+RemoveGenralOb.BackgroundColor3 = Color3.new(1, 1, 1)
+RemoveGenralOb.BackgroundTransparency = 1
+RemoveGenralOb.BorderColor3 = Color3.new(0, 0, 0)
+RemoveGenralOb.BorderSizePixel = 0
+RemoveGenralOb.Position = UDim2.new(0.504999995, 0, 0.372999996, 0)
+RemoveGenralOb.Size = UDim2.new(0.928373039, 0, 0.189122215, 0)
+RemoveGenralOb.Font = Enum.Font.Oswald
+RemoveGenralOb.Text = "Remove gate etc"
+RemoveGenralOb.TextColor3 = Color3.new(1, 0.866667, 0.737255)
+RemoveGenralOb.TextScaled = true
+RemoveGenralOb.TextSize = 14
+RemoveGenralOb.TextWrapped = true
+RemoveGenralOb.TextXAlignment = Enum.TextXAlignment.Left
+
+Frame_13.Parent = RemoveGenralOb
+Frame_13.AnchorPoint = Vector2.new(0.5, 0.5)
+Frame_13.BackgroundColor3 = Color3.new(0.670588, 0.443137, 0.388235)
+Frame_13.BackgroundTransparency = 0.550000011920929
+Frame_13.BorderColor3 = Color3.new(0, 0, 0)
+Frame_13.BorderSizePixel = 0
+Frame_13.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
+Frame_13.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
+
+UICorner_23.Parent = Frame_13
+UICorner_23.CornerRadius = UDim.new(0, 10000)
+
+TextButton_12.Parent = Frame_13
+TextButton_12.AnchorPoint = Vector2.new(0.5, 0.5)
+TextButton_12.BackgroundColor3 = Color3.new(1, 0.866667, 0.737255)
+TextButton_12.BorderColor3 = Color3.new(0, 0, 0)
+TextButton_12.BorderSizePixel = 0
+TextButton_12.Position = UDim2.new(0.239999995, 0, 0.5, 0)
+TextButton_12.Size = UDim2.new(0.467999995, 0, 1, 0)
+TextButton_12.Font = Enum.Font.SourceSans
+TextButton_12.Text = ""
+TextButton_12.TextColor3 = Color3.new(0, 0, 0)
+TextButton_12.TextSize = 14
+
+UICorner_24.Parent = TextButton_12
+UICorner_24.CornerRadius = UDim.new(0, 10000)
+
+TextLabel_8.Parent = World
+TextLabel_8.AnchorPoint = Vector2.new(0.5, 0.5)
+TextLabel_8.BackgroundColor3 = Color3.new(0.666667, 0.439216, 0.384314)
+TextLabel_8.BackgroundTransparency = 0.75
+TextLabel_8.BorderColor3 = Color3.new(0, 0, 0)
+TextLabel_8.BorderSizePixel = 0
+TextLabel_8.Position = UDim2.new(0.5, 0, 0.150000006, 0)
+TextLabel_8.Size = UDim2.new(0.949999988, 0, 0.200000003, 0)
+TextLabel_8.Font = Enum.Font.Oswald
+TextLabel_8.Text = ""
+TextLabel_8.TextColor3 = Color3.new(1, 0.866667, 0.737255)
+TextLabel_8.TextSize = 1
+TextLabel_8.TextWrapped = true
+
+_2_11.Name = "2"
+_2_11.Parent = TextLabel_8
+
+TextLabel_9.Parent = TextLabel_8
+TextLabel_9.BackgroundColor3 = Color3.new(0.117647, 0.0666667, 0.0627451)
+TextLabel_9.BackgroundTransparency = 1
+TextLabel_9.BorderColor3 = Color3.new(0, 0, 0)
+TextLabel_9.BorderSizePixel = 0
+TextLabel_9.Position = UDim2.new(0.0227653123, 0, 0, 0)
+TextLabel_9.Size = UDim2.new(0.977234662, 0, 1, 0)
+TextLabel_9.Font = Enum.Font.Oswald
+TextLabel_9.Text = "World"
+TextLabel_9.TextColor3 = Color3.new(1, 0.866667, 0.737255)
+TextLabel_9.TextScaled = true
+TextLabel_9.TextSize = 14
+TextLabel_9.TextWrapped = true
+TextLabel_9.TextXAlignment = Enum.TextXAlignment.Left
+
+_2_12.Name = "2"
+_2_12.Parent = TextLabel_9
+
+PickupAura.Name = "PickupAura"
+PickupAura.Parent = World
+PickupAura.AnchorPoint = Vector2.new(0.5, 0.5)
+PickupAura.BackgroundColor3 = Color3.new(1, 1, 1)
+PickupAura.BackgroundTransparency = 1
+PickupAura.BorderColor3 = Color3.new(0, 0, 0)
+PickupAura.BorderSizePixel = 0
+PickupAura.Position = UDim2.new(0.504999995, 0, 0.595000029, 0)
+PickupAura.Size = UDim2.new(0.928373039, 0, 0.189122215, 0)
+PickupAura.Font = Enum.Font.Oswald
+PickupAura.Text = "Pickup aura"
+PickupAura.TextColor3 = Color3.new(1, 0.866667, 0.737255)
+PickupAura.TextScaled = true
+PickupAura.TextSize = 14
+PickupAura.TextWrapped = true
+PickupAura.TextXAlignment = Enum.TextXAlignment.Left
+
+Frame_14.Parent = PickupAura
+Frame_14.AnchorPoint = Vector2.new(0.5, 0.5)
+Frame_14.BackgroundColor3 = Color3.new(0.670588, 0.443137, 0.388235)
+Frame_14.BackgroundTransparency = 0.550000011920929
+Frame_14.BorderColor3 = Color3.new(0, 0, 0)
+Frame_14.BorderSizePixel = 0
+Frame_14.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
+Frame_14.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
+
+_2_13.Name = "2"
+_2_13.Parent = Frame_14
+_2_13.CornerRadius = UDim.new(0, 10000)
+
+TextButton_13.Parent = Frame_14
+TextButton_13.AnchorPoint = Vector2.new(0.5, 0.5)
+TextButton_13.BackgroundColor3 = Color3.new(1, 0.866667, 0.737255)
+TextButton_13.BorderColor3 = Color3.new(0, 0, 0)
+TextButton_13.BorderSizePixel = 0
+TextButton_13.Position = UDim2.new(0.239999995, 0, 0.5, 0)
+TextButton_13.Size = UDim2.new(0.467999995, 0, 1, 0)
+TextButton_13.Font = Enum.Font.SourceSans
+TextButton_13.Text = ""
+TextButton_13.TextColor3 = Color3.new(0, 0, 0)
+TextButton_13.TextSize = 14
+
+_2_14.Name = "2"
+_2_14.Parent = TextButton_13
+_2_14.CornerRadius = UDim.new(0, 10000)
+
+NoSeekOb.Name = "NoSeekOb"
+NoSeekOb.Parent = World
+NoSeekOb.AnchorPoint = Vector2.new(0.5, 0.5)
+NoSeekOb.BackgroundColor3 = Color3.new(1, 1, 1)
+NoSeekOb.BackgroundTransparency = 1
+NoSeekOb.BorderColor3 = Color3.new(0, 0, 0)
+NoSeekOb.BorderSizePixel = 0
+NoSeekOb.Position = UDim2.new(0.505296588, 0, 0.81578517, 0)
+NoSeekOb.Size = UDim2.new(0.928373039, 0, 0.189122215, 0)
+NoSeekOb.Font = Enum.Font.Oswald
+NoSeekOb.Text = "No seek fire etc"
+NoSeekOb.TextColor3 = Color3.new(1, 0.866667, 0.737255)
+NoSeekOb.TextScaled = true
+NoSeekOb.TextSize = 14
+NoSeekOb.TextWrapped = true
+NoSeekOb.TextXAlignment = Enum.TextXAlignment.Left
+
+Frame_15.Parent = NoSeekOb
+Frame_15.AnchorPoint = Vector2.new(0.5, 0.5)
+Frame_15.BackgroundColor3 = Color3.new(0.670588, 0.443137, 0.388235)
+Frame_15.BackgroundTransparency = 0.550000011920929
+Frame_15.BorderColor3 = Color3.new(0, 0, 0)
+Frame_15.BorderSizePixel = 0
+Frame_15.Position = UDim2.new(0.803374469, 0, 0.50000006, 0)
+Frame_15.Size = UDim2.new(0.293251187, 0, 0.800000012, 0)
+
+_2_15.Name = "2"
+_2_15.Parent = Frame_15
+_2_15.CornerRadius = UDim.new(0, 10000)
+
+TextButton_14.Parent = Frame_15
+TextButton_14.AnchorPoint = Vector2.new(0.5, 0.5)
+TextButton_14.BackgroundColor3 = Color3.new(1, 0.866667, 0.737255)
+TextButton_14.BorderColor3 = Color3.new(0, 0, 0)
+TextButton_14.BorderSizePixel = 0
+TextButton_14.Position = UDim2.new(0.239999995, 0, 0.5, 0)
+TextButton_14.Size = UDim2.new(0.467999995, 0, 1, 0)
+TextButton_14.Font = Enum.Font.SourceSans
+TextButton_14.Text = ""
+TextButton_14.TextColor3 = Color3.new(0, 0, 0)
+TextButton_14.TextSize = 14
+
+_2_16.Name = "2"
+_2_16.Parent = TextButton_14
+_2_16.CornerRadius = UDim.new(0, 10000)
+
+TextLabel_10.Parent = ScrollingFrame
+TextLabel_10.AnchorPoint = Vector2.new(0.5, 0)
+TextLabel_10.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel_10.BackgroundTransparency = 1
+TextLabel_10.BorderColor3 = Color3.new(0, 0, 0)
+TextLabel_10.BorderSizePixel = 0
+TextLabel_10.Position = UDim2.new(0.479999959, 0, 0.838000059, 0)
+TextLabel_10.Size = UDim2.new(0.960000038, 0, 0.116313323, 0)
+TextLabel_10.Font = Enum.Font.Oswald
+TextLabel_10.Text = "Press left shift to show and hide the ui"
+TextLabel_10.TextColor3 = Color3.new(1, 0.866667, 0.737255)
+TextLabel_10.TextScaled = true
+TextLabel_10.TextSize = 14
+TextLabel_10.TextWrapped = true
+
+TextLabel_11.Parent = ScrollingFrame
+TextLabel_11.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel_11.BackgroundTransparency = 1
+TextLabel_11.BorderColor3 = Color3.new(0, 0, 0)
+TextLabel_11.BorderSizePixel = 0
+TextLabel_11.Size = UDim2.new(0.959999979, 0, 0.162, 0)
+TextLabel_11.Font = Enum.Font.Oswald
+TextLabel_11.Text = "Thank you for using GSDoors"
+TextLabel_11.TextColor3 = Color3.new(1, 0.866667, 0.737255)
+TextLabel_11.TextScaled = true
+TextLabel_11.TextSize = 14
+TextLabel_11.TextWrapped = true
 Uitils.MakeDraggable(Frame, Top, 0)
 
 function fb()
