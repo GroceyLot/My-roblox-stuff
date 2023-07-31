@@ -147,7 +147,7 @@ function Lib:Window(Name, Text)
 		TextLabel_2.TextColor3 = Color3.new(1, 0.866667, 0.737255)
 		TextLabel_2.TextSize = 1
 		TextLabel_2.TextWrapped = true
-
+		TextLabel_2.Size = UDim2.new(0, TextLabel_2.AbsoluteSize.X, 0, TextLabel_2.AbsoluteSize.Y)
 		UICorner_3.Parent = TextLabel_2
 
 		TextLabel_3.Parent = TextLabel_2
