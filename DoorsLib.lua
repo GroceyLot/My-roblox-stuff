@@ -193,8 +193,13 @@ function Lib:Window(Name, Text)
 					Function(tonumber(text))
 					SectionTable.Flags[Flag] = tonumber(text)
 				else
-					TextBox.Text = tostring(Default)
-					SectionTable.Flags[Flag] = Default
+					if text = "" then
+						Function(0)
+						SectionTable.Flags[Flag] = 0
+					else
+						TextBox.Text = tostring(Default)
+						SectionTable.Flags[Flag] = Default
+					end
 				end
 			end)
 			return Number
