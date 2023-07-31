@@ -132,7 +132,7 @@ end)
 
 		UIListLayout_2.Parent = ScrollingFrame_2
 		UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
-		UIListLayout_2.Padding = UDim.new(0.0500000007, 0)
+		UIListLayout_2.Padding = UDim.new(0, 10)
 
 		TextLabel_2.Parent = ScrollingFrame_2
 		TextLabel_2.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -309,7 +309,15 @@ end)
 			return Button
 		end
 		function SectionTable:FinishSize()
-			Section.Size = UDim2.new(0.96, 0, 0.05, ScrollingFrame_2.AbsoluteCanvasSize.Y)
+    			local totalHeight = 0
+
+    			for _, child in ipairs(ScrollingFrame_2:GetChildren()) do
+        			if child:IsA("GuiObject") then
+            				totalHeight = totalHeight + child.Size.Y.Offset
+				end
+   		 	end
+
+    			Section.Size = UDim2.new(0.96, 0, 0, totalHeight + (UIListLayout_2.Padding.Offset * #ScrollingFrame_2:GetChildren()))
 		end
 		return SectionTable
 	end
