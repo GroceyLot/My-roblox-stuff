@@ -19,7 +19,7 @@ function Lib:Window(Name, Text)
 	local ScrollingFrame = Instance.new("ScrollingFrame")
 	local UIListLayout = Instance.new("UIListLayout")
 	ScreenGui.Name = tostring(math.random(1000000, 9999999))
-	ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	ScreenGui.Parent = game.CoreGui
 	ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	local Window = {Name = Name, Text = Text, ScrGuiName = ScreenGui.Name, SectionsNum = 0}
 	Frame.Parent = ScreenGui
