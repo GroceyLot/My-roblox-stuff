@@ -14,6 +14,7 @@ function Lib:Window(Name, Text)
 	local Frame = Instance.new("Frame")
 	local UICorner = Instance.new("UICorner")
 	local Top = Instance.new("Frame")
+	local UIStroke = Instance.new("UIStroke")
 	local TextLabel = Instance.new("TextLabel")
 	local ScrollingFrame = Instance.new("ScrollingFrame")
 	local UIListLayout = Instance.new("UIListLayout")
@@ -71,7 +72,7 @@ function Lib:Window(Name, Text)
 	ScrollingFrame.Position = UDim2.new(0.49999997, 0, 0.572877347, 0)
 	ScrollingFrame.Size = UDim2.new(0.949999988, 0, 0.818081737, 0)
 	ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
-	ScrollingFrame.AutomaticCanvasSize = true
+	ScrollingFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
 
 	UIListLayout.Parent = ScrollingFrame
 	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
@@ -79,7 +80,7 @@ function Lib:Window(Name, Text)
 	
 	Uitils.MakeDraggable(Frame, Top, 0)
 	
-	function Window:Section(Text_1, Length, Name_1)
+	function Window:Section(Text_1, Name_1)
 		local SectionTable = {Name = Name_1, Text = Text_1, Flags = {}}
 		Window.SectionsNum = Window.SectionsNum + 1
 		local Section = Instance.new("Frame")
@@ -110,7 +111,8 @@ function Lib:Window(Name, Text)
 		ScrollingFrame_2.BorderSizePixel = 0
 		ScrollingFrame_2.Position = UDim2.new(0.5, 0, 0.525, 0)
 		ScrollingFrame_2.Size = UDim2.new(0.949999988, 0, 0.975, 0)
-		ScrollingFrame_2.CanvasSize = UDim2.new(0, 0, Length, 0)
+		ScrollingFrame_2.CanvasSize = UDim2.new(0, 0, 0, 0)
+		ScrollingFrame_2.AutomaticCanvasSize = Enum.AutomaticSize.Y
 
 		UIListLayout_2.Parent = ScrollingFrame_2
 		UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
