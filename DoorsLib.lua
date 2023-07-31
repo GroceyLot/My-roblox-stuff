@@ -193,7 +193,7 @@ function Lib:Window(Name, Text)
 					Function(tonumber(text))
 					SectionTable.Flags[Flag] = tonumber(text)
 				else
-					if text = "" then
+					if text == "" then
 						Function(0)
 						SectionTable.Flags[Flag] = 0
 					else
