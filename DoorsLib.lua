@@ -66,6 +66,7 @@ function Lib:Window(Name, Text)
 	ScrollingFrame.Position = UDim2.new(0.49999997, 0, 0.572877347, 0)
 	ScrollingFrame.Size = UDim2.new(0.949999988, 0, 0.818081737, 0)
 	ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+	ScrollingFrame.AutomaticCanvasSize = true
 
 	UIListLayout.Parent = ScrollingFrame
 	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
