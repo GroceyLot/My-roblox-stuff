@@ -30,6 +30,11 @@ function Lib:Window(Name, Text)
 	Frame.Position = UDim2.new(0.349999994, 0, 0.150000006, 0)
 	Frame.Size = UDim2.new(0.300000012, 0, 0.699999988, 0)
 
+	UIStroke.Parent = Frame
+	UIStroke.Color = Color3.fromRGB(255, 222, 189)
+	UIStroke.Thickness = 3
+	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+	
 	UICorner.Parent = Frame
 
 	Top.Name = "Top"
