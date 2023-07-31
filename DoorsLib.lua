@@ -268,7 +268,7 @@ function Lib:Window(Name, Text)
 		function SectionTable:Button(Text_4, Function_2)
 			local Button = Instance.new("TextButton")
 			local UICorner2 = Instance.new("UICorner")
-			Button.Name = "Button"
+			Button.Name = Text_4
 			Button.Parent = ScrollingFrame_2
 			Button.AnchorPoint = Vector2.new(0.5, 0.5)
 			Button.BackgroundColor3 = Color3.new(0.666667, 0.439216, 0.384314)
@@ -278,6 +278,7 @@ function Lib:Window(Name, Text)
 			Button.Position = UDim2.new(0.5, 0, 0.850000024, 0)
 			Button.Size = UDim2.new(1, 0, 0.200000003, 0)
 			Button.Font = Enum.Font.Oswald
+			Button.Text = Text_4
 			Button.TextColor3 = Color3.new(1, 0.866667, 0.737255)
 			Button.TextScaled = true
 			Button.TextSize = 14
