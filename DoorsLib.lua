@@ -309,7 +309,7 @@ end)
 			return Button
 		end
 		function SectionTable:FinishSize()
-			Frame.Size = UDim2.new(0.96, 0, 0.05, ScrollingFrame_2.AbsoluteCanvasSize.Y)
+			Section.Size = UDim2.new(0.96, 0, 0.05, ScrollingFrame_2.AbsoluteCanvasSize.Y)
 		end
 		return SectionTable
 	end
