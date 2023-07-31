@@ -120,12 +120,12 @@ end)
 
 		ScrollingFrame_2.Parent = Section
 		ScrollingFrame_2.Active = true
-		ScrollingFrame_2.AnchorPoint = Vector2.new(0.5, 0.5)
+		ScrollingFrame_2.AnchorPoint = Vector2.new(0, 0.5)
 		ScrollingFrame_2.BackgroundColor3 = Color3.new(1, 1, 1)
 		ScrollingFrame_2.BackgroundTransparency = 1
 		ScrollingFrame_2.BorderColor3 = Color3.new(0, 0, 0)
 		ScrollingFrame_2.BorderSizePixel = 0
-		ScrollingFrame_2.Position = UDim2.new(0.5, 0, 0.525, 0)
+		ScrollingFrame_2.Position = UDim2.new(0.025, 0, 0.525, 0)
 		ScrollingFrame_2.Size = UDim2.new(0.949999988, 0, 0.975, 0)
 		ScrollingFrame_2.CanvasSize = UDim2.new(0, 0, 0, 0)
 		ScrollingFrame_2.AutomaticCanvasSize = Enum.AutomaticSize.Y
@@ -178,6 +178,7 @@ end)
 			Number.BorderSizePixel = 0
 			Number.Position = UDim2.new(0.510813534, 0, 0.37499994, 0)
 			Number.Size = UDim2.new(1, 0, 0.200000003, 0)
+			Number.Size = UDim2.new(0, Number.AbsoluteSize.X, 0, Number.AbsoluteSize.Y)
 			Number.Font = Enum.Font.Oswald
 			Number.Text = Text_2
 			Number.TextColor3 = Color3.new(1, 0.866667, 0.737255)
@@ -236,6 +237,7 @@ end)
 			Toggle.BorderSizePixel = 0
 			Toggle.Position = UDim2.new(0.510999978, 0, 0.600000024, 0)
 			Toggle.Size = UDim2.new(1, 0, 0.200000003, 0)
+			Toggle.Size = UDim2.new(0, Toggle.AbsoluteSize.X, 0, Toggle.AbsoluteSize.Y)
 			Toggle.Font = Enum.Font.Oswald
 			Toggle.Text = Text_3
 			Toggle.TextColor3 = Color3.new(1, 0.866667, 0.737255)
@@ -299,12 +301,15 @@ end)
 			Button.TextScaled = true
 			Button.TextSize = 14
 			Button.TextWrapped = true
-
+			Button.Size = UDim2.new(0, Button.AbsoluteSize.X, 0, Button.AbsoluteSize.Y)
 			UICorner2.Name = "UICorner2"
 			UICorner2.Parent = Button
 			
 			Button.MouseButton1Click:Connect(Function_2)
 			return Button
+		end
+		function SectionTable:FinishSize()
+			Frame.Size = Udim2.new(0.96, 0, 0.05, ScrollingFrame_2.AbsoluteCanvasSize.Y)
 		end
 		return SectionTable
 	end
