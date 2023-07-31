@@ -60,12 +60,12 @@ local window = Lib:Window("Window", "GSDoors")
 local section1 = window:Section("Player", "section1")
 
 -- Add a number input to the section
-section1:Number("Speed", "WalkSpeed", 15, 21, 15, function(value)
+section1:Number("Speed", "WalkSpeed", 0, 21, 15, function(value)
     vs["ws"] = value
 end)
 
 -- Add a toggle switch to the section
-section1:Toggle("Instant prompts", "InstantPrompts", true, function(state)
+section1:Toggle("Instant prompts", "InstantPrompts", false, function(state)
     vs["it"] = state
 end)
 
@@ -73,32 +73,31 @@ end)
 section1:Button("Kill", function()
     game.Players.LocalPlayer.Character.Humanoid.Health = 0
 end)
-
+section1:FinishSize()
 -- Create another section in the window
 local section2 = window:Section("Entities", "section2")
 
--- Add a label to the window
-window:Label("This is a label.")
 
-section2:Toggle("Anti-Entity", "st", true, function(state)
+section2:Toggle("Anti-Entity", "st", false, function(state)
     vs["st"] = state
 end)
 
 
-section2:Toggle("Auto Heartbeat", "hbw", true, function(state)
+section2:Toggle("Auto Heartbeat", "hbw", false, function(state)
     vs["hbw"] = state
 end)
-section2:Toggle("Avoid Figure", "af", true, function(state)
+section2:Toggle("Avoid Figure", "af", false, function(state)
     vs["af"] = state
 end)
-section2:Toggle("Auto Rush Closet", "arc", true, function(state)
+section2:Toggle("Auto Rush Closet", "arc", false, function(state)
     vs["arc"] = state
 end)
+section2:FinishSize()
 local section3 = window:Section("Visuals", "section2")
-section3:Toggle("Notify-Entity", "ne", true, function(state)
+section3:Toggle("Notify-Entity", "ne", false, function(state)
     vs["ne"] = state
 end)
-section3:Toggle("Fullbright", "fb", true, function(state)
+section3:Toggle("Fullbright", "fb", false, function(state)
     	if state then
 		fb()
 	else
@@ -106,19 +105,20 @@ section3:Toggle("Fullbright", "fb", true, function(state)
 	end
 end)
 
-section3:Toggle("Door esp", "des", true, function(state)
+section3:Toggle("Door esp", "des", false, function(state)
     vs["des"] = state
 end)
-section3:Toggle("Key, book esp", "kes", true, function(state)
+section3:Toggle("Key, book esp", "kes", false, function(state)
     vs["kes"] = state
 end)
-section3:Toggle("Gold, item esp", "ies", true, function(state)
+section3:Toggle("Gold, item esp", "ies", false, function(state)
     vs["ies"] = state
 end)
-section3:Toggle("Entity esp", "ees", true, function(state)
+section3:Toggle("Entity esp", "ees", false, function(state)
     vs["ees"] = state
 end)
 
+section3:FinishSize()
 -- Add a label to the window
 window:Label("Shift to close the ui")
 -- Add a label to the window
@@ -426,8 +426,8 @@ end
 game:GetService("Workspace").ChildAdded:Connect(onRushMovingAdded)
 Achievements.Get({
     Title = "Locked and Loaded",
-    Desc = "ya",
-    Reason = "You executed the example script.",
+    Desc = "Cheating time!",
+    Reason = "You executed GSDoors.",
     Image = "https://images.emojiterra.com/twitter/v13.1/512px/1f913.png",
 })
 while true do
