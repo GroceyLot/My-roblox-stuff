@@ -316,10 +316,16 @@ function Lib:Window(Name, Text)
             				totalHeight = totalHeight + child.Size.Y.Offset + UIListLayout_2.Padding.Offset
         			end
     			end
-
+			
     			totalHeight = totalHeight + UIListLayout_2.Padding.Offset  -- Remove the last padding from the total height
 
-    			Frame.Size = UDim2.new(0.96, 0, 0, totalHeight)
+    			Section.Size = UDim2.new(0.96, 0, 0, totalHeight)
+			UIListLayout_2.Parent = Section
+			for _, child in ipairs(ScrollingFrame_2:GetChildren()) do
+        			if child:IsA("GuiObject") then
+            				child.Parent = Section
+        			end
+    			end
 		end
 
 		return SectionTable
