@@ -316,7 +316,9 @@ function Lib:Window(Name, Text)
             				totalHeight = totalHeight + child.Size.Y.Offset + UIListLayout_2.Padding.Offset
         			end
     			end
-
+			ScrollingFrame_2.AutomaticCanvasSize = Enum.AutomaticSize.None
+			ScrollingFrame_2.CanvasSize = UDim2.new(0,0,0,0)
+			ScrollingFrame_2.CanvasPosition = UDim2.new(0,0,0,0)
     			Section.Size = UDim2.new(0.96, 0, 0.05, totalHeight)
 		end
 
