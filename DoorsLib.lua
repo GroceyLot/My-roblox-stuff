@@ -317,7 +317,7 @@ function Lib:Window(Name, Text)
         			end
     			end
 
-    			Section.Size = UDim2.new(0.96, 0, 0, totalHeight)
+    			Section.Size = UDim2.new(0.96, 0, 0.05, totalHeight)
 		end
 
 		return SectionTable
