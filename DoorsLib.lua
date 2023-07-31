@@ -318,7 +318,7 @@ function Lib:Window(Name, Text)
     			end
 			ScrollingFrame_2.AutomaticCanvasSize = Enum.AutomaticSize.None
 			ScrollingFrame_2.CanvasSize = UDim2.new(0,0,0,0)
-			ScrollingFrame_2.CanvasPosition = UDim2.new(0,0,0,0)
+			ScrollingFrame_2.CanvasPosition = Vector2.new(0,0)
     			Section.Size = UDim2.new(0.96, 0, 0.05, totalHeight)
 		end
 
