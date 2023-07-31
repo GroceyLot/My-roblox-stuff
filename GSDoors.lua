@@ -14,6 +14,7 @@ local vs = {ws = 15,
 	pa = false,
 	no = false,
 	hbw = false,
+	set = false,
 	arc = false}
 local fbd = {}
 
@@ -23,24 +24,7 @@ local Uitils = loadstring(game:HttpGet("https://raw.githubusercontent.com/Regula
 local Achievements = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
 
 -- Creates and displays your custom achievement
-function toggle(toggle) 
-	toggle:SetAttribute("v", not toggle:GetAttribute("v"))
-	if toggle:GetAttribute("v") then
-		Utils:TweenPos(toggle, TweenInfo.new(0.5,Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), toggle.Position, UDim2.new(0.76, toggle.Position.X.Offset, toggle.Position.Y.Scale, toggle.Position.Y.Offset)) 
-	else
-		Utils:TweenPos(toggle, TweenInfo.new(0.5,Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), toggle.Position, UDim2.new(0.24, toggle.Position.X.Offset, toggle.Position.Y.Scale, toggle.Position.Y.Offset)) 
-	end
-end
-function contoggle(toggl, val)
-	toggl:SetAttribute("v", false)
-	toggl:GetAttributeChangedSignal("v"):Connect(function()
-		vs[val] = toggl:GetAttribute("v")
-		print(toggl:GetAttribute("v"))
-	end)
-	toggl.MouseButton1Click:Connect(function()
-		toggle(toggl)
-	end)
-end
+
 --[[
 
 		Gui2Lua™
@@ -78,10 +62,6 @@ section1:FinishSize()
 local section2 = window:Section("Entities", "section2")
 
 
-section2:Toggle("Anti-Entity", "st", false, function(state)
-    vs["st"] = state
-end)
-
 
 section2:Toggle("Auto Heartbeat", "hbw", false, function(state)
     vs["hbw"] = state
@@ -93,32 +73,76 @@ section2:Toggle("Auto Rush Closet", "arc", false, function(state)
     vs["arc"] = state
 end)
 section2:FinishSize()
-local section3 = window:Section("Visuals", "section2")
+local section5 = window:Section("Anti-Entities")
+section5:Toggle("Anti-Screech", "st", false, function(state)
+    vs["st"] = state
+end)
+section5:Toggle("Anti-Seek", "set", false, function(state)
+    vs["set"] = state
+end)
+
+
+section5:FinishSize()
+
+local section3 = window:Section("Visuals", "section3")
 section3:Toggle("Notify-Entity", "ne", false, function(state)
     vs["ne"] = state
 end)
 section3:Toggle("Fullbright", "fb", false, function(state)
-    	if state then
+    if state then
 		fb()
 	else
 		unfb()
 	end
 end)
+section3:Toggle("Anti-Timothy", "tt", false, function(state)
+    if state then
+    	local ting = game.ReplicatedStorage.Entities.Spider
+    	local tings = ting:GetChildren()
+    	for i=1,#tings do
+    		if tings[i]:IsA("MeshPart") then
+    			tings[i].Transparency = 1
+    		end
+    	end
+    	ting.ActualRoot.Sound.Volume = 0
+    else
+    	local ting = game.ReplicatedStorage.Entities.Spider
+    	local tings = ting:GetChildren()
+    	for i=1,#tings do
+    		if tings[i]:IsA("MeshPart") then
+    			tings[i].Transparency = 0
+    		end
+    	end
+    	ting.ActualRoot.Sound.Volume = 2
+    end
+end)
 
-section3:Toggle("Door esp", "des", false, function(state)
+local section4 = window:Section("ESP", "section4")
+section4:Toggle("Door", "des", false, function(state)
     vs["des"] = state
 end)
-section3:Toggle("Key, book esp", "kes", false, function(state)
+section4:Toggle("Key, book etc", "kes", false, function(state)
     vs["kes"] = state
 end)
-section3:Toggle("Gold, item esp", "ies", false, function(state)
+section4:Toggle("Gold, item etc", "ies", false, function(state)
     vs["ies"] = state
 end)
-section3:Toggle("Entity esp", "ees", false, function(state)
+section4:Toggle("Entities", "ees", false, function(state)
     vs["ees"] = state
 end)
-
+section4:FinishSize()
 section3:FinishSize()
+local section6 = window:Section("World", "section6")
+section6:Toggle("No gate etc", "no", false, function(state)
+    vs["no"] = state
+end)
+section6:Toggle("No seek arms etc", "nso", false, function(state)
+    vs["nso"] = state
+end)
+section6:Toggle("Pickup aura", "pa", false, function(state)
+    vs["pa"] = state
+end)
+section6:FinishSize()
 -- Add a label to the window
 window:Label("Shift to close the ui")
 -- Add a label to the window
@@ -391,6 +415,17 @@ local function onRushMovingAdded(child)
 			esp:AddHighlight(child:FindFirstChild("RushNew"), Color3.new(1,0,0))
 			esp:AddText(child:FindFirstChild("RushNew"), Color3.new(1,0,0), "Rush")
 		end
+		if vs["ne"] then
+			local h = "Quick hide!"
+			if vs["arc"] then
+				h = "Don't worry, we will enter the closet when it is close enough."
+			Achievements.Get({
+    			Title = "Rush is coming",
+    			Desc = h,
+    			Reason = "RushMoving found in Workspace",
+    			Image = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.dreamstime.com%2Fwhite-exclamation-mark-symbol-red-circle-white-exclamation-mark-symbol-red-circle-caution-icon-isolated-white-background-image186316726&psig=AOvVaw3hyUWEHJB8UxBAvaUJmxmQ&ust=1690903763587000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLDl0r-huYADFQAAAAAdAAAAABAJ",
+			})
+		end
 		if rootPart and vs["arc"] then
 			while child.Parent == game.Workspace do
 				local rushMoving = workspace:FindFirstChild("RushMoving")
@@ -418,6 +453,15 @@ local function onRushMovingAdded(child)
 		if vs["ees"] then
 			esp:AddHighlight(child:FindFirstChild("RushNew"), Color3.new(1,0,0))
 			esp:AddText(child:FindFirstChild("RushNew"), Color3.new(1,0,0), "Ambush")
+		end
+		if vs["ne"] then
+			local h = "Quick hide! Make sure to get in and out."
+			Achievements.Get({
+    			Title = "Ambush is coming",
+    			Desc = h,
+    			Reason = "AmbushMoving found in Workspace",
+    			Image = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.dreamstime.com%2Fwhite-exclamation-mark-symbol-red-circle-white-exclamation-mark-symbol-red-circle-caution-icon-isolated-white-background-image186316726&psig=AOvVaw3hyUWEHJB8UxBAvaUJmxmQ&ust=1690903763587000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLDl0r-huYADFQAAAAAdAAAAABAJ",
+			})
 		end
 	end
 end
