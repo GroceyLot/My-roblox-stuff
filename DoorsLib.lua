@@ -313,12 +313,15 @@ end)
 
     			for _, child in ipairs(ScrollingFrame_2:GetChildren()) do
         			if child:IsA("GuiObject") then
-            				totalHeight = totalHeight + child.Size.Y.Offset
-				end
-   		 	end
+            				totalHeight = totalHeight + child.Size.Y.Offset + UIListLayout_2.Padding.Offset
+        			end
+    			end
 
-    			Section.Size = UDim2.new(0.96, 0, 0, totalHeight + (UIListLayout_2.Padding.Offset * #ScrollingFrame_2:GetChildren()))
+    			totalHeight = totalHeight + UIListLayout_2.Padding.Offset  -- Remove the last padding from the total height
+
+    			Frame.Size = UDim2.new(0.96, 0, 0, totalHeight)
 		end
+
 		return SectionTable
 	end
 	function Window:Label(Text_5)
