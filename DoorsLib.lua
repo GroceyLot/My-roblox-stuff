@@ -23,19 +23,19 @@ function Lib:Window(Name, Text)
 	ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	local UserInputService = game:GetService("UserInputService")
 
--- Function to be executed when the keybind is triggered
-local function onShiftKeyPress()
-    ScreenGui.Enabled = not ScreenGui.Enabled
-end
+	-- Function to be executed when the keybind is triggered
+	function onShiftKeyPress()
+    		ScreenGui.Enabled = not ScreenGui.Enabled
+	end
 
--- Bind the key press event
-UserInputService.InputBegan:Connect(function(input, isProcessed)
-    if not isProcessed and input.UserInputType == Enum.UserInputType.Keyboard then
-        if input.KeyCode == Enum.KeyCode.LeftShift or input.KeyCode == Enum.KeyCode.RightShift then
-            onShiftKeyPress()
-        end
-    end
-end)
+	-- Bind the key press event
+	UserInputService.InputBegan:Connect(function(input)
+    		if input.UserInputType == Enum.UserInputType.Keyboard then
+        		if input.KeyCode == Enum.KeyCode.LeftShift or input.KeyCode == Enum.KeyCode.RightShift then
+            			onShiftKeyPress()
+        		end
+    		end
+	end)
 
 	local Window = {Name = Name, Text = Text, ScrGuiName = ScreenGui.Name, SectionsNum = 0}
 	Frame.Parent = ScreenGui
