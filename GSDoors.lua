@@ -16,6 +16,7 @@ local vs = {ws = 15,
 	no = false,
 	hbw = false,
 	set = false,
+	nl = false,
 	arc = false}
 local fbd = {}
 local topick = {}
@@ -146,6 +147,9 @@ section6:Toggle("Pickup aura", "pa", false, function(state)
 end)
 section6:Toggle("Auto unlock", "la", false, function(state)
     vs["la"] = state
+end)
+section6:Toggle("No rooms lock", "nl", false, function(state)
+    vs["nl"] = state
 end)
 section6:FinishSize()
 -- Add a label to the window
@@ -295,7 +299,7 @@ function updateesp()
 		end
 	end
 	if vs["ees"] then
-		if curval == 50 then
+		if curval == 50 or curval == 100 then
 			esp:AddHighlight(newroom.FigureSetup.FigureRagdoll, Color3.new(1,0,0))
 			esp:AddText(newroom.FigureSetup.FigureRagdoll, Color3.new(1,0,0), "Figure")
 		end
@@ -334,7 +338,7 @@ function newroom()
 			end
 		end
 	end
-	if vs["st"] then
+	if vs["set"] then
 		local trigger = newroom:FindFirstChild("TriggerEventCollision")
 
 		if trigger then
@@ -391,6 +395,11 @@ function newroom()
 	if vs["la"] then
 		if newroom.Door:FindFirstChild("Lock") then
 			table.insert(topick, newroom.Door.Lock.UnlockPrompt)
+		end
+	end
+	if vs["nl"] then
+		if newroom:FindFirstChild("RoomsDoor_Entrance") then
+			newroom["RoomsDoor_Entrance"].Door.EnterPrompt.Enabled = true
 		end
 	end
 	LatestRoom:GetPropertyChangedSignal("Value"):Wait()
@@ -555,12 +564,12 @@ while true do
 			end
 			if (rootPart.Position - pos.Position).Magnitude <= 10 then
 				fireproximityprompt(topick[i])
-				if topick[i].Parent.Name == "Knobs" then
+				if topick[i].Parent.Parent.Name == "DrawerContainer" then
 					wait(0.05)
 					local desc = topick[i].Parent.Parent:GetDescendants()
 					for j=1, #desc do
 						if desc[j].Name == "ModulePrompt" then
-								table.insert(topick, desc[j])
+							table.insert(topick, desc[j])
 						end
 						if desc[j].Name == "LootPrompt" then
 							table.insert(topick, desc[j])
@@ -572,4 +581,13 @@ while true do
 			end
 		end
 	end
+	if game.Workspace:FindFirstChild("Eyes") then
+        local lookVector = (game.Workspace:FindFirstChild("Eyes").PrimaryPart.Position - head.Position).Unit
+        local neckCFrame = CFrame.new(head.Position, head.Position + Vector3.new(0, 1, 0))
+        local desiredLookCFrame = CFrame.new(head.Position, head.Position + lookVector)
+        local neckAngle = neckCFrame:toObjectSpace(desiredLookCFrame):ToEulerAnglesXYZ()
+
+        -- Update head rotation while preserving the player's ability to look around.
+        head.CFrame = head.CFrame * CFrame.Angles(-neckAngle.x, -neckAngle.y, 0)
+    end
 end
