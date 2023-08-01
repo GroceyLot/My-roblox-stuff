@@ -12,6 +12,7 @@ local vs = {ws = 15,
 	ne = false,
 	af = false,
 	pa = false,
+	la = false,
 	no = false,
 	hbw = false,
 	set = false,
@@ -143,6 +144,9 @@ end)
 section6:Toggle("Pickup aura", "pa", false, function(state)
     vs["pa"] = state
 end)
+section6:Toggle("Auto unlock", "la", false, function(state)
+    vs["la"] = state
+end)
 section6:FinishSize()
 -- Add a label to the window
 window:Label("Shift to close the ui")
@@ -221,9 +225,10 @@ function updateesp()
 	local curval = LatestRoom.Value
 	local newroom = game.Workspace.CurrentRooms[tostring(LatestRoom.Value)]
 	local door = newroom.Door
+	local con
 	if vs["des"] then
 		esp:AddHighlight(door.Door, Color3.new(1,1,0))
-		if curval ~= 50 then
+		if curval ~= 50 or curval ~= 49 then
 			esp:AddText(door.Door.Sign, Color3.new(1,1,0), "Door " .. tostring(LatestRoom.Value + 1))
 		end
 	end
@@ -272,6 +277,21 @@ function updateesp()
 					end
 				end
 			end
+			con = newroom.Assets.DescendantAdded:Connect(function(v)
+				if v:IsA("Model") then
+					local goldvalue = v:GetAttribute("GoldValue")
+	
+					if goldvalue then
+						esp:AddHighlight(v, Color3.new(1,0,1))
+						esp:AddText(v, Color3.new(1,0,1), tostring(goldvalue) .. " Gold")
+					end
+					if (v:GetAttribute("Pickup") or v:GetAttribute("PropType")) then
+						local part = (v:FindFirstChild("Handle") or v:FindFirstChild("Prop"))
+						esp:AddHighlight(part, Color3.new(1,0,1))
+						esp:AddText(part, Color3.new(1,0,1), v.Name)
+					end
+				end
+			end)
 		end
 	end
 	if vs["ees"] then
@@ -289,6 +309,7 @@ function updateesp()
 			end
 		end
 	end
+	return con
 end
 function newroom()
 	local curval = LatestRoom.Value
@@ -346,9 +367,9 @@ function newroom()
 			door:Destroy() 
 		end
 	end
-	updateesp()
+	local ds = updateesp()
+	topick = {}
 	if vs["pa"] then
-		topick = {}
 		if newroom:FindFirstChild("Assets") then
 			local desc = newroom.Assets:GetDescendants()
 			for i=1, #desc do
@@ -364,6 +385,13 @@ function newroom()
 			end
 		end
 	end
+	if vs["la"] then
+		if newroom.Door:FindFirstChild("Lock") then
+			table.insert(topick, newroom.Door.Lock.UnlockPrompt)
+		end
+	end
+	LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+	ds:Disconnect()
 end
 LatestRoom:GetPropertyChangedSignal("Value"):Connect(newroom)
 local player = game.Players.LocalPlayer
@@ -507,10 +535,18 @@ while true do
 				if topick[i].Parent.Name == "RolltopContainer" then
 					pos = topick[i].Parent.Main
 				else
-					pos = topick[i].Parent.Hitbox or topick[i].Parent.Main
+					if topick[i].Parent:FindFirstChild("Hitbox") then
+						pos = topick[i].Parent.Hitbox
+					else
+						if topick[i].Parent:FindFirstChild("Base") then
+							pos = topick[i].Parent.Base
+						else
+							pos = topick[i].Parent.Main
+						end
+					end
 				end
 			end
-			if (rootPart.Position - pos.Position).Magnitude <= 5 then
+			if (rootPart.Position - pos.Position).Magnitude <= 12 then
 				fireproximityprompt(topick[i])
 				if topick[i].Parent.Name == "Knobs" then
 					wait(0.05)
