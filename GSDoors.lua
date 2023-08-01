@@ -69,23 +69,19 @@ local section2 = window:Section("Entities", "section2")
 section2:Toggle("Auto Heartbeat", "hbw", false, function(state)
     vs["hbw"] = state
 end)
-section2:Toggle("Avoid Figure", "af", false, function(state)
-    vs["af"] = state
-end)
 section2:Toggle("Auto Rush Closet", "arc", false, function(state)
     vs["arc"] = state
 end)
-section2:FinishSize()
-local section5 = window:Section("Anti-Entities")
-section5:Toggle("Anti-Screech", "st", false, function(state)
+
+section2:Toggle("Anti-Screech", "st", false, function(state)
     vs["st"] = state
 end)
-section5:Toggle("Anti-Seek", "set", false, function(state)
+section2:Toggle("Anti-Seek", "set", false, function(state)
     vs["set"] = state
 end)
+section2:FinishSize()
 
 
-section5:FinishSize()
 
 local section3 = window:Section("Visuals", "section3")
 section3:Toggle("Notify-Entity", "ne", false, function(state)
@@ -404,6 +400,7 @@ function newroom()
 	end
 	LatestRoom:GetPropertyChangedSignal("Value"):Wait()
 	ds:Disconnect()
+	
 end
 LatestRoom:GetPropertyChangedSignal("Value"):Connect(newroom)
 local player = game.Players.LocalPlayer
@@ -531,6 +528,7 @@ Achievements.Get({
     Reason = "You executed GSDoors.",
     Image = "https://images.emojiterra.com/twitter/v13.1/512px/1f913.png",
 })
+
 while true do
 	if vs["st"] then
 		screechremote.Parent = nil
@@ -582,12 +580,6 @@ while true do
 		end
 	end
 	if game.Workspace:FindFirstChild("Eyes") then
-        local lookVector = (game.Workspace:FindFirstChild("Eyes").PrimaryPart.Position - head.Position).Unit
-        local neckCFrame = CFrame.new(head.Position, head.Position + Vector3.new(0, 1, 0))
-        local desiredLookCFrame = CFrame.new(head.Position, head.Position + lookVector)
-        local neckAngle = neckCFrame:toObjectSpace(desiredLookCFrame):ToEulerAnglesXYZ()
-
-        -- Update head rotation while preserving the player's ability to look around.
-        head.CFrame = head.CFrame * CFrame.Angles(-neckAngle.x, -neckAngle.y, 0)
+        
     end
 end
