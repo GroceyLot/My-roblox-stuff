@@ -491,7 +491,7 @@ local function onRushMovingAdded(child)
 		while not child:FindFirstChild("RushNew") do
 			wait()
 		end
-		if (child:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude > 9999 then
+		if (child:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude => 10000 then
 			return
 		end
 		if vs["ees"] then
