@@ -17,6 +17,7 @@ local vs = {ws = 15,
 	set = false,
 	arc = false}
 local fbd = {}
+local topick = {}
 
 
 local Utils = loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/Utilla.lua"))()
@@ -104,7 +105,7 @@ section3:Toggle("Anti-Timothy", "tt", false, function(state)
     			tings[i].Transparency = 1
     		end
     	end
-    	ting.ActualRoot.Sound.Volume = 0
+    	ting.ActualRoot.Sound.Parent = game.Lighting
     else
     	local ting = game.ReplicatedStorage.Entities.Spider
     	local tings = ting:GetChildren()
@@ -113,7 +114,7 @@ section3:Toggle("Anti-Timothy", "tt", false, function(state)
     			tings[i].Transparency = 0
     		end
     	end
-    	ting.ActualRoot.Sound.Volume = 2
+    	game.Lighting.Sound.Parent = game.ReplicatedStorage.Entities.Spider.ActualRoot
     end
 end)
 
@@ -346,7 +347,20 @@ function newroom()
 		end
 	end
 	updateesp()
-	
+	if vs["pa"] then
+		topick = {}
+		if newroom:FindFirstChild("Assets") then
+			local desc = newroom.Assets:GetDescendants()
+			for i=1, #desc do
+				if desc[i].Name == "ActivateEventPrompt" then
+					table.insert(topick, desc[i])
+				end
+				if desc[i].Name == "ModulePrompt" then
+					table.insert(topick, desc[i])
+				end
+			end
+		end
+	end
 end
 LatestRoom:GetPropertyChangedSignal("Value"):Connect(newroom)
 local player = game.Players.LocalPlayer
@@ -423,7 +437,7 @@ local function onRushMovingAdded(child)
     			Title = "Rush is coming",
     			Desc = h,
     			Reason = "RushMoving found in Workspace",
-    			Image = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.dreamstime.com%2Fwhite-exclamation-mark-symbol-red-circle-white-exclamation-mark-symbol-red-circle-caution-icon-isolated-white-background-image186316726&psig=AOvVaw3hyUWEHJB8UxBAvaUJmxmQ&ust=1690903763587000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLDl0r-huYADFQAAAAAdAAAAABAJ",
+    			Image = "https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/download.png",
 			})
 		end
 		if rootPart and vs["arc"] then
@@ -434,7 +448,6 @@ local function onRushMovingAdded(child)
 				if rushMoving:FindFirstChild("RushNew") and (rushMoving:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude < 200 and closet.HiddenPlayer.Value == nil then
 					fireproximityprompt(closet.HidePrompt)
 					wait(0.1)
-				else
 				end
 			end
 		end
@@ -460,10 +473,11 @@ local function onRushMovingAdded(child)
     			Title = "Ambush is coming",
     			Desc = h,
     			Reason = "AmbushMoving found in Workspace",
-    			Image = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.dreamstime.com%2Fwhite-exclamation-mark-symbol-red-circle-white-exclamation-mark-symbol-red-circle-caution-icon-isolated-white-background-image186316726&psig=AOvVaw3hyUWEHJB8UxBAvaUJmxmQ&ust=1690903763587000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLDl0r-huYADFQAAAAAdAAAAABAJ",
+    			Image = "https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/download.png",
 			})
 		end
 	end
+end
 end
 
 -- Connect the function to be called whenever a new child is added to workspace
@@ -482,4 +496,22 @@ while true do
 	end
 	wait(0.1)
 	char.Humanoid.WalkSpeed = vs["ws"]
+	local rootPart = char and char:FindFirstChild("HumanoidRootPart")
+	for i=1, #topick do
+		if topick[i] and topick[i].Parent then
+			local pos = topick[i].Parent
+			if topick[i].Parent:IsA("Model") then
+				if topick[i].Parent.Name = "RolltopContainer" then
+					pos = topick[i].Parent.Main
+				else
+					pos = topick[i].Parent.Hitbox
+				end
+			end
+			if (rootPart.Position - pos.Position).Magnitude <= 5 then
+				fireproximityprompt(topick[i])
+				print(topick[i].Parent.Name)
+				table.remove(topick, i)
+			end
+		end
+	end
 end
