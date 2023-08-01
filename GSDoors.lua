@@ -228,7 +228,7 @@ function updateesp()
 	local con
 	if vs["des"] then
 		esp:AddHighlight(door.Door, Color3.new(1,1,0))
-		if curval ~= 50 or curval ~= 49 then
+		if curval ~= 50 and curval ~= 49 then
 			esp:AddText(door.Door.Sign, Color3.new(1,1,0), "Door " .. tostring(LatestRoom.Value + 1))
 		end
 	end
@@ -384,6 +384,9 @@ function newroom()
 				end
 			end
 		end
+		if curval == 50 then
+			table.insert(topick, newroom.PickupItem.ModulePrompt)
+		end
 	end
 	if vs["la"] then
 		if newroom.Door:FindFirstChild("Lock") then
@@ -491,7 +494,7 @@ local function onRushMovingAdded(child)
 		while not child:FindFirstChild("RushNew") do
 			wait()
 		end
-		if (child:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude => 10000 then
+		if (child:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude > 9999 then
 			return
 		end
 		if vs["ees"] then
@@ -541,12 +544,16 @@ while true do
 						if topick[i].Parent:FindFirstChild("Base") then
 							pos = topick[i].Parent.Base
 						else
-							pos = topick[i].Parent.Main
+							if topick[i].Parent:FindFirstChild("Handle") then
+								pos = topick[i].Parent.Handle
+							else
+								pos = topick[i].Parent.Main
+							end
 						end
 					end
 				end
 			end
-			if (rootPart.Position - pos.Position).Magnitude <= 12 then
+			if (rootPart.Position - pos.Position).Magnitude <= 10 then
 				fireproximityprompt(topick[i])
 				if topick[i].Parent.Name == "Knobs" then
 					wait(0.05)
