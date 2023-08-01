@@ -358,6 +358,9 @@ function newroom()
 				if desc[i].Name == "ModulePrompt" then
 					table.insert(topick, desc[i])
 				end
+				if desc[i].Name == "LootPrompt" then
+					table.insert(topick, desc[i])
+				end
 			end
 		end
 	end
@@ -494,21 +497,33 @@ while true do
 	else
 		screechremote.Parent = game.ReplicatedStorage.EntityInfo
 	end
-	wait(0.1)
+	wait(0.025)
 	char.Humanoid.WalkSpeed = vs["ws"]
 	local rootPart = char and char:FindFirstChild("HumanoidRootPart")
 	for i=1, #topick do
 		if topick[i] and topick[i].Parent then
 			local pos = topick[i].Parent
 			if topick[i].Parent:IsA("Model") then
-				if topick[i].Parent.Name = "RolltopContainer" then
+				if topick[i].Parent.Name == "RolltopContainer" then
 					pos = topick[i].Parent.Main
 				else
-					pos = topick[i].Parent.Hitbox
+					pos = topick[i].Parent.Hitbox or topick[i].Parent.Main
 				end
 			end
 			if (rootPart.Position - pos.Position).Magnitude <= 5 then
 				fireproximityprompt(topick[i])
+				if topick[i].Parent.Name == "Knobs" then
+					wait(0.05)
+					local desc = topick[i].Parent.Parent:GetDescendants()
+					for j=1, #desc do
+						if desc[j].Name == "ModulePrompt" then
+								table.insert(topick, desc[j])
+						end
+						if desc[j].Name == "LootPrompt" then
+							table.insert(topick, desc[j])
+						end
+					end
+				end
 				print(topick[i].Parent.Name)
 				table.remove(topick, i)
 			end
