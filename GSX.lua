@@ -98,6 +98,7 @@ TextBox.Position = UDim2.new(0.5, 0, 0.5, 0)
 TextBox.Size = UDim2.new(0.949999988, 0, 0.949999988, 0)
 TextBox.Font = Enum.Font.SourceSans
 TextBox.MultiLine = true
+TextBox.ClearTextOnFocus = false
 TextBox.PlaceholderColor3 = Color3.new(0.698039, 0.698039, 0.698039)
 TextBox.Text = ""
 TextBox.TextColor3 = Color3.new(0.784314, 1, 0)
