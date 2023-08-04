@@ -721,6 +721,7 @@ game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSigna
 end)
 
 end)
+section7:FinishSize()
 -- Add a label to the window
 window:Label("Shift to close the ui")
 -- Add a label to the window
