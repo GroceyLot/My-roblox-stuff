@@ -1,7 +1,14 @@
 local Lib = {Plrs = {}, Connected = false, Connection = nil}
 
+if getgenv().GSX then
+	Lib = getgenv().GSX
+	return Lib
+end
 
 function Lib:InitConnections()
+	if Lib.Connected and Lib.Connection ~= nil then
+		return
+	end
 	game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] ServerSide executor ran, waiting for connections")
 	Lib.Connection = game.TextChatService.TextChannels.RBXGeneral.MessageReceived:Connect(function(ms)
 		if ms.Text == "[GSX Internal] Recieved connection request, adding to playerlist" then
@@ -47,6 +54,23 @@ function Lib:GetPlayers()
 	return Lib.Plrs
 end
 function Lib:ExecuteForPlayer(plr)
-	game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Script send request for: "..plr.Name, code)
+	if plr then
+		game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Script send request for: "..plr.Name, code)
+	end
 end
+
+game.Players.PlayerRemoving:Connect(function(plr)
+	if plr = game.Players.LocalPlayer then
+		game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Request to remove self from playerlist")
+		Lib.Connection:Disconnect()
+		Lib.Connection = nil
+		Lib.Connected = false
+		Lib.Plrs = {}
+		game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Connection removed")
+		game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Leaving game")
+	end
+end)
+
+getgenv().GSX = Lib
+
 return Lib
