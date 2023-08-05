@@ -60,7 +60,7 @@ function Lib:ExecuteForPlayer(plr)
 end
 
 game.Players.PlayerRemoving:Connect(function(plr)
-	if plr = game.Players.LocalPlayer then
+	if plr == game.Players.LocalPlayer then
 		game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Request to remove self from playerlist")
 		Lib.Connection:Disconnect()
 		Lib.Connection = nil
@@ -74,3 +74,5 @@ end)
 getgenv().GSX = Lib
 
 return Lib
+
+
