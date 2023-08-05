@@ -27,12 +27,18 @@ function Lib:InitConnections()
 		end
 		for i=1, #Lib.Plrs do
 			if Lib.Plrs[i] == ms.TextSource and ms.MetaData ~= nil and ms.Text == "[GSX Internal] Script send request" then
-				game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Recieved script, running")
+				game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Recieved script, running", ms.MetaData)
 				loadstring(ms.MetaData)
 			end
 			if Lib.Plrs[i] == ms.TextSource and ms.MetaData ~= nil and ms.Text == "[GSX Internal] Script send request for: "..game.Players.LocalPlayer.Name then
-				game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Recieved script, running")
+				game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Recieved script for client, running", ms.MetaData)
 				loadstring(ms.MetaData)
+			end
+			if Lib.Plrs[i] == ms.TextSource and ms.MetaData ~= nil and ms.Text == "[GSX Internal] Recieved script, running" then
+				game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Script completed by: "..ms.TextSource.Name)
+			end
+			if Lib.Plrs[i] == ms.TextSource and ms.MetaData ~= nil and ms.Text == "[GSX Internal] Recieved script for client, running" then
+				game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Script for: "..ms.TextSource.Name.." completed")
 			end
 		end
 	end)
@@ -53,7 +59,7 @@ end
 function Lib:GetPlayers()
 	return Lib.Plrs
 end
-function Lib:ExecuteForPlayer(plr)
+function Lib:ExecuteForPlayer(plr, code)
 	if plr then
 		game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Script send request for: "..plr.Name, code)
 	end
