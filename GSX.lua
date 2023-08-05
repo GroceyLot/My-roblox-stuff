@@ -11,16 +11,16 @@ function Lib:InitConnections()
 	end
 	game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] ServerSide executor ran, waiting for connections")
 	Lib.Connection = game.TextChatService.TextChannels.RBXGeneral.MessageReceived:Connect(function(ms)
-		if ms.Text == "[GSX Internal] Recieved connection request, adding to playerlist" then
+		if ms.Text == "[GSX Internal] Recieved connection request, adding to playerlist" and ms.TextSource.Name ~= game.Players.LocalPlayer.Name then
 			table.insert(Lib.Plrs, ms.TextSource)
 			game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Connection added")
 		end
-		if ms.Text == "[GSX Internal] ServerSide executor ran, waiting for connections" then
+		if ms.Text == "[GSX Internal] ServerSide executor ran, waiting for connections" and ms.TextSource.Name ~= game.Players.LocalPlayer.Name then
 			game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Recieved connection request, adding to playerlists")
 			table.insert(Lib.Plrs, ms.TextSource)
 			game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Connection added")
 		end
-		if ms.Text == "[GSX Internal] Request to remove self from playerlist"then
+		if ms.Text == "[GSX Internal] Request to remove self from playerlist" and ms.TextSource.Name ~= game.Players.LocalPlayer.Name then
 			game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Recieved removal request, removing")
 			table.remove(Lib.Plrs, ms.TextSource)
 			game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Connection removed")
