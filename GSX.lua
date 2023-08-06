@@ -9,7 +9,6 @@ function Lib:InitConnections()
 	if Lib.Connected and Lib.Connection ~= nil then
 		return
 	end
-	game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] ServerSide executor ran, waiting for connections")
 	Lib.Connection = game.TextChatService.TextChannels.RBXGeneral.MessageReceived:Connect(function(ms)
 		if ms.Text == "[GSX Internal] Recieved connection request, adding to playerlist" and ms.TextSource.Name ~= game.Players.LocalPlayer.Name then
 			table.insert(Lib.Plrs, ms.TextSource)
@@ -48,6 +47,7 @@ function Lib:InitConnections()
 		end
 	end)
 	Lib.Connected = true
+	game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] ServerSide executor ran, waiting for connections")
 end
 function Lib:Disconnect()
 	game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Request to remove self from playerlist")
