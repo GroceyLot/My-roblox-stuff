@@ -10,7 +10,7 @@ function Lib:InitConnections()
 		return
 	end
 	Lib.Connection = game.TextChatService.TextChannels.RBXGeneral.MessageReceived:Connect(function(ms)
-		if ms.Text == "[GSX Internal] Recieved connection request, adding to playerlist" and ms.TextSource.Name ~= game.Players.LocalPlayer.Name then
+		if ms.Text == "[GSX Internal] Recieved connection request, adding to playerlists" and ms.TextSource.Name ~= game.Players.LocalPlayer.Name then
 			table.insert(Lib.Plrs, ms.TextSource)
 			wait(0.1)
 			game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Connection added")
