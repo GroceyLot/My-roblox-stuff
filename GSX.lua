@@ -28,21 +28,15 @@ function Lib:InitConnections()
 			game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Connection removed")
 		end
 		for i=1, #Lib.Plrs do
-			if Lib.Plrs[i] == ms.TextSource and ms.MetaData ~= nil and ms.Text == "[GSX Internal] Script send request" then
-				game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Recieved script, running", ms.MetaData)
+			if Lib.Plrs[i] == ms.TextSource and ms.TextSource.Name ~= game.Players.LocalPlayer.Name and ms.MetaData ~= nil and ms.Text == "[GSX Internal] Script send request" then
+				game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Recieved script, running")
 				wait()
 				loadstring(ms.MetaData)
 			end
 			if Lib.Plrs[i] == ms.TextSource and ms.MetaData ~= nil and ms.Text == "[GSX Internal] Script send request for: "..game.Players.LocalPlayer.Name then
-				game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Recieved script for client, running", ms.MetaData)
+				game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Recieved script for client, running")
 				wait()
 				loadstring(ms.MetaData)
-			end
-			if Lib.Plrs[i] == ms.TextSource and ms.MetaData ~= nil and ms.Text == "[GSX Internal] Recieved script, running" then
-				game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Script completed by: "..ms.TextSource.Name)
-			end
-			if Lib.Plrs[i] == ms.TextSource and ms.MetaData ~= nil and ms.Text == "[GSX Internal] Recieved script for client, running" then
-				game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Script for: "..ms.TextSource.Name.." completed")
 			end
 		end
 	end)
