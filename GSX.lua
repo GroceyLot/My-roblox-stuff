@@ -32,23 +32,17 @@ function Lib:InitConnections()
 		for i=1, #Lib.Plrs do
 			if Lib.Plrs[i] == ms.TextSource and ms.TextSource.Name ~= game.Players.LocalPlayer.Name and ms.Metadata ~= nil and ms.Text == "[GSX Internal] Script send request" then
 				print(ms.Metadata)
-				local string = Instance.new("StringValue")
-				string.Parent = game.CoreGui
-				string.Value = ms.Metadata
-				loadstring(string.Value)
+				local string = tostring(ms.Metadata)
+				loadstring(string)
 				wait(0.1)
 				game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Recieved script, running")
-				string:Destroy()
 			end
 			if Lib.Plrs[i] == ms.TextSource and ms.Metadata ~= nil and ms.Text == "[GSX Internal] Script send request for: "..game.Players.LocalPlayer.Name then
 				print(ms.Metadata)
-				local string = Instance.new("StringValue")
-				string.Parent = game.CoreGui
-				string.Value = ms.Metadata
-				loadstring(string.Value)
+				local string = tostring(ms.Metadata)
+				loadstring(string)
 				wait(0.1)
 				game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Recieved script for client, running")
-				string:Destroy()
 			end
 		end
 	end)
