@@ -55,15 +55,17 @@ function Lib:Disconnect()
 	game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Connection removed")
 end
 function Lib:ServerSideExecute(code)
-	loadstring(code)
-	game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Script send request", code)
+	local cod = code
+	loadstring(cod)
+	game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Script send request", cod)
 end
 function Lib:GetPlayers()
 	return Lib.Plrs
 end
 function Lib:ExecuteForPlayer(plr, code)
 	if plr then
-		game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Script send request for: "..plr.Name, code)
+		local cod = code
+		game.TextChatService.TextChannels.RBXGeneral:SendAsync("[GSX Internal] Script send request for: "..plr.Name, cod)
 	end
 end
 
