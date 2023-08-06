@@ -1,7 +1,7 @@
 local Lib = {Plrs = {}, Connected = false, Connection = nil}
 
-if getgenv().GSX then
-	Lib = getgenv().GSX
+if _G.GSX then
+	Lib = _G.GSX
 	return Lib
 end
 
@@ -82,7 +82,7 @@ game.Players.PlayerRemoving:Connect(function(plr)
 	end
 end)
 
-getgenv().GSX = Lib
+_G.GSX = Lib
 
 return Lib
 
