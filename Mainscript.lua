@@ -58,7 +58,7 @@ local Window = Library:AddWindow({
 
 -- Create Tab
 local Scripts = Window:AddTab("Scripts", {default = true})
-local GameSpecific = Window:AddTab("Game Specific Features", {default = false})
+local GameSpecific = Window:AddTab("Game Specific", {default = false})
 local Features = Window:AddTab("Features", {default = false})
 local Settings = Window:AddTab("Settings", {default = false})
 
