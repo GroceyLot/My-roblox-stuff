@@ -121,7 +121,23 @@ local Button19 = Scriptsec4:AddButton("Run", function()
 end)
 
 if game.PlaceId == 189707 then
-	
+	local autowin = false
+game.Workspace.ContentModel.Status:GetPropertyChangedSignal("Value"):Connect(function()
+	if autowin and game.Workspace.ContentModel.Status.Value == "New Map" then
+		while true do
+			wait(1)
+			if game.Workspace.ContentModel.Status.Value ~= "Survivers" and autowin then
+				game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-280, 180, 340))
+			else
+				break
+			end
+		end
+	end
+end)
+	local a = GameSpecific:AddSection("Natural Disaster Survival", {default = false})
+local a1 = a:AddToggle("AFKGrind", {default = false}, function(bool)
+	autowin = bool
+end)
 end
 
 local settingssec = Settings:AddSection("Main", {default = true})
