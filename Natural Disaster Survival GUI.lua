@@ -1,7 +1,7 @@
 
 
 -- Define Library
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/UI-Libraries/main/Vynixius/Source.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/UI-Libraries/main/Vynixius%20UI%20Library/Source.lua"))()
 -- Create Window
 local Window = Library:AddWindow({
 	title = {"Grocey", "Natural Disaster Survival"},
