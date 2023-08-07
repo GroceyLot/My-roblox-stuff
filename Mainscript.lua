@@ -177,7 +177,10 @@ if game.PlaceId == 155615604 then
                wait(0.1)
             end
             end)
-
+            if not _G.dode then
+               game.RunService.Heartbeat:Once(ting)
+               return
+            end
          end
       end
       game.RunService.Heartbeat:Once(ting)
