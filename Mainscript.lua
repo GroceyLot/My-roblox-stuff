@@ -58,6 +58,7 @@ local Window = Library:AddWindow({
 
 -- Create Tab
 local Scripts = Window:AddTab("Scripts", {default = true})
+local GameSpecific = Window:AddTab("Game Specific Features", {default = false})
 local Features = Window:AddTab("Features", {default = false})
 local Settings = Window:AddTab("Settings", {default = false})
 
@@ -119,6 +120,9 @@ local Button19 = Scriptsec4:AddButton("Run", function()
 	loadstring(game:HttpGet(loady, true))()
 end)
 
+if game.PlaceId == 189707 then
+	
+end
 
 local settingssec = Settings:AddSection("Main", {default = true})
 
