@@ -58,7 +58,6 @@ local Window = Library:AddWindow({
 
 -- Create Tab
 local Scripts = Window:AddTab("Scripts", {default = true})
-local GameSpecific = Window:AddTab("Game Specific", {default = false})
 local Features = Window:AddTab("Features", {default = false})
 local Settings = Window:AddTab("Settings", {default = false})
 
@@ -115,6 +114,7 @@ loadstring(game:HttpGet(loady, true))()
 end)
 
 if game.PlaceId == 189707 then
+   local GameSpecific = Window:AddTab("Game Specific", {default = false})
    local autowin = false
    game.Workspace.ContentModel.Status:GetPropertyChangedSignal("Value"):Connect(function()
    if autowin and game.Workspace.ContentModel.Status.Value == "New Map" then
@@ -134,6 +134,7 @@ if game.PlaceId == 189707 then
    end)
 end
 if game.PlaceId == 5736409216 then
+   local GameSpecific = Window:AddTab("Game Specific", {default = false})
    _G.dod = false
    local a = GameSpecific:AddSection("Mall Tycoon", {default = false})
    local a1 = a:AddToggle("Auto collect", {default = false}, function(bool)
@@ -155,6 +156,7 @@ if game.PlaceId == 5736409216 then
 
 end
 if game.PlaceId == 155615604 then
+   local GameSpecific = Window:AddTab("Game Specific", {default = false})
    _G.dode = false
    local a = GameSpecific:AddSection("Prison Life", {default = false})
    local a1 = a:AddToggle("Loop kill all", {default = false}, function(bool)
@@ -186,6 +188,77 @@ if game.PlaceId == 155615604 then
       game.RunService.Heartbeat:Once(ting)
    end
    game.RunService.Heartbeat:Once(ting)
+   ----------------------------------------------------
+---  A redistribution of https://wearedevs.net/  ---
+----------------------------------------------------
+
+--Waits until the player is in game
+repeat wait()
+until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:findFirstChild("Torso") and game.Players.LocalPlayer.Character:findFirstChild("Humanoid")
+local mouse = game.Players.LocalPlayer:GetMouse()
+
+--Waits until the player's mouse is found
+repeat wait() until mouse
+
+--Variables
+local plr = game.Players.LocalPlayer
+local torso = plr.Character.HumanoidRootPart
+local flying = false
+local deb = true
+local ctrl = {f = 0, b = 0, l = 0, r = 0}
+local lastctrl = {f = 0, b = 0, l = 0, r = 0}
+local maxspeed = 50
+local speed = 0
+local bg = nil
+local bv = nil
+
+--Actual flying
+function Fly()
+    bg = Instance.new("BodyGyro", torso)
+    bg.P = 9e4
+    bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+    bg.cframe = torso.CFrame
+    bv = Instance.new("BodyVelocity", torso)
+    bv.velocity = Vector3.new(0,0.1,0)
+    bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
+    repeat wait()
+      plr.Character.Humanoid.PlatformStand = true
+      if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then
+        speed = speed+.5+(speed/maxspeed)
+        if speed > maxspeed then
+          speed = maxspeed
+        end
+      elseif not (ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0) and speed ~= 0 then
+        speed = speed-1
+        if speed < 0 then
+          speed = 0
+        end
+      end
+      if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then
+        bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f+ctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(ctrl.l+ctrl.r,(ctrl.f+ctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed
+        lastctrl = {f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r}
+      elseif (ctrl.l + ctrl.r) == 0 and (ctrl.f + ctrl.b) == 0 and speed ~= 0 then
+        bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f+lastctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lastctrl.l+lastctrl.r,(lastctrl.f+lastctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed
+      else
+        bv.velocity = Vector3.new(0,0.1,0)
+      end
+      bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame * CFrame.Angles(-math.rad((ctrl.f+ctrl.b)*50*speed/maxspeed),0,0)
+    until not flying
+    ctrl = {f = 0, b = 0, l = 0, r = 0}
+    lastctrl = {f = 0, b = 0, l = 0, r = 0}
+    speed = 0
+    bg:Destroy()
+	bg = nil
+    bv:Destroy()
+	bv = nil
+    plr.Character.Humanoid.PlatformStand = false
+end
+   local a2 = a:AddToggle("Fly", {default = false}, function(bool)
+      flying = not flying
+      if flying then
+            Fly()
+         end
+   end)
 end
 local settingssec = Settings:AddSection("Main", {default = true})
 
