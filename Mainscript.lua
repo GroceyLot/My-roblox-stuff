@@ -202,7 +202,7 @@ repeat wait() until mouse
 
 --Variables
 local plr = game.Players.LocalPlayer
-local torso = plr.Character.HumanoidRootPart
+local torso = plr.Character.Torso
 local flying = false
 local deb = true
 local ctrl = {f = 0, b = 0, l = 0, r = 0}
@@ -254,7 +254,7 @@ function Fly()
     plr.Character.Humanoid.PlatformStand = false
 end
    local a2 = a:AddToggle("Fly", {default = false}, function(bool)
-      flying = not flying
+      flying = bool
       if flying then
             Fly()
          end
