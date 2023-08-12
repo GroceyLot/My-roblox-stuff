@@ -45,18 +45,16 @@ function startesp()
 	end
 end
 
-local tog = Player:Toggle("Fly+Noclip (Tab)", "FY", false, function(val)
+local tog = Player:Toggle("Fly+Noclip (H)", "FY", false, function(val)
     flying = val
     game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = val
 end)
-
+local input = game:GetService("UserInputService")
 local function UpdateFlying()
     if flying then
         game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
         local camera = game.Workspace.CurrentCamera
         local moveDirection = Vector3.new(0, 0, 0)
-
-        local input = game:GetService("UserInputService")
 
         if input:IsKeyDown(Enum.KeyCode.W) then
             moveDirection = moveDirection + camera.CFrame.LookVector
@@ -84,7 +82,7 @@ local function UpdateFlying()
 
         game.Players.LocalPlayer.Character:TranslateBy(moveDirection * (flySpeed/25))
     end
-	if input:IsKeyDown(Enum.KeyCode.Tab) then
+	if input:IsKeyDown(Enum.KeyCode.H) then
         flying = not flying
 		tog:Toggle(flying)
     end
