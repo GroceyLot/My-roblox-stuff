@@ -45,6 +45,11 @@ function startesp()
 	end
 end
 
+local tog = Player:Toggle("Fly+Noclip (Tab)", "FY", false, function(val)
+    flying = val
+    game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = val
+end)
+
 local function UpdateFlying()
     if flying then
         game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
@@ -79,13 +84,11 @@ local function UpdateFlying()
 
         game.Players.LocalPlayer.Character:TranslateBy(moveDirection * (flySpeed/25))
     end
+	if input:IsKeyDown(Enum.KeyCode.Tab) then
+        flying = not flying
+		tog:Toggle(flying)
+    end
 end
-
-
-Player:Toggle("Fly+Noclip", "FY", false, function(val)
-    flying = val
-    game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = val
-end)
 
 Player:Number("Flyspeed", "FS", 0, 300, 25, function(val)
     flySpeed = val
@@ -124,7 +127,15 @@ end)
 Player:Number("Walkspeed", "WS", 0, 1000, game.Players.LocalPlayer.Character.Humanoid.WalkSpeed, function(val)
     ws = val
 end)
-
+Player:Toggle("No fall damage", "FD", false, function(val)
+    pcall(function()
+        if val then
+            game.Players.LocalPlayer.Character.FallDamage.Parent = game.ReplicatedStorage
+        else
+            game.ReplicatedStorage.FallDamage.Parent = game.Players.LocalPlayer.Character
+        end
+    end)
+end)
 
 Visuals:Number("Fov", "FV", 0, 120, math.round(game.Workspace.CurrentCamera.FieldOfView), function(val)
     fv = val
@@ -292,7 +303,7 @@ game:GetService("Workspace").GameObjects.Physical.Players.ChildAdded:Connect(fun
 end)
 
 while true do
-	wait(0.01)
+	wait()
 	game.Workspace.CurrentCamera.FieldOfView = fv
 	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = ws
 end
