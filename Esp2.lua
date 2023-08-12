@@ -34,6 +34,10 @@ function ESP:AddText(obj, color, text)
   TextLabel.Text = text
   TextLabel.TextScaled = true
   UIStroke.Parent = TextLabel
+  local mag = (color.R+color.G+color.B)/3
+  if mag > 0.5 then
+    UIStroke.Color = Color3.new(1,1,1)
+  end
   return BillboardGui
 end
 return ESP
