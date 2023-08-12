@@ -221,6 +221,7 @@ function Lib:Window(Name, Text)
 			return Number
 		end
 		function SectionTable:Toggle(Text_3, Flag_1, Default_1, Function_1)
+			local togtable = {}
 			local Toggle = Instance.new("TextLabel")
 			local Frame_2 = Instance.new("Frame")
 			local UICorner_5 = Instance.new("UICorner")
@@ -280,7 +281,12 @@ function Lib:Window(Name, Text)
 
 			UICorner_6.Parent = TextButton
 			UICorner_6.CornerRadius = UDim.new(0, 10000)
-			return Toggle
+			function togtable:Toggle(val)
+				SectionTable.Flags[Flag_1] = val
+				toggle(TextButton, val)
+				Function_1(val)
+			end
+			return togtable
 		end
 		function SectionTable:Button(Text_4, Function_2)
 			local Button = Instance.new("TextButton")
