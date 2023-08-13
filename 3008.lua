@@ -47,12 +47,10 @@ end
 
 local tog = Player:Toggle("Fly+Noclip (H)", "FY", false, function(val)
     flying = val
-    game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = val
 end)
 local input = game:GetService("UserInputService")
 local function UpdateFlying()
     if flying then
-        game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
         local camera = game.Workspace.CurrentCamera
         local moveDirection = Vector3.new(0, 0, 0)
 
@@ -79,12 +77,11 @@ local function UpdateFlying()
         if input:IsKeyDown(Enum.KeyCode.LeftControl) then
             moveDirection = moveDirection - Vector3.new(0, 1, 0)
         end
-
-        game.Players.LocalPlayer.Character:TranslateBy(moveDirection * (flySpeed/25))
+	game.Players.LocalPlayer.Character:MoveTo(game.Players.LocalPlayer.Character.HumanoidRootPart.Position+(moveDirection * (flySpeed/25)))
     end
-	if input:IsKeyDown(Enum.KeyCode.H) then
+if input:IsKeyDown(Enum.KeyCode.H) then
         flying = not flying
-		tog:Toggle(flying)
+	tog:Toggle(flying)
     end
 end
 
