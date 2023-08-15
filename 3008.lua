@@ -87,7 +87,9 @@ local function UpdateFlying()
     if input:IsKeyDown(Enum.KeyCode.V) then
         flying = not flying
 	tog:Toggle(flying)
+	wait(1)
     end
+game:GetService("RunService").Heartbeat:Once(UpdateFlying)
 end
 
 Player:Number("Flyspeed", "FS", 0, 300, 25, function(val)
@@ -276,7 +278,7 @@ Esp:Toggle("Items", "IS", false, function(val)
 end)
 
 -- Connect to changes in the val variable to update flying mode
-game:GetService("RunService").Heartbeat:Connect(UpdateFlying)
+game:GetService("RunService").Heartbeat:Once(UpdateFlying)
 
 Player:FinishSize()
 Visuals:FinishSize()
