@@ -46,11 +46,12 @@ function startesp()
 	end
 end
 
-local tog = Player:Toggle("Fly+Noclip (V)", "FY", false, function(val)
-    flying = val
+local tog = Player:Toggle("Fly (V)", "FY", false, function(val)
 	if val then
 		FlyPos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
 	end
+	wait(0.01)
+    flying = val
 end)
 local input = game:GetService("UserInputService")
 local function UpdateFlying()
@@ -91,6 +92,11 @@ local function UpdateFlying()
     end
 game:GetService("RunService").Heartbeat:Once(UpdateFlying)
 end
+
+game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
+	flying = false
+	tog:Toggle(false)
+end)
 
 Player:Number("Flyspeed", "FS", 0, 300, 25, function(val)
     flySpeed = val
