@@ -18,6 +18,7 @@ local vs = {ws = 0,
 	set = false,
 	nl = false,
 	gmn = false,
+	de = false,
 	arc = false}
 local fbd = {}
 local topick = {}
@@ -56,7 +57,58 @@ end)
 section1:Toggle("Instant prompts", "InstantPrompts", false, function(state)
     vs["it"] = state
 end)
+local flying
+local flySpeed = 15
+local tog = section1:Toggle("Fly (F)", "FY", false, function(val)
+	if val then
+		FlyPos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+	end
+	wait(0.01)
+    flying = val
+end)
+section1:Number("Fly speed", "FS", 0, 25, 15, function(value)
+    flySpeed = value
+end)
+local input = game:GetService("UserInputService")
+local function UpdateFlying()
+    if flying then
+        local camera = game.Workspace.CurrentCamera
+        local moveDirection = Vector3.new(0, 0, 0)
 
+        if input:IsKeyDown(Enum.KeyCode.W) then
+            moveDirection = moveDirection + camera.CFrame.LookVector
+        end
+
+        if input:IsKeyDown(Enum.KeyCode.S) then
+            moveDirection = moveDirection - camera.CFrame.LookVector
+        end
+
+        if input:IsKeyDown(Enum.KeyCode.A) then
+            moveDirection = moveDirection - camera.CFrame.RightVector
+        end
+
+        if input:IsKeyDown(Enum.KeyCode.D) then
+            moveDirection = moveDirection + camera.CFrame.RightVector
+        end
+
+        if input:IsKeyDown(Enum.KeyCode.Space) then
+            moveDirection = moveDirection + Vector3.new(0, 1, 0)
+        end
+
+        if input:IsKeyDown(Enum.KeyCode.Q) then
+            moveDirection = moveDirection - Vector3.new(0, 1, 0)
+        end
+	FlyPos = FlyPos + (moveDirection * (flySpeed/25))
+	game.Players.LocalPlayer.Character:MoveTo(FlyPos)
+    end
+    if input:IsKeyDown(Enum.KeyCode.F) then
+        flying = not flying
+	tog:Toggle(flying)
+	wait(1)
+    end
+game:GetService("RunService").Heartbeat:Once(UpdateFlying)
+end
+game:GetService("RunService").Heartbeat:Once(UpdateFlying)
 -- Add a button to the section
 section1:Button("Kill", function()
     game.Players.LocalPlayer.Character.Humanoid.Health = 0
@@ -69,13 +121,6 @@ local section2 = window:Section("Entities", "section2")
 
 section2:Toggle("Auto Heartbeat", "hbw", false, function(state)
     vs["hbw"] = state
-end)
-local arct = section2:Toggle("Auto Rush Closet", "arc", false, function(state)
-    	if not vs["gmn"] then
-    		vs["arc"] = state
-	else
-		arct:Toggle(false)
-	end
 end)
 local Noclip = nil
 local Clip = nil
@@ -101,19 +146,15 @@ function clip()
 end
 
 local gmnb = section2:Toggle("Godmode/Noclip", "gmn", false, function(state)
-	if not vs["arc"] then
-    		vs["gmn"] = state
-		if state then
-			local Col = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
-			Col.Position = Col.Position - Vector3.new(0,10,0)
-			noclip()
-		else
-			local Col = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
-			Col.Position = Col.Position + Vector3.new(0,10,0)
-			clip()
-		end
+	vs["gmn"] = state
+	if state then
+		local Col = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
+		Col.Position = Col.Position - Vector3.new(0,10,0)
+		noclip()
 	else
-		gmnb:Toggle(false)
+		local Col = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
+		Col.Position = Col.Position + Vector3.new(0,10,0)
+		clip()
 	end
 end)
 section2:Toggle("Anti-Screech", "st", false, function(state)
@@ -129,6 +170,9 @@ section2:FinishSize()
 local section3 = window:Section("Visuals", "section3")
 section3:Toggle("Notify-Entity", "ne", false, function(state)
     vs["ne"] = state
+end)
+section3:Toggle("Notify-Entity debug", "de", false, function(state)
+    vs["de"] = state
 end)
 section3:Toggle("Fullbright", "fb", false, function(state)
     if state then
@@ -986,6 +1030,7 @@ function newroom()
 	end
 	local ds = updateesp()
 	topick = {}
+	local rc = {}
 	if vs["pa"] then
 		if newroom:FindFirstChild("Assets") then
 			local desc = newroom.Assets:GetDescendants()
@@ -999,7 +1044,8 @@ function newroom()
 				if desc[i].Name == "LootPrompt" then
 					table.insert(topick, desc[i])
 				end
-				if desc[i].Name == "Table" or desc[i].Name == "Dresser" then
+				if desc[i].Name == "Table" or desc[i].Name == "Dresser" or desc[i].Name == "Rolltop_Desk" then
+					table.insert(rc, 
 					desc[i].DescendantAdded:Connect(function(d)
 						if d.Name == "ModulePrompt" then
 							table.insert(topick, d)
@@ -1007,13 +1053,22 @@ function newroom()
 						if d.Name == "LootPrompt" then
 							table.insert(topick, d)
 						end
-					end)
+					end))
 				end
 			end
 		end
 		if curval == 50 then
 			table.insert(topick, newroom.PickupItem.ModulePrompt)
 		end
+	end
+	if curval == 50 or curval == 100 then
+		gmnb:Toggle(false)
+		Achievements.Get({
+    			Title = "Disabled godmode.",
+    			Desc = "Godmode disabled for figure, you can re-enable it after.",
+    			Reason = "Current room is 50 or 100.",
+    			Image = "https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/download.png",
+		})
 	end
 	if vs["la"] then
 		if newroom.Door:FindFirstChild("Lock") then
@@ -1027,7 +1082,9 @@ function newroom()
 	end
 	LatestRoom:GetPropertyChangedSignal("Value"):Wait()
 	ds:Disconnect()
-	
+	for i=1,#rc do
+		rc[i]:Disconnect()
+	end
 end
 LatestRoom:GetPropertyChangedSignal("Value"):Connect(newroom)
 local player = game.Players.LocalPlayer
@@ -1089,6 +1146,21 @@ local function onRushMovingAdded(child)
 		while not child:FindFirstChild("RushNew") do
 			wait()
 		end
+		if vs["ne"] and vs["de"] then
+			local h = "Prepare to hide"
+			if vs["arc"] then
+				h = "If it is real we will prepare to hide."
+			end
+			if vs["gmn"] then
+				h = "You have godmode so it doesn't matter"
+			end
+			Achievements.Get({
+    			Title = "I think rush is coming",
+    			Desc = h,
+    			Reason = "RushMoving found in Workspace, may be fake",
+    			Image = "https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/download.png",
+			})
+		end
 		if (child:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude > 9999 then
 			return
 		end
@@ -1100,10 +1172,14 @@ local function onRushMovingAdded(child)
 			local h = "Quick hide!"
 			if vs["arc"] then
 				h = "Don't worry, we will enter the closet when it is close enough."
+			end
+			if vs["gmn"] then
+				h = "Don't worry, you've got godmode"
+			end
 			Achievements.Get({
     			Title = "Rush is coming",
     			Desc = h,
-    			Reason = "RushMoving found in Workspace",
+    			Reason = "RushMoving found in Workspace and verified",
     			Image = "https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/download.png",
 			})
 		end
@@ -1127,25 +1203,25 @@ local function onRushMovingAdded(child)
 		while not child:FindFirstChild("RushNew") do
 			wait()
 		end
-		if (child:FindFirstChild("RushNew").Position - rootPart.Position).Magnitude > 9999 then
-			return
-		end
 		if vs["ees"] then
 			esp:AddHighlight(child:FindFirstChild("RushNew"), Color3.new(1,0,0))
 			esp:AddText(child:FindFirstChild("RushNew"), Color3.new(1,0,0), "Ambush")
 		end
 		if vs["ne"] then
 			local h = "Quick hide! Make sure to get in and out."
+			if vs["gmn"] then
+				h = "It doesn't matter with godmode but maybe don't move."
+			end
 			Achievements.Get({
-    			Title = "Ambush is coming",
+    			Title = "I think ambush is coming",
     			Desc = h,
-    			Reason = "AmbushMoving found in Workspace",
+    			Reason = "AmbushMoving found in Workspace, may be fake",
     			Image = "https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/download.png",
 			})
 		end
 	end
 end
-end
+
 
 -- Connect the function to be called whenever a new child is added to workspace
 game:GetService("Workspace").ChildAdded:Connect(onRushMovingAdded)
@@ -1156,17 +1232,8 @@ Achievements.Get({
     Image = "https://images.emojiterra.com/twitter/v13.1/512px/1f913.png",
 })
 
-while true do
-	if vs["st"] then
-		screechremote.Parent = nil
-	else
-		screechremote.Parent = game.ReplicatedStorage.EntityInfo
-	end
-	wait(0.025)
-	if char.Humanoid.MoveDirection.Magnitude > 0 then
-		char:TranslateBy(char.Humanoid.MoveDirection * Vector3.new(vs["ws"],vs["ws"],vs["ws"]))
-	end
-	local rootPart = char and char:FindFirstChild("HumanoidRootPart")
+function handleautoprompts()
+	local rootPart = char:FindFirstChild("Collision")
 	for i=1, #topick do
 		if topick[i] and topick[i].Parent then
 			local pos = topick[i].Parent
@@ -1189,14 +1256,30 @@ while true do
 					end
 				end
 			end
-			if (rootPart.Position - pos.Position).Magnitude <= 9 and topick[i].Parent and topick[i].Parent.Parent then
+			if (rootPart.Position - pos.Position).Magnitude <= 12 then
 				fireproximityprompt(topick[i])
-				print(topick[i].Parent.Name)
-				table.remove(topick, i)
+				if topick[i].Name ~= "UnlockPrompt" then
+					pcall(function()
+						table.remove(topick, i)
+					end)
+				end
 			end
 		end
+		wait()
 	end
-	if game.Workspace:FindFirstChild("Eyes") then
-        
-    end
+	game.RunService.Heartbeat:Once(handleautoprompts)
+end
+
+game.RunService.Heartbeat:Once(handleautoprompts)
+
+while true do
+	if vs["st"] then
+		screechremote.Parent = nil
+	else
+		screechremote.Parent = game.ReplicatedStorage.EntityInfo
+	end
+	wait()
+	if char.Humanoid.MoveDirection.Magnitude > 0 and vs["ws"] > 0 then
+		char:TranslateBy(char.Humanoid.MoveDirection * Vector3.new(vs["ws"] / 24 , vs["ws"] / 24, vs["ws"] / 24))
+	end
 end
