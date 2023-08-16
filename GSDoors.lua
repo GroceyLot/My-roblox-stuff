@@ -100,7 +100,7 @@ function clip()
     Clip = true
 end
 
-local gmnb = section2:Toggle("Godmode/Noclip bypass", "gmn", false, function(state)
+local gmnb = section2:Toggle("Godmode/Noclip", "gmn", false, function(state)
 	if not vs["arc"] then
     		vs["gmn"] = state
 		if state then
