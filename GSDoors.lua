@@ -103,7 +103,7 @@ end
 local gmnb = section2:Toggle("Godmode/Noclip bypass", "gmn", false, function(state)
 	if not vs["arc"] then
     		vs["gmn"] = state
-		if vs["gmn"] then
+		if state then
 			local Col = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
 			Col.Position = Col.Position - Vector3.new(0,10,0)
 			noclip()
