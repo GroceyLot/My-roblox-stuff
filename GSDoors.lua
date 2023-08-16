@@ -995,6 +995,16 @@ function newroom()
 				if desc[i].Name == "LootPrompt" then
 					table.insert(topick, desc[i])
 				end
+				if desc[i].Name == "Table" or desc[i].Name == "Dresser" then
+					desc[i].DescendantAdded:Connect(function(d)
+						if d.Name == "ModulePrompt" then
+							table.insert(topick, d)
+						end
+						if d.Name == "LootPrompt" then
+							table.insert(topick, d)
+						end
+					end)
+				end
 			end
 		end
 		if curval == 50 then
@@ -1175,18 +1185,6 @@ while true do
 			end
 			if (rootPart.Position - pos.Position).Magnitude <= 9 and topick[i].Parent and topick[i].Parent.Parent then
 				fireproximityprompt(topick[i])
-				if topick[i].Parent.Parent.Name == "DrawerContainer" then
-					wait(0.05)
-					local desc = topick[i].Parent.Parent:GetDescendants()
-					for j=1, #desc do
-						if desc[j].Name == "ModulePrompt" then
-							table.insert(topick, desc[j])
-						end
-						if desc[j].Name == "LootPrompt" then
-							table.insert(topick, desc[j])
-						end
-					end
-				end
 				print(topick[i].Parent.Name)
 				table.remove(topick, i)
 			end
