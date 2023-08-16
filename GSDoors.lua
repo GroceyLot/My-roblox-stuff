@@ -1,7 +1,7 @@
 local LatestRoom = game:GetService("ReplicatedStorage").GameData.LatestRoom
 local ChaseStart = game:GetService("ReplicatedStorage").GameData.ChaseStart
 local esp = loadstring(game:HttpGet("https://github.com/GroceyLot/My-roblox-stuff/raw/Things/esp.lua"))()
-local vs = {ws = 15,
+local vs = {ws = 0,
 	des = false,
 	kes = false,
 	ies = false,
@@ -48,7 +48,7 @@ local window = Lib:Window("Window", "GSDoors")
 local section1 = window:Section("Player", "section1")
 
 -- Add a number input to the section
-section1:Number("Speed", "WalkSpeed", 0, 21, 15, function(value)
+section1:Number("Speed Boost", "WalkSpeed", 0, 6, 0, function(value)
     vs["ws"] = value
 end)
 
@@ -1173,7 +1173,7 @@ while true do
 					end
 				end
 			end
-			if (rootPart.Position - pos.Position).Magnitude <= 10 then
+			if (rootPart.Position - pos.Position).Magnitude <= 9 and topick[i].Parent and topick[i].Parent.Parent then
 				fireproximityprompt(topick[i])
 				if topick[i].Parent.Parent.Name == "DrawerContainer" then
 					wait(0.05)
