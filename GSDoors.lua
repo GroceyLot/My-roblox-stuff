@@ -1165,7 +1165,6 @@ local function onRushMovingAdded(child)
 			return
 		end
 		if vs["ees"] then
-			esp:AddHighlight(child:FindFirstChild("RushNew"), Color3.new(1,0,0))
 			esp:AddText(child:FindFirstChild("RushNew"), Color3.new(1,0,0), "Rush")
 		end
 		if vs["ne"] then
@@ -1204,7 +1203,6 @@ local function onRushMovingAdded(child)
 			wait()
 		end
 		if vs["ees"] then
-			esp:AddHighlight(child:FindFirstChild("RushNew"), Color3.new(1,0,0))
 			esp:AddText(child:FindFirstChild("RushNew"), Color3.new(1,0,0), "Ambush")
 		end
 		if vs["ne"] then
