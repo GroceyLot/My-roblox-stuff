@@ -1163,7 +1163,9 @@ while true do
 		screechremote.Parent = game.ReplicatedStorage.EntityInfo
 	end
 	wait(0.025)
-	char.Humanoid.WalkSpeed = vs["ws"]
+	if char.Humanoid.MoveDirection > 0 then
+		char:TranslateBy(char.Humanoid.MoveDirection * Vector3.new(vs["ws"],vs["ws"],vs["ws"]))
+	end
 	local rootPart = char and char:FindFirstChild("HumanoidRootPart")
 	for i=1, #topick do
 		if topick[i] and topick[i].Parent then
