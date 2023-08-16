@@ -73,6 +73,8 @@ end)
 local arct = section2:Toggle("Auto Rush Closet", "arc", false, function(state)
     	if not vs["gmn"] then
     		vs["arc"] = state
+	else
+		arct:Toggle(false)
 	end
 end)
 local Noclip = nil
@@ -110,6 +112,8 @@ local gmnb = section2:Toggle("Godmode/Noclip bypass", "gmn", false, function(sta
 			Col.Position = Col.Position + Vector3.new(0,10,0)
 			clip()
 		end
+	else
+		gmnb:Toggle(false)
 	end
 end)
 section2:Toggle("Anti-Screech", "st", false, function(state)
