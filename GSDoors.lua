@@ -17,6 +17,7 @@ local vs = {ws = 15,
 	hbw = false,
 	set = false,
 	nl = false,
+	gmn = false,
 	arc = false}
 local fbd = {}
 local topick = {}
@@ -69,10 +70,23 @@ local section2 = window:Section("Entities", "section2")
 section2:Toggle("Auto Heartbeat", "hbw", false, function(state)
     vs["hbw"] = state
 end)
-section2:Toggle("Auto Rush Closet", "arc", false, function(state)
-    vs["arc"] = state
+local arct = section2:Toggle("Auto Rush Closet", "arc", false, function(state)
+    	if not vs["gmn"] then
+    		vs["arc"] = state
+	end
 end)
-
+local gmnb = section2:Toggle("Godmode/Noclip bypass", "gmn", false, function(state)
+	if not vs["arc"] then
+    		vs["gmn"] = state
+		if vs["gmn"] then
+			local Col = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
+			Col.Position = Col.Position - Vector3.new(0,10,0)
+		else
+			local Col = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
+			Col.Position = Col.Position + Vector3.new(0,10,0)
+		end
+	end
+end)
 section2:Toggle("Anti-Screech", "st", false, function(state)
     vs["st"] = state
 end)
