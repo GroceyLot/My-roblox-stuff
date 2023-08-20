@@ -24,6 +24,7 @@ function ESP:AddText(obj, color, text)
   BillboardGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
   BillboardGui.Active = true
   BillboardGui.Adornee = obj
+  BillboardGui.Name = obj.Name
   BillboardGui.AlwaysOnTop = true
   BillboardGui.Size = UDim2.new(0, 1000, 0, 50)
   TextLabel.Parent = BillboardGui
