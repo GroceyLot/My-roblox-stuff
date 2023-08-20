@@ -1,5 +1,6 @@
-local ESP = {}
+local ESP = {Folder = nil}
 local espfolder = Instance.new("Folder")
+ESP.Folder = espfolder
 espfolder.Name = tostring(math.random(10000000,99999999))
 espfolder.Parent = game.Workspace
 function ESP:Clear()
