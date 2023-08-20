@@ -52,63 +52,64 @@ local section1 = window:Section("Player", "section1")
 section1:Number("Speed Boost", "WalkSpeed", 0, 6, 0, function(value)
     vs["ws"] = value
 end)
+local flying = false
+local fspeed = 5
 
+local uis = game:GetService("UserInputService")
+local lastpos
+function update()
+	local movement = Vector3.new()
+	local cam = game.Workspace.CurrentCamera
+	if flying then
+		if uis:IsKeyDown(Enum.KeyCode.W) then
+			movement = movement + cam.CFrame.lookVector
+		end
+		if uis:IsKeyDown(Enum.KeyCode.S) then
+			movement = movement - cam.CFrame.lookVector
+		end
+		if uis:IsKeyDown(Enum.KeyCode.D) then
+			movement = movement + cam.CFrame.rightVector
+		end
+		if uis:IsKeyDown(Enum.KeyCode.A) then
+			movement = movement - cam.CFrame.rightVector
+		end
+		if uis:IsKeyDown(Enum.KeyCode.LeftControl) then
+			movement = movement - cam.CFrame.upVector
+		end
+		if uis:IsKeyDown(Enum.KeyCode.Space) then
+			movement = movement + cam.CFrame.upVector
+		end
+		local speed = fspeed / 25
+		pcall(function()
+			game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(lastpos))
+		end)
+		game.Players.LocalPlayer.Character:TranslateBy(movement * Vector3.new(speed, speed, speed))
+		lastpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+	end
+end
+
+
+game.RunService.Heartbeat:Connect(update)
+
+local tog = section1:Toggle("Fly (F)", "fly", false, function(state)
+    flying = state
+	lastpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+end)
+uis.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.Keyboard then
+        if input.KeyCode == Enum.KeyCode.F then
+            flying = not flying
+			tog:Toggle(flying)
+        end
+    end
+end)
+section1:Number("Fly speed", "fs", 0, 15, 5, function(value)
+    fspeed = value
+end)
 -- Add a toggle switch to the section
 section1:Toggle("Instant prompts", "InstantPrompts", false, function(state)
     vs["it"] = state
 end)
-local flying
-local flySpeed = 15
-local tog = section1:Toggle("Fly (F)", "FY", false, function(val)
-	if val then
-		FlyPos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-	end
-	wait(0.01)
-    flying = val
-end)
-section1:Number("Fly speed", "FS", 0, 25, 15, function(value)
-    flySpeed = value
-end)
-local input = game:GetService("UserInputService")
-local function UpdateFlying()
-    if flying then
-        local camera = game.Workspace.CurrentCamera
-        local moveDirection = Vector3.new(0, 0, 0)
-
-        if input:IsKeyDown(Enum.KeyCode.W) then
-            moveDirection = moveDirection + camera.CFrame.LookVector
-        end
-
-        if input:IsKeyDown(Enum.KeyCode.S) then
-            moveDirection = moveDirection - camera.CFrame.LookVector
-        end
-
-        if input:IsKeyDown(Enum.KeyCode.A) then
-            moveDirection = moveDirection - camera.CFrame.RightVector
-        end
-
-        if input:IsKeyDown(Enum.KeyCode.D) then
-            moveDirection = moveDirection + camera.CFrame.RightVector
-        end
-
-        if input:IsKeyDown(Enum.KeyCode.Space) then
-            moveDirection = moveDirection + Vector3.new(0, 1, 0)
-        end
-
-        if input:IsKeyDown(Enum.KeyCode.Q) then
-            moveDirection = moveDirection - Vector3.new(0, 1, 0)
-        end
-	FlyPos = FlyPos + (moveDirection * (flySpeed/25))
-	game.Players.LocalPlayer.Character:MoveTo(FlyPos)
-    end
-    if input:IsKeyDown(Enum.KeyCode.F) then
-        flying = not flying
-	tog:Toggle(flying)
-	wait(1)
-    end
-game:GetService("RunService").Heartbeat:Once(UpdateFlying)
-end
-game:GetService("RunService").Heartbeat:Once(UpdateFlying)
 -- Add a button to the section
 section1:Button("Kill", function()
     game.Players.LocalPlayer.Character.Humanoid.Health = 0
@@ -1231,7 +1232,7 @@ Achievements.Get({
 })
 
 function handleautoprompts()
-	local rootPart = char:FindFirstChild("Collision")
+	local rootPart = char and char:FindFirstChild("Collision")
 	for i=1, #topick do
 		if topick[i] and topick[i].Parent then
 			local pos = topick[i].Parent
@@ -1254,7 +1255,7 @@ function handleautoprompts()
 					end
 				end
 			end
-			if (rootPart.Position - pos.Position).Magnitude <= 12 then
+			if (rootPart.Position - pos.Position).Magnitude <= 10 then
 				fireproximityprompt(topick[i])
 				if topick[i].Name ~= "UnlockPrompt" then
 					pcall(function()
