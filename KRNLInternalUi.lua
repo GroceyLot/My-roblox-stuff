@@ -13,14 +13,15 @@ end
 
 local ting = {}
 
-function ting.Notify(Text, Length)
+function ting:Notify(Text, Length)
     local gui = Instance.new("ScreenGui")
-    gui.Name = "NotificationGui"
+	gui.Name = tostring(math.random(-999999, 999999))
     gui.Parent = game.CoreGui
 
     local frame = Instance.new("Frame")
-    frame.Size = UDim2.new(0.06, 0, 0.04, 0)  -- Don't worry, we'll set the size later
-    frame.Position = UDim2.new(0.935,0,0.95,0)  -- Same here
+	local length = (string.len(Text)/1.2)/100
+    frame.Size = UDim2.new(length, 0, 0.04, 0)
+    frame.Position = UDim2.new(0.995 - length,0,0.95,0)  -- Same here
     frame.BackgroundColor3 = Color3.fromRGB(20,20,20)
     frame.BackgroundTransparency = 0
     frame.BorderSizePixel = 0
@@ -41,7 +42,7 @@ function ting.Notify(Text, Length)
 	textLabel.BackgroundTransparency = 1
     textLabel.Text = Text
     textLabel.TextColor3 = Color3.fromRGB(75,75,75)
-    textLabel.TextSize = frame.AbsoluteSize.Y - (string.len(Text)*(3.5 - (string.len(Text) / 8)))
+    textLabel.TextSize = frame.AbsoluteSize.Y / 2
     textLabel.Parent = frame
 
 	local debris = game:GetService("Debris")
@@ -49,7 +50,7 @@ function ting.Notify(Text, Length)
 	debris:AddItem(gui, Length)
 end
 
-ting.Notify("Loading...", 3)
+ting:Notify("Loading...", 3)
 
 local scrname = tostring(math.random(10000000000000000000000,9999999999999999999999999999999))
 
@@ -123,13 +124,28 @@ local AR4 = instance.new("UIAspectRatioConstraint", {
 	DominantAxis = Enum.DominantAxis.Height;
 })
 
+local TextButtonyay = instance.new("TextButton", {
+	Parent = TopTopBar;
+	BackgroundColor3 = Color3.fromRGB(25,25,25);
+	BorderColor3 = Color3.fromRGB(0, 0, 0);
+	BorderSizePixel = 0;
+	Position = UDim2.new(0.865, 0, 0, 0);
+	Size = UDim2.new(0.0675, 0, 1, 0);
+	Font = Enum.Font.Arcade;
+	Text = "-";
+	TextColor3 = Color3.fromRGB(75,75,75);
+	TextScaled = true;
+	TextSize = 14.000;
+	TextWrapped = true;
+})
+
 local TextButton = instance.new("TextButton", {
 	Parent = TopTopBar;
 	BackgroundColor3 = Color3.fromRGB(25,25,25);
 	BorderColor3 = Color3.fromRGB(0, 0, 0);
 	BorderSizePixel = 0;
-	Position = UDim2.new(0.865072966, 0, 0, 0);
-	Size = UDim2.new(0.134927019, 0, 1, 0);
+	Position = UDim2.new(0.9325, 0, 0, 0);
+	Size = UDim2.new(0.0675, 0, 1, 0);
 	Font = Enum.Font.Gotham;
 	Text = "×";
 	TextColor3 = Color3.fromRGB(75,75,75);
@@ -348,14 +364,24 @@ local Main2 = instance.new("Frame", {
 	Size = UDim2.new(1, 0, 0.75999999, 0);
 })
 
+local SideBarry = instance.new("Frame", {
+	Name = "SideBarry";
+	Parent = Main2;
+	BackgroundColor3 = Color3.fromRGB(20,20,20);
+	BorderColor3 = Color3.fromRGB(0, 0, 0);
+	BorderSizePixel = 0;
+	Position = UDim2.new(0, 0, 0, 0);
+	Size = UDim2.new(0.250999957, 0, 1, 0);
+})
+
 local SideBar = instance.new("Frame", {
 	Name = "SideBar";
-	Parent = Main2;
-	BackgroundColor3 = Color3.fromRGB(30, 30, 30);
+	Parent = SideBarry;
+	BackgroundTransparency = 1;
 	BorderColor3 = Color3.fromRGB(0, 0, 0);
 	BorderSizePixel = 0;
 	Position = UDim2.new(0, 0, 0.0285627246, 0);
-	Size = UDim2.new(0.250999957, 0, 0.971437275, 0);
+	Size = UDim2.new(1, 0, 0.971437275, 0);
 })
 
 local UIListLayout3 = instance.new("UIListLayout", {
@@ -393,7 +419,7 @@ local TextButton7 = instance.new("TextButton", {
 	TextSize = MainFrame.AbsoluteSize.Y / 23;
 })
 local TextLab = instance.new("TextLabel", {
-	Name = "TextLaby";
+	Name = "TextLab";
 	Parent = SideBar;
 	BackgroundColor3 = Color3.fromRGB(40,40,40);
 	BorderColor3 = Color3.fromRGB(0, 0, 0);
@@ -403,7 +429,8 @@ local TextLab = instance.new("TextLabel", {
 	Font = Enum.Font.ArialBold;
 	Text = "PlaceId: "..tostring(game.PlaceId).." Name: "..game.Players.LocalPlayer.Name.." Version: 1.3.1";
 	TextColor3 = Color3.fromRGB(125,125,125);
-	TextScaled = true;
+	TextSize = MainFrame.AbsoluteSize.Y / 23;
+	TextWrapped = true;
 })
 local Content = instance.new("Frame", {
 	Name = "Content";
@@ -862,7 +889,7 @@ function load(q)
 			rl2.Text = scrip.title
 			rl2.Parent = ScrollingFramse
 			rl2.TextButtony.MouseButton1Click:Connect(function()
-				ting.Notify("Running", 1)
+				ting:Notify("Running", 1)
 				local sc = "https://rawscripts.net/raw/" .. scrip.slug
 				print(sc)
 				local cre = game:HttpGet(sc)
@@ -898,7 +925,7 @@ function load(q)
 			CurrentTab.Value = Taby
 			Taby.BackgroundTransparency = 0
 		end)
-				ting.Notify("Script ran", 3)
+				ting:Notify("Script ran", 3)
 			end)
 		end
 	end
@@ -995,6 +1022,23 @@ local function PYIMREQ_fake_script() -- Run.S7
 	end)
 end
 coroutine.wrap(PYIMREQ_fake_script)()
+local function PYIMREQy_fake_script() -- Run.S7 
+	local script = Instance.new('LocalScript', TextButtonyay)
+
+	TextButtonyay.MouseButton1Click:Connect(function()
+		MainFrame.Visible = false
+		ting:Notify("LeftControl to open and close the gui", 3)
+	end)
+end
+game:GetService("UserInputService").InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.Keyboard then
+        if input.KeyCode == Enum.KeyCode.LeftControl then
+			local v = MainFrame.Visible
+      		MainFrame.Visible = not v
+		end
+	end
+end)
+coroutine.wrap(PYIMREQy_fake_script)()
 local function BLZTVX_fake_script() -- CloseTab.S6 
 	local script = Instance.new('LocalScript', CloseTab)
 
@@ -1085,7 +1129,7 @@ else
 	writefile("KrnlInternal/Info.txt", httpService:JSONEncode(json))
 end
 ScreenGui.Parent = game.CoreGui
-ting.Notify("Loaded", 4)
+ting:Notify("Loaded", 4)
 Uitils.MakeDraggable(MainFrame, TopTopBar, 0)
 CurrentTab.Value.BackgroundTransparency = 1
 CurrentTab.Value = HomeButton
@@ -1120,5 +1164,4 @@ while true do
 		break
 	end
 	pcall(function()CurrentTab.Value:FindFirstChild("Value").Value = TextBox.Text;end)
-	ting.Notify("Saved!", 2)
 end
