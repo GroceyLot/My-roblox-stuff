@@ -392,7 +392,7 @@ local TextButton7 = instance.new("TextButton", {
 	TextColor3 = Color3.fromRGB(125,125,125);
 	TextSize = MainFrame.AbsoluteSize.Y / 23;
 })
-local TextLab = instance.new("TextButton", {
+local TextLab = instance.new("TextLabel", {
 	Name = "TextButton7";
 	Parent = SideBar;
 	BackgroundColor3 = Color3.fromRGB(40,40,40);
@@ -403,7 +403,7 @@ local TextLab = instance.new("TextButton", {
 	Font = Enum.Font.ArialBold;
 	Text = "PlaceId: "..tostring(game.PlaceId).." Name: "..game.Players.LocalPlayer.Name.." Version: 1.3.1";
 	TextColor3 = Color3.fromRGB(125,125,125);
-	TextSize = MainFrame.AbsoluteSize.Y / 23;
+	TextScaled = true;
 })
 local Content = instance.new("Frame", {
 	Name = "Content";
