@@ -393,7 +393,7 @@ local TextButton7 = instance.new("TextButton", {
 	TextSize = MainFrame.AbsoluteSize.Y / 23;
 })
 local TextLab = instance.new("TextLabel", {
-	Name = "TextButton7";
+	Name = "TextLaby";
 	Parent = SideBar;
 	BackgroundColor3 = Color3.fromRGB(40,40,40);
 	BorderColor3 = Color3.fromRGB(0, 0, 0);
