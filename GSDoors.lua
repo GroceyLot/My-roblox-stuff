@@ -1264,8 +1264,8 @@ function handleautoprompts()
 				end
 			end
 		end
-		wait()
 	end
+	wait()
 	game.RunService.Heartbeat:Once(handleautoprompts)
 end
 
