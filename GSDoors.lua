@@ -1211,12 +1211,30 @@ local function onRushMovingAdded(child)
 			if vs["gmn"] then
 				h = "It doesn't matter with godmode but maybe don't move."
 			end
-			Achievements.Get({
-    			Title = "I think ambush is coming",
-    			Desc = h,
-    			Reason = "AmbushMoving found in Workspace, may be fake",
-    			Image = "https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/download.png",
-			})
+			if vs["de"] then
+				Achievements.Get({
+    				Title = "I think ambush is coming",
+    				Desc = h,
+    				Reason = "AmbushMoving found in Workspace, may be fake",
+    				Image = "https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/download.png",
+				})
+			end
+			local vf = false
+			for i=1,200 do
+				wait(0.01)
+				if game:GetService("Workspace")["Ambience_Ambush"].IsPlaying then
+					vf = true
+					break
+				end
+			end
+			if vf then 
+				Achievements.Get({
+    				Title = "Ambush is coming",
+    				Desc = h,
+    				Reason = "AmbushMoving found in Workspace and verified",
+    				Image = "https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/download.png",
+				})
+			end
 		end
 	end
 end
