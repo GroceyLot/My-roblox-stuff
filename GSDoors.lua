@@ -1203,9 +1203,6 @@ local function onRushMovingAdded(child)
 		while not child:FindFirstChild("RushNew") do
 			wait()
 		end
-		if vs["ees"] then
-			esp:AddText(child:FindFirstChild("RushNew"), Color3.new(1,0,0), "Ambush")
-		end
 		if vs["ne"] then
 			local h = "Quick hide! Make sure to get in and out."
 			if vs["gmn"] then
@@ -1235,6 +1232,9 @@ local function onRushMovingAdded(child)
     				Image = "https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/download.png",
 				})
 			end
+		end
+		if vs["ees"] then
+			esp:AddText(child:FindFirstChild("RushNew"), Color3.new(1,0,0), "Ambush")
 		end
 	end
 end
