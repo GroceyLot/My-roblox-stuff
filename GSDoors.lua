@@ -1265,16 +1265,6 @@ Achievements.Get({
     Image = "https://images.emojiterra.com/twitter/v13.1/512px/1f913.png",
 })
 
-function handlevisiblegodmode()
-	for i,v in pairs(game.Players:GetChildren()) do
-		if v.Character:GetAttribute("GM") then
-			v.Character.HumanoidRootPart.Position = v.Character.HumanoidRootPart.Position + Vector3.new(0,10,0)
-		end
-	end
-end
-
-game.RunService.Heartbeat:Connect(handlevisiblegodmode)
-
 function handleautoprompts()
 	local rootPart = char and char:FindFirstChild("Collision")
 	for i=1, #topick do
