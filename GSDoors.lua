@@ -20,6 +20,7 @@ local vs = {ws = 0,
 	gmn = false,
 	de = false,
 	asn = false,
+	df = false,
 	arc = false}
 local fbd = {}
 local topick = {}
@@ -240,6 +241,9 @@ section6:Toggle("Auto unlock", "la", false, function(state)
 end)
 section6:Toggle("No rooms lock", "nl", false, function(state)
     vs["nl"] = state
+end)
+section6:Toggle("Auto door 50", "df", false, function(state)
+    vs["df"] = state
 end)
 section6:FinishSize()
 local section7 = window:Section("Server-side hardcore mode", "section7")
@@ -979,6 +983,13 @@ function updateesp()
 	end
 	return con
 end
+function door50()
+	Utils:TweenObject(game.Players.LocalPlayer:FindFirstChild("Collision"), TweenInfo.new(15), {Position = game.Workspace.CurrentRooms["51"].Door.Position})
+	game.Players.LocalPlayer:SetPrimaryPartCFrame(CFrame.new(game.Workspace.CurrentRooms["51"].Door.Position))
+	if vs["gmn"] then
+		game.Players.LocalPlayer:FindFirstChild("Collision").Position = game.Players.LocalPlayer:FindFirstChild("Collision") - Vector3.new(0,10,0)
+	end
+end
 function newroom()
 	local curval = LatestRoom.Value
 	local newroom = game.Workspace.CurrentRooms[tostring(curval)]
@@ -1068,7 +1079,7 @@ function newroom()
 			table.insert(topick, newroom.PickupItem.ModulePrompt)
 		end
 	end
-	if curval == 50 or curval == 100 then
+	if (curval == 50 and not vs["df"]) or curval == 100 then
 		gmnb:Toggle(false)
 		Achievements.Get({
     			Title = "Disabled godmode.",
@@ -1076,6 +1087,10 @@ function newroom()
     			Reason = "Current room is 50 or 100.",
     			Image = "https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/download.png",
 		})
+	end
+	if curval == 50 and vs["df"] then
+		door50()
+		newroom()
 	end
 	if vs["la"] then
 		if newroom.Door:FindFirstChild("Lock") then
