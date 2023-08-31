@@ -19,6 +19,7 @@ local vs = {ws = 0,
 	nl = false,
 	gmn = false,
 	de = false,
+	asn = false,
 	arc = false}
 local fbd = {}
 local topick = {}
@@ -149,10 +150,12 @@ end
 local gmnb = section2:Toggle("Godmode/Noclip", "gmn", false, function(state)
 	vs["gmn"] = state
 	if state then
+		game.Players.LocalPlayer.Character:SetAttribute("GM", true)
 		local Col = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
 		Col.Position = Col.Position - Vector3.new(0,10,0)
 		noclip()
 	else
+		game.Players.LocalPlayer.Character:SetAttribute("GM", false)
 		local Col = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
 		Col.Position = Col.Position + Vector3.new(0,10,0)
 		clip()
@@ -163,6 +166,9 @@ section2:Toggle("Anti-Screech", "st", false, function(state)
 end)
 section2:Toggle("Anti-Seek", "set", false, function(state)
     vs["set"] = state
+end)
+section2:Toggle("Anti-Snare", "asn", false, function(state)
+    vs["asn"] = state
 end)
 section2:FinishSize()
 
@@ -1081,6 +1087,16 @@ function newroom()
 			newroom["RoomsDoor_Entrance"].Door.EnterPrompt.Enabled = true
 		end
 	end
+	if vs["asn"] then
+		if newroom:FindFirstChild("Assets") then
+			local desc = newroom.Assets:GetDescendants()
+			for i=1, #desc do
+				if desc[i].Name == "Snare" then
+					desc[i].Hitbox:Destroy()
+				end
+			end
+		end
+	end
 	LatestRoom:GetPropertyChangedSignal("Value"):Wait()
 	ds:Disconnect()
 	for i=1,#rc do
@@ -1248,6 +1264,16 @@ Achievements.Get({
     Reason = "You executed GSDoors.",
     Image = "https://images.emojiterra.com/twitter/v13.1/512px/1f913.png",
 })
+
+function handlevisiblegodmode()
+	for i,v in pairs(game.Players:GetChildren()) do
+		if v.Character:GetAttribute("GM") then
+			v.Character.HumanoidRootPart.Position = v.Character.HumanoidRootPart.Position + Vector3.new(0,10,0)
+		end
+	end
+end
+
+game.RunService.Heartbeat:Connect(handlevisiblegodmode)
 
 function handleautoprompts()
 	local rootPart = char and char:FindFirstChild("Collision")
