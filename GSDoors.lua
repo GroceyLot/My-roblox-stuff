@@ -984,6 +984,7 @@ function updateesp()
 	return con
 end
 function door50()
+	wait(20)
 	Utils:TweenObject(game.Players.LocalPlayer:FindFirstChild("Collision"), TweenInfo.new(15), {Position = game.Workspace.CurrentRooms["51"].Door.Position})
 	game.Players.LocalPlayer:SetPrimaryPartCFrame(CFrame.new(game.Workspace.CurrentRooms["51"].Door.Position))
 	if vs["gmn"] then
