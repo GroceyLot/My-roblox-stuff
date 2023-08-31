@@ -13,7 +13,7 @@ function ESP:AddHighlight(obj, color)
   esp.OutlineColor = color
   esp.FillTransparency = 0.65
   esp.Adornee = obj
-  esp.Name = obj.Name
+  esp.Name = #espfolder:GetChildren() + 1
   esp.Parent = espfolder
   return esp
 end
@@ -25,7 +25,7 @@ function ESP:AddText(obj, color, text)
   BillboardGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
   BillboardGui.Active = true
   BillboardGui.Adornee = obj
-  BillboardGui.Name = obj.Name
+  BillboardGui.Name = #espfolder:GetChildren() + 1
   BillboardGui.AlwaysOnTop = true
   BillboardGui.Size = UDim2.new(0, 1000, 0, 50)
   TextLabel.Parent = BillboardGui
