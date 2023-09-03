@@ -419,6 +419,7 @@ function update()
     local movement = Vector3.new()
     local cam = game.Workspace.CurrentCamera
     if flying then
+	workspace.Gravity = 0
         if uis:IsKeyDown(Enum.KeyCode.W) then
             movement = movement + cam.CFrame.lookVector
         end
@@ -447,6 +448,8 @@ function update()
         end)
         game.Players.LocalPlayer.Character:TranslateBy(movement * Vector3.new(speed, speed, speed))
         lastpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+    else
+	workspace.Gravity = 90
     end
 end
 
