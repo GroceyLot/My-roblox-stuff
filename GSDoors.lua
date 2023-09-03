@@ -20,6 +20,7 @@ local vs = {ws = 0,
     gmn = false,
     de = false,
     asn = false,
+    wi = false,
     arc = false}
 local fbd = {}
 local topick = {}
@@ -81,6 +82,9 @@ function update()
             movement = movement + cam.CFrame.upVector
         end
         local speed = fspeed / 25
+	if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - lastpos.Position).Magnitude >= 5 then
+	    return
+	end
         pcall(function()
             game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(lastpos))
         end)
@@ -732,6 +736,9 @@ end
 game.RunService.Heartbeat:Once(handleautoprompts)
 
 function waste()
+    if not vs["wi"] then
+	return
+    end
     for _,Player in pairs(Game.Players:GetPlayers()) do
         local function WasteItem(Item)
             if Item.Parent.Parent ~= game.Players.LocalPlayer then
