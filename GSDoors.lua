@@ -104,6 +104,9 @@ function updateesp()
             local desc = newroom.Assets:GetDescendants()
             for i=1, #desc do
                 local v = desc[i]
+		if v.Name == "SpawnPile" then
+			v:Destroy()
+		end
                 if v:IsA("Model") then
                     local goldvalue = v:GetAttribute("GoldValue")
 
