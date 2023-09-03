@@ -267,6 +267,9 @@ function fb()
         end;
     end;
     fbd[4] = lighting.Changed:Connect(function()
+	fbd[1] = lighting.Ambient
+   	fbd[2] = lighting.Brightness
+   	fbd[3] = lighting.FogEnd
         lighting.Ambient = Color3.fromRGB(255, 255, 255);
         lighting.Brightness = 1;
         lighting.FogEnd = 1e10;
