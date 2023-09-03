@@ -22,6 +22,7 @@ local vs = {ws = 0,
     asn = false,
     wi = false,
     ad = false,
+    dr = false,
     arc = false}
 local fbd = {}
 local topick = {}
@@ -613,6 +614,9 @@ section6:Toggle("Auto unlock", "la", false, function(state)
 end)
 section6:Toggle("No rooms lock", "nl", false, function(state)
     vs["nl"] = state
+end)
+section6:Toggle("Door reach", "dr", false, function(state)
+    vs["dr"] = state
 end)
 section6:FinishSize()
 -- Add a label to the window
