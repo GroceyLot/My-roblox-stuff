@@ -4,7 +4,14 @@ local Lib = loadstring(game:HttpGet("https://github.com/GroceyLot/My-roblox-stuf
 -- Create a new window
 local window = Lib:Window("Window", "Doors Hardcore Mode")
 
-window:Label()
+window:Label("Welcome to Doors Hardcore mode,")
+window:Label("to begin have everyone press:")
+window:Label("'Connect as client'")
+window:Label("apart from one person.")
+window:Label("After everyone else has pressed:")
+window:Label("'Connect as client'")
+window:Label("that one person will press:")
+window:Label("'Connect as server'")
 
 local section7 = window:Section("", "section7")
 section7:Button("Connect as Client", function()
