@@ -152,131 +152,6 @@ function updateesp()
     end
     return con
 end
-function newroom()
-    local curval = LatestRoom.Value
-    local newroom = game.Workspace.CurrentRooms[tostring(curval)]
-    if vs["nso"] then
-        if newroom:FindFirstChild("Assets") then
-            local desc = newroom.Assets:GetDescendants()
-            for i=1, #desc do
-                local n = desc[i]
-                if n.Name == "Seek_Arm" then
-                    task.spawn(function()
-                        wait()
-                        n:Destroy()
-                    end)
-                end
-                if n.Name == "ChandelierObstruction" then
-                    task.spawn(function()
-                        wait()
-                        n:Destroy()
-                    end)
-                end
-            end
-        end
-    end
-    if vs["set"] then
-        local trigger = newroom:FindFirstChild("TriggerEventCollision")
-
-        if trigger then
-            trigger:Destroy()
-        end
-    end
-    if vs["no"] then
-        local gate = newroom:FindFirstChild("Gate")
-
-        if gate then
-            local door = gate:FindFirstChild("ThingToOpen")
-
-            if door then
-                door:Destroy()
-            end
-        end
-        local assets = newroom:FindFirstChild("Assets")
-        local paintings = assets:FindFirstChild("Paintings")
-
-        if paintings then
-            local door = paintings:FindFirstChild("MovingDoor")
-
-            if door then
-                door:Destroy()
-            end
-        end
-        local door = newroom:FindFirstChild("Wax_Door")
-
-        if door then
-            door:Destroy()
-        end
-    end
-    local ds = updateesp()
-    topick = {}
-    local rc = {}
-    if vs["pa"] then
-        if newroom:FindFirstChild("Assets") then
-            local desc = newroom.Assets:GetDescendants()
-            for i=1, #desc do
-                if desc[i].Name == "ActivateEventPrompt" then
-                    table.insert(topick, desc[i])
-                end
-                if desc[i].Name == "ModulePrompt" then
-                    table.insert(topick, desc[i])
-                end
-                if desc[i].Name == "LootPrompt" then
-                    table.insert(topick, desc[i])
-                end
-                if desc[i].Name == "Table" or desc[i].Name == "Dresser" or desc[i].Name == "Rolltop_Desk" then
-                    table.insert(rc,
-                        desc[i].DescendantAdded:Connect(function(d)
-                            if d.Name == "ModulePrompt" then
-                                table.insert(topick, d)
-                            end
-                            if d.Name == "LootPrompt" then
-                                table.insert(topick, d)
-                            end
-                        end))
-                end
-            end
-        end
-        if curval == 50 then
-            table.insert(topick, newroom.PickupItem.ModulePrompt)
-        end
-    end
-    if curval == 50 or curval == 100 then
-        gmnb:Toggle(false)
-        Achievements.Get({
-            Title = "Disabled godmode.",
-            Desc = "Godmode disabled for figure, you can re-enable it after.",
-            Reason = "Current room is 50 or 100.",
-            Image = "https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/download.png",
-        })
-    end
-    if vs["la"] then
-        if newroom.Door:FindFirstChild("Lock") then
-            table.insert(topick, newroom.Door.Lock.UnlockPrompt)
-        end
-    end
-    if vs["nl"] then
-        if newroom:FindFirstChild("RoomsDoor_Entrance") then
-            newroom["RoomsDoor_Entrance"].Door.EnterPrompt.Enabled = true
-        end
-    end
-    if vs["asn"] then
-        if newroom:FindFirstChild("Assets") then
-            local desc = newroom.Assets:GetDescendants()
-            for i=1, #desc do
-                if desc[i].Name == "Snare" then
-                    desc[i].Hitbox:Destroy()
-                end
-            end
-        end
-    end
-    LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-    pcall(function() ds:Disconnect(); end)
-    for i=1,#rc do
-        rc[i]:Disconnect()
-    end
-end
-LatestRoom:GetPropertyChangedSignal("Value"):Connect(newroom)
 local player = game.Players.LocalPlayer
 local char = player.Character
 function findclosets()
@@ -555,6 +430,7 @@ function update()
         end
         local speed = fspeed / 25
 	if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - lastpos).Magnitude >= 5 then
+	    lastpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
 	    return
 	end
         pcall(function()
@@ -770,6 +646,132 @@ function unfb()
     fbd[4]:Disconnect()
 end
 --// ok actual code starts here
+
+function newroom()
+    local curval = LatestRoom.Value
+    local newroom = game.Workspace.CurrentRooms[tostring(curval)]
+    if vs["nso"] then
+        if newroom:FindFirstChild("Assets") then
+            local desc = newroom.Assets:GetDescendants()
+            for i=1, #desc do
+                local n = desc[i]
+                if n.Name == "Seek_Arm" then
+                    task.spawn(function()
+                        wait()
+                        n:Destroy()
+                    end)
+                end
+                if n.Name == "ChandelierObstruction" then
+                    task.spawn(function()
+                        wait()
+                        n:Destroy()
+                    end)
+                end
+            end
+        end
+    end
+    if vs["set"] then
+        local trigger = newroom:FindFirstChild("TriggerEventCollision")
+
+        if trigger then
+            trigger:Destroy()
+        end
+    end
+    if vs["no"] then
+        local gate = newroom:FindFirstChild("Gate")
+
+        if gate then
+            local door = gate:FindFirstChild("ThingToOpen")
+
+            if door then
+                door:Destroy()
+            end
+        end
+        local assets = newroom:FindFirstChild("Assets")
+        local paintings = assets:FindFirstChild("Paintings")
+
+        if paintings then
+            local door = paintings:FindFirstChild("MovingDoor")
+
+            if door then
+                door:Destroy()
+            end
+        end
+        local door = newroom:FindFirstChild("Wax_Door")
+
+        if door then
+            door:Destroy()
+        end
+    end
+    local ds = updateesp()
+    topick = {}
+    local rc = {}
+    if vs["pa"] then
+        if newroom:FindFirstChild("Assets") then
+            local desc = newroom.Assets:GetDescendants()
+            for i=1, #desc do
+                if desc[i].Name == "ActivateEventPrompt" then
+                    table.insert(topick, desc[i])
+                end
+                if desc[i].Name == "ModulePrompt" then
+                    table.insert(topick, desc[i])
+                end
+                if desc[i].Name == "LootPrompt" then
+                    table.insert(topick, desc[i])
+                end
+                if desc[i].Name == "Table" or desc[i].Name == "Dresser" or desc[i].Name == "Rolltop_Desk" then
+                    table.insert(rc,
+                        desc[i].DescendantAdded:Connect(function(d)
+                            if d.Name == "ModulePrompt" then
+                                table.insert(topick, d)
+                            end
+                            if d.Name == "LootPrompt" then
+                                table.insert(topick, d)
+                            end
+                        end))
+                end
+            end
+        end
+        if curval == 50 then
+            table.insert(topick, newroom.PickupItem.ModulePrompt)
+        end
+    end
+    if curval == 50 or curval == 100 then
+        gmnb:Toggle(false)
+        Achievements.Get({
+            Title = "Disabled godmode.",
+            Desc = "Godmode disabled for figure, you can re-enable it after.",
+            Reason = "Current room is 50 or 100.",
+            Image = "https://raw.githubusercontent.com/GroceyLot/My-roblox-stuff/Things/download.png",
+        })
+    end
+    if vs["la"] then
+        if newroom.Door:FindFirstChild("Lock") then
+            table.insert(topick, newroom.Door.Lock.UnlockPrompt)
+        end
+    end
+    if vs["nl"] then
+        if newroom:FindFirstChild("RoomsDoor_Entrance") then
+            newroom["RoomsDoor_Entrance"].Door.EnterPrompt.Enabled = true
+        end
+    end
+    if vs["asn"] then
+        if newroom:FindFirstChild("Assets") then
+            local desc = newroom.Assets:GetDescendants()
+            for i=1, #desc do
+                if desc[i].Name == "Snare" then
+                    desc[i].Hitbox:Destroy()
+                end
+            end
+        end
+    end
+    LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+    pcall(function() ds:Disconnect(); end)
+    for i=1,#rc do
+        rc[i]:Disconnect()
+    end
+end
+LatestRoom:GetPropertyChangedSignal("Value"):Connect(newroom)
 
 while true do
     if vs["st"] then
