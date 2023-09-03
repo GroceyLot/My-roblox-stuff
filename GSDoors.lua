@@ -726,7 +726,11 @@ function newroom()
         end
     end
     local ds = updateesp()
-    topick = {}
+    for i,v in pairs(topick) do
+	if v.Parent == nil then
+            table.remove(topick, i)
+	end
+    end
     local rc = {}
     if vs["pa"] then
         if newroom:FindFirstChild("Assets") then
