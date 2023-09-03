@@ -112,8 +112,11 @@ section1:Number("Fly speed", "fs", 0, 15, 5, function(value)
     fspeed = value
 end)
 -- Add a toggle switch to the section
-section1:Toggle("Instant prompts", "InstantPrompts", false, function(state)
+section1:Toggle("Instant prompts", "it", false, function(state)
     vs["it"] = state
+end)
+section1:Toggle("Waste others tools", "wi", false, function(state)
+    vs["wi"] = state
 end)
 -- Add a button to the section
 section1:Button("Kill", function()
