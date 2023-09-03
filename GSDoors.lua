@@ -664,6 +664,7 @@ end
 
 function newroom()
     local curval = LatestRoom.Value
+    repeat wait() until game.Workspace.CurrentRooms:FindFirstChild(tostring(curval))
     local newroom = game.Workspace.CurrentRooms[tostring(curval)]
     if vs["nso"] then
         if newroom:FindFirstChild("Assets") then
