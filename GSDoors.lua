@@ -30,269 +30,6 @@ local Utils = loadstring(game:HttpGet("https://raw.githubusercontent.com/GroceyL
 local Uitils = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/UI.lua"))()
 local Achievements = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
 
--- Creates and displays your custom achievement
-
---[[
-
-		Gui2Lua™
-		10zOfficial
-		Version 1.0.0
-
-]]
-
-
--- Instances
-local Lib = loadstring(game:HttpGet("https://github.com/GroceyLot/My-roblox-stuff/raw/Things/DoorsLib.lua"))()
-
--- Create a new window
-local window = Lib:Window("Window", "GSDoors")
-
--- Create a section in the window
-local section1 = window:Section("Player", "section1")
-
--- Add a number input to the section
-section1:Number("Speed Boost", "WalkSpeed", 0, 6, 0, function(value)
-    vs["ws"] = value
-end)
-local flying = false
-local fspeed = 5
-
-local uis = game:GetService("UserInputService")
-local lastpos
-function update()
-    local movement = Vector3.new()
-    local cam = game.Workspace.CurrentCamera
-    if flying then
-        if uis:IsKeyDown(Enum.KeyCode.W) then
-            movement = movement + cam.CFrame.lookVector
-        end
-        if uis:IsKeyDown(Enum.KeyCode.S) then
-            movement = movement - cam.CFrame.lookVector
-        end
-        if uis:IsKeyDown(Enum.KeyCode.D) then
-            movement = movement + cam.CFrame.rightVector
-        end
-        if uis:IsKeyDown(Enum.KeyCode.A) then
-            movement = movement - cam.CFrame.rightVector
-        end
-        if uis:IsKeyDown(Enum.KeyCode.LeftControl) then
-            movement = movement - cam.CFrame.upVector
-        end
-        if uis:IsKeyDown(Enum.KeyCode.Space) then
-            movement = movement + cam.CFrame.upVector
-        end
-        local speed = fspeed / 25
-	if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - lastpos.Position).Magnitude >= 5 then
-	    return
-	end
-        pcall(function()
-            game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(lastpos))
-        end)
-        game.Players.LocalPlayer.Character:TranslateBy(movement * Vector3.new(speed, speed, speed))
-        lastpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-    end
-end
-
-
-game.RunService.Heartbeat:Connect(update)
-
-local tog = section1:Toggle("Fly (F)", "fly", false, function(state)
-    flying = state
-    lastpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-end)
-uis.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.Keyboard then
-        if input.KeyCode == Enum.KeyCode.F then
-            flying = not flying
-            tog:Toggle(flying)
-        end
-    end
-end)
-section1:Number("Fly speed", "fs", 0, 15, 5, function(value)
-    fspeed = value
-end)
--- Add a toggle switch to the section
-section1:Toggle("Instant prompts", "it", false, function(state)
-    vs["it"] = state
-end)
-section1:Toggle("Waste others tools", "wi", false, function(state)
-    vs["wi"] = state
-end)
--- Add a button to the section
-section1:Button("Kill", function()
-    game.Players.LocalPlayer.Character.Humanoid.Health = 0
-end)
-section1:FinishSize()
--- Create another section in the window
-local section2 = window:Section("Entities", "section2")
-
-
-
-section2:Toggle("Auto Heartbeat", "hbw", false, function(state)
-    vs["hbw"] = state
-end)
-local Noclip = nil
-local Clip = nil
-
-function noclip()
-    Clip = false
-    local function Nocl()
-        if Clip == false and game.Players.LocalPlayer.Character ~= nil then
-            for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-                if v:IsA('BasePart') and v.CanCollide and v.Name ~= floatName then
-                    v.CanCollide = false
-                end
-            end
-        end
-        wait(0.21) -- basic optimization
-    end
-    Noclip = game:GetService('RunService').Stepped:Connect(Nocl)
-end
-
-function clip()
-    if Noclip then Noclip:Disconnect() end
-    Clip = true
-end
-
-local gmnb = section2:Toggle("Godmode/Noclip", "gmn", false, function(state)
-    vs["gmn"] = state
-    if state then
-        game.Players.LocalPlayer.Character:SetAttribute("GM", true)
-        local Col = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
-        Col.Position = Col.Position - Vector3.new(0,10,0)
-        noclip()
-    else
-        game.Players.LocalPlayer.Character:SetAttribute("GM", false)
-        local Col = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
-        Col.Position = Col.Position + Vector3.new(0,10,0)
-        clip()
-    end
-end)
-section2:Toggle("Anti-Screech", "st", false, function(state)
-    vs["st"] = state
-end)
-section2:Toggle("Anti-Seek", "set", false, function(state)
-    vs["set"] = state
-end)
-section2:Toggle("Anti-Snare", "asn", false, function(state)
-    vs["asn"] = state
-end)
-section2:FinishSize()
-
-
-
-local section3 = window:Section("Visuals", "section3")
-section3:Toggle("Notify-Entity", "ne", false, function(state)
-    vs["ne"] = state
-end)
-section3:Toggle("Notify-Entity debug", "de", false, function(state)
-    vs["de"] = state
-end)
-section3:Toggle("Fullbright", "fb", false, function(state)
-    if state then
-        fb()
-    else
-        unfb()
-    end
-end)
-section3:Toggle("Anti-Timothy", "tt", false, function(state)
-    if state then
-        local ting = game.ReplicatedStorage.Entities.Spider
-        local tings = ting:GetChildren()
-        for i=1,#tings do
-            if tings[i]:IsA("MeshPart") then
-                tings[i].Transparency = 1
-            end
-        end
-        ting.ActualRoot.Sound.Parent = game.Lighting
-    else
-        local ting = game.ReplicatedStorage.Entities.Spider
-        local tings = ting:GetChildren()
-        for i=1,#tings do
-            if tings[i]:IsA("MeshPart") then
-                tings[i].Transparency = 0
-            end
-        end
-        game.Lighting.Sound.Parent = game.ReplicatedStorage.Entities.Spider.ActualRoot
-    end
-end)
-
-local section4 = window:Section("ESP", "section4")
-section4:Toggle("Door", "des", false, function(state)
-    vs["des"] = state
-end)
-section4:Toggle("Key, book etc", "kes", false, function(state)
-    vs["kes"] = state
-end)
-section4:Toggle("Gold, item etc", "ies", false, function(state)
-    vs["ies"] = state
-end)
-section4:Toggle("Entities", "ees", false, function(state)
-    vs["ees"] = state
-end)
-section4:FinishSize()
-section3:FinishSize()
-local section6 = window:Section("World", "section6")
-section6:Toggle("No gate etc", "no", false, function(state)
-    vs["no"] = state
-end)
-section6:Toggle("No seek arms etc", "nso", false, function(state)
-    vs["nso"] = state
-end)
-section6:Toggle("Pickup aura", "pa", false, function(state)
-    vs["pa"] = state
-end)
-section6:Toggle("Auto unlock", "la", false, function(state)
-    vs["la"] = state
-end)
-section6:Toggle("No rooms lock", "nl", false, function(state)
-    vs["nl"] = state
-end)
-section6:FinishSize()
--- Add a label to the window
-window:Label("Shift to close the ui")
--- Add a label to the window
-window:Label("Thank you for using GSDoors")
-
-function fb()
-    local lighting = game:GetService("Lighting");
-    fbd = {}
-    fbd[1] = lighting.Ambient
-    fbd[2] = lighting.Brightness
-    fbd[3] = lighting.FogEnd
-    lighting.Ambient = Color3.fromRGB(255, 255, 255);
-    lighting.Brightness = 1;
-    lighting.FogEnd = 1e10;
-    for i, v in pairs(lighting:GetDescendants()) do
-        if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("SunRaysEffect") then
-            v:SetAttribute("e", v.Enabled)
-            v.Enabled = false;
-        end;
-    end;
-    fbd[4] = lighting.Changed:Connect(function()
-	fbd[1] = lighting.Ambient
-   	fbd[2] = lighting.Brightness
-   	fbd[3] = lighting.FogEnd
-        lighting.Ambient = Color3.fromRGB(255, 255, 255);
-        lighting.Brightness = 1;
-        lighting.FogEnd = 1e10;
-    end);
-end
-function unfb()
-    local lighting = game:GetService("Lighting");
-    lighting.Ambient = fbd[1];
-    lighting.Brightness = fbd[2];
-    lighting.FogEnd = fbd[3];
-    for i, v in pairs(lighting:GetDescendants()) do
-        if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("SunRaysEffect") then
-            v.Enabled = v:GetAttribute("e") or v.Enabled;
-        end;
-    end;
-    fbd[4]:Disconnect()
-end
---// ok actual code starts here
-
-
 game:GetService("ProximityPromptService").PromptButtonHoldBegan:Connect(function(prompt)
     if vs["it"] then
         fireproximityprompt(prompt)
@@ -534,7 +271,7 @@ function newroom()
         end
     end
     LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-    ds:Disconnect()
+    pcall(function() ds:Disconnect(); end)
     for i=1,#rc do
         rc[i]:Disconnect()
     end
@@ -764,6 +501,275 @@ function waste()
     game.RunService.Heartbeat:Once(waste)
 end
 game.RunService.Heartbeat:Once(waste)
+
+-- Creates and displays your custom achievement
+
+--[[
+
+		Gui2Lua™
+		10zOfficial
+		Version 1.0.0
+
+]]
+
+
+-- Instances
+local Lib = loadstring(game:HttpGet("https://github.com/GroceyLot/My-roblox-stuff/raw/Things/DoorsLib.lua"))()
+
+-- Create a new window
+local window = Lib:Window("Window", "GSDoors")
+
+-- Create a section in the window
+local section1 = window:Section("Player", "section1")
+
+-- Add a number input to the section
+section1:Number("Speed Boost", "WalkSpeed", 0, 6, 0, function(value)
+    vs["ws"] = value
+end)
+local flying = false
+local fspeed = 5
+
+local uis = game:GetService("UserInputService")
+local lastpos
+function update()
+    local movement = Vector3.new()
+    local cam = game.Workspace.CurrentCamera
+    if flying then
+        if uis:IsKeyDown(Enum.KeyCode.W) then
+            movement = movement + cam.CFrame.lookVector
+        end
+        if uis:IsKeyDown(Enum.KeyCode.S) then
+            movement = movement - cam.CFrame.lookVector
+        end
+        if uis:IsKeyDown(Enum.KeyCode.D) then
+            movement = movement + cam.CFrame.rightVector
+        end
+        if uis:IsKeyDown(Enum.KeyCode.A) then
+            movement = movement - cam.CFrame.rightVector
+        end
+        if uis:IsKeyDown(Enum.KeyCode.LeftControl) then
+            movement = movement - cam.CFrame.upVector
+        end
+        if uis:IsKeyDown(Enum.KeyCode.Space) then
+            movement = movement + cam.CFrame.upVector
+        end
+        local speed = fspeed / 25
+	if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - lastpos.Position).Magnitude >= 5 then
+	    return
+	end
+        pcall(function()
+            game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(lastpos))
+        end)
+        game.Players.LocalPlayer.Character:TranslateBy(movement * Vector3.new(speed, speed, speed))
+        lastpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+    end
+end
+
+
+game.RunService.Heartbeat:Connect(update)
+
+local tog = section1:Toggle("Fly (F)", "fly", false, function(state)
+    flying = state
+    lastpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+end)
+uis.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.Keyboard then
+        if input.KeyCode == Enum.KeyCode.F then
+            flying = not flying
+            tog:Toggle(flying)
+        end
+    end
+end)
+section1:Number("Fly speed", "fs", 0, 15, 5, function(value)
+    fspeed = value
+end)
+-- Add a toggle switch to the section
+section1:Toggle("Instant prompts", "it", false, function(state)
+    vs["it"] = state
+end)
+section1:Toggle("Waste others tools", "wi", false, function(state)
+    vs["wi"] = state
+end)
+-- Add a button to the section
+section1:Button("Kill", function()
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+end)
+section1:FinishSize()
+-- Create another section in the window
+local section2 = window:Section("Entities", "section2")
+
+
+
+section2:Toggle("Auto Heartbeat", "hbw", false, function(state)
+    vs["hbw"] = state
+end)
+local Noclip = nil
+local Clip = nil
+
+function noclip()
+    Clip = false
+    local function Nocl()
+        if Clip == false and game.Players.LocalPlayer.Character ~= nil then
+            for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                if v:IsA('BasePart') and v.CanCollide and v.Name ~= floatName then
+                    v.CanCollide = false
+                end
+            end
+        end
+        wait(0.21) -- basic optimization
+    end
+    Noclip = game:GetService('RunService').Stepped:Connect(Nocl)
+end
+
+function clip()
+    if Noclip then Noclip:Disconnect() end
+    Clip = true
+end
+
+local gmnb = section2:Toggle("Godmode/Noclip", "gmn", false, function(state)
+    vs["gmn"] = state
+    if state then
+        game.Players.LocalPlayer.Character:SetAttribute("GM", true)
+        local Col = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
+        Col.Position = Col.Position - Vector3.new(0,10,0)
+        noclip()
+    else
+        game.Players.LocalPlayer.Character:SetAttribute("GM", false)
+        local Col = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
+        Col.Position = Col.Position + Vector3.new(0,10,0)
+        clip()
+    end
+end)
+section2:Toggle("Anti-Screech", "st", false, function(state)
+    vs["st"] = state
+end)
+section2:Toggle("Anti-Seek", "set", false, function(state)
+    vs["set"] = state
+end)
+section2:Toggle("Anti-Snare", "asn", false, function(state)
+    vs["asn"] = state
+end)
+section2:FinishSize()
+
+
+
+local section3 = window:Section("Visuals", "section3")
+section3:Toggle("Notify-Entity", "ne", false, function(state)
+    vs["ne"] = state
+end)
+section3:Toggle("Notify-Entity debug", "de", false, function(state)
+    vs["de"] = state
+end)
+section3:Toggle("Fullbright", "fb", false, function(state)
+    if state then
+        fb()
+    else
+        unfb()
+    end
+end)
+section3:Toggle("Anti-Timothy", "tt", false, function(state)
+    if state then
+        local ting = game.ReplicatedStorage.Entities.Spider
+        local tings = ting:GetChildren()
+        for i=1,#tings do
+            if tings[i]:IsA("MeshPart") then
+                tings[i].Transparency = 1
+            end
+        end
+        ting.ActualRoot.Sound.Parent = game.Lighting
+    else
+        local ting = game.ReplicatedStorage.Entities.Spider
+        local tings = ting:GetChildren()
+        for i=1,#tings do
+            if tings[i]:IsA("MeshPart") then
+                tings[i].Transparency = 0
+            end
+        end
+        game.Lighting.Sound.Parent = game.ReplicatedStorage.Entities.Spider.ActualRoot
+    end
+end)
+
+local section4 = window:Section("ESP", "section4")
+section4:Toggle("Door", "des", false, function(state)
+    vs["des"] = state
+end)
+section4:Toggle("Key, book etc", "kes", false, function(state)
+    vs["kes"] = state
+end)
+section4:Toggle("Gold, item etc", "ies", false, function(state)
+    vs["ies"] = state
+end)
+section4:Toggle("Entities", "ees", false, function(state)
+    vs["ees"] = state
+end)
+-- Add a button to the section
+section4:Button("Refresh", function()
+    local ds = updateesp()
+    LatestRoom:GetPropertyChangedSignal("Value"):Once(function()
+	pcall(ds:Disconnect())
+    end)
+end)
+section4:FinishSize()
+section3:FinishSize()
+local section6 = window:Section("World", "section6")
+section6:Toggle("No gate etc", "no", false, function(state)
+    vs["no"] = state
+end)
+section6:Toggle("No seek arms etc", "nso", false, function(state)
+    vs["nso"] = state
+end)
+section6:Toggle("Pickup aura", "pa", false, function(state)
+    vs["pa"] = state
+end)
+section6:Toggle("Auto unlock", "la", false, function(state)
+    vs["la"] = state
+end)
+section6:Toggle("No rooms lock", "nl", false, function(state)
+    vs["nl"] = state
+end)
+section6:FinishSize()
+-- Add a label to the window
+window:Label("Shift to close the ui")
+-- Add a label to the window
+window:Label("Thank you for using GSDoors")
+
+function fb()
+    local lighting = game:GetService("Lighting");
+    fbd = {}
+    fbd[1] = lighting.Ambient
+    fbd[2] = lighting.Brightness
+    fbd[3] = lighting.FogEnd
+    lighting.Ambient = Color3.fromRGB(255, 255, 255);
+    lighting.Brightness = 1;
+    lighting.FogEnd = 1e10;
+    for i, v in pairs(lighting:GetDescendants()) do
+        if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("SunRaysEffect") then
+            v:SetAttribute("e", v.Enabled)
+            v.Enabled = false;
+        end;
+    end;
+    fbd[4] = lighting.Changed:Connect(function()
+	fbd[1] = lighting.Ambient
+   	fbd[2] = lighting.Brightness
+   	fbd[3] = lighting.FogEnd
+        lighting.Ambient = Color3.fromRGB(255, 255, 255);
+        lighting.Brightness = 1;
+        lighting.FogEnd = 1e10;
+    end);
+end
+function unfb()
+    local lighting = game:GetService("Lighting");
+    lighting.Ambient = fbd[1];
+    lighting.Brightness = fbd[2];
+    lighting.FogEnd = fbd[3];
+    for i, v in pairs(lighting:GetDescendants()) do
+        if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("SunRaysEffect") then
+            v.Enabled = v:GetAttribute("e") or v.Enabled;
+        end;
+    end;
+    fbd[4]:Disconnect()
+end
+--// ok actual code starts here
 
 while true do
     if vs["st"] then
