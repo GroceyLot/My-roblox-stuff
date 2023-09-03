@@ -554,7 +554,7 @@ function update()
             movement = movement + cam.CFrame.upVector
         end
         local speed = fspeed / 25
-	if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - lastpos.Position).Magnitude >= 5 then
+	if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - lastpos).Magnitude >= 5 then
 	    return
 	end
         pcall(function()
