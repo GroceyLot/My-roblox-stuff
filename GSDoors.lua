@@ -149,6 +149,18 @@ function updateesp()
                 end
             end
         end
+	if workspace:FindFirstChild("RushMoving") then
+	    pcall(function()
+	    repeat wait(0.01) until workspace.RushMoving:FindFirstChild("RushNew")
+	    esp:AddText(ad[i], Color3.new(1,0,0), "Rush")
+	    end)
+	end
+	if workspace:FindFirstChild("AmbushMoving") then
+	    pcall(function()
+	    repeat wait(0.01) until workspace.AmbushMoving:FindFirstChild("RushNew")
+	    esp:AddText(ad[i], Color3.new(1,0,0), "Ambush")
+	    end)
+	end
     end
     return con
 end
