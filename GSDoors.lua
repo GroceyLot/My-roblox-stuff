@@ -783,8 +783,15 @@ function newroom()
             end
         end
     end
+    local hasuyhdwq = nil
+    if vs["dr"] then
+	hasuyhdwq = game.RunService.Heartbeat:Connect(function()
+	    newroom.Door.ClientOpen:FireServer()
+	end)
+    end
     LatestRoom:GetPropertyChangedSignal("Value"):Wait()
     pcall(function() ds:Disconnect(); end)
+    pcall(function() hasuyhdwq:Disconnect(); end)
     for i=1,#rc do
         rc[i]:Disconnect()
     end
