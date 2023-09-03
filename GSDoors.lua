@@ -104,9 +104,6 @@ function updateesp()
             local desc = newroom.Assets:GetDescendants()
             for i=1, #desc do
                 local v = desc[i]
-		if v.Name == "SpawnPile" then
-			v:Destroy()
-		end
                 if v:IsA("Model") then
                     local goldvalue = v:GetAttribute("GoldValue")
 
@@ -439,7 +436,7 @@ function update()
             movement = movement + cam.CFrame.upVector
         end
         local speed = fspeed / 25
-	if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - lastpos).Magnitude >= 5 then
+	if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - lastpos).Magnitude >= 1 then
 	    lastpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
 	    return
 	end
