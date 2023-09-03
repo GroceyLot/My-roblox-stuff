@@ -21,6 +21,7 @@ local vs = {ws = 0,
     de = false,
     asn = false,
     wi = false,
+    ad = false,
     arc = false}
 local fbd = {}
 local topick = {}
@@ -532,6 +533,9 @@ end)
 section2:Toggle("Anti-Snare", "asn", false, function(state)
     vs["asn"] = state
 end)
+section2:Toggle("Anti-Dupe", "ad", false, function(state)
+    vs["ad"] = state
+end)
 section2:FinishSize()
 
 
@@ -769,6 +773,13 @@ function newroom()
                 if desc[i].Name == "Snare" then
                     desc[i].Hitbox:Destroy()
                 end
+            end
+        end
+    end
+    if vs["ad"] then
+        if newroom:FindFirstChild("Closet") then
+            if newroom.Closet:FindFirstChild("DoorFake") then
+            	newroom.Closet.DoorFake:Destroy()
             end
         end
     end
