@@ -1,4 +1,12 @@
-local section7 = window:Section("Server-side hardcore mode", "section7")
+-- Instances
+local Lib = loadstring(game:HttpGet("https://github.com/GroceyLot/My-roblox-stuff/raw/Things/DoorsLib.lua"))()
+
+-- Create a new window
+local window = Lib:Window("Window", "Doors Hardcore Mode")
+
+window:Label()
+
+local section7 = window:Section("", "section7")
 section7:Button("Connect as Client", function()
     local ldr
 local d
