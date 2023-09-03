@@ -496,6 +496,7 @@ function noclip()
     local function Nocl()
         if Clip == false and game.Players.LocalPlayer.Character ~= nil then
             for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+		v:SetAttribute("ShouldCollide", v.CanCollide)
                 if v:IsA('BasePart') and v.CanCollide and v.Name ~= floatName then
                     v.CanCollide = false
                 end
@@ -508,6 +509,11 @@ end
 
 function clip()
     if Noclip then Noclip:Disconnect() end
+    for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+        if v:IsA('BasePart') and v:GetAttribute("ShouldCollide") and v.Name ~= floatName then
+            v.CanCollide = true
+	end
+    end
     Clip = true
 end
 
@@ -753,6 +759,7 @@ function newroom()
         end
     end
     if curval == 50 or curval == 100 then
+	repeat wait() until not workspace:FindFirstChild("RushMoving") and not workspace:FindFirstChild("AmbushMoving")
         gmnb:Toggle(false)
         Achievements.Get({
             Title = "Disabled godmode.",
