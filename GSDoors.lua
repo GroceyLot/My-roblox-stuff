@@ -496,8 +496,8 @@ function noclip()
     local function Nocl()
         if Clip == false and game.Players.LocalPlayer.Character ~= nil then
             for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-		v:SetAttribute("ShouldCollide", v.CanCollide)
-                if v:IsA('BasePart') and v.CanCollide and v.Name ~= floatName then
+                if v:IsA('BasePart') and v.CanCollide ~= nil and v.Name ~= floatName then
+		    v:SetAttribute("ShouldCollide", v.CanCollide)
                     v.CanCollide = false
                 end
             end
@@ -510,8 +510,8 @@ end
 function clip()
     if Noclip then Noclip:Disconnect() end
     for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-        if v:IsA('BasePart') and v:GetAttribute("ShouldCollide") and v.Name ~= floatName then
-            v.CanCollide = true
+        if v:IsA('BasePart') and v:GetAttribute("ShouldCollide") ~= nil and v.Name ~= floatName then
+            v.CanCollide = v:GetAttribute("ShouldCollide")
 	end
     end
     Clip = true
