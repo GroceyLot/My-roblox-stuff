@@ -171,7 +171,6 @@ function findclosets()
     local closets = {}
     for i=1,#roms do
         if roms[i]:FindFirstChild("Assets") then
-            print("Assets found in room " .. roms[i].Name)
             local astets = roms[i]:FindFirstChild("Assets")
             local added = 0
             for j=1, #astets:GetChildren() do
@@ -181,12 +180,9 @@ function findclosets()
                 end
             end
             if added == 0 then
-                print("No closets found in room " .. roms[i].Name)
             else
-                print("Closets found in room " .. roms[i].Name)
             end
         else
-            print("No assets found in room " .. roms[i].Name)
         end
     end
     return closets
@@ -208,7 +204,6 @@ function findnearestcloset()
             lowestindex = i
         end
     end
-    print("Closest closet found was " .. lowest .. " studs away from the player and in room " .. closets[lowestindex].Parent.Parent.Name)
     return closets[lowestindex]
 end
 print("Loaded v1.0")
