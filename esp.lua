@@ -15,6 +15,12 @@ function ESP:AddHighlight(obj, color)
   esp.Adornee = obj
   esp.Name = #espfolder:GetChildren() + 1
   esp.Parent = espfolder
+  obj.AncestryChanged:Connect(function()
+    if obj.Parent then
+        return
+      end
+    esp:Destroy()
+  end)
   return esp
 end
 function ESP:AddText(obj, color, text)
@@ -27,7 +33,7 @@ function ESP:AddText(obj, color, text)
   BillboardGui.Adornee = obj
   BillboardGui.Name = #espfolder:GetChildren() + 1
   BillboardGui.AlwaysOnTop = true
-  BillboardGui.Size = UDim2.new(0, 1000, 0, 50)
+  BillboardGui.Size = UDim2.new(0, 1000, 0, 25)
   TextLabel.Parent = BillboardGui
   TextLabel.BackgroundTransparency = 1
   TextLabel.Size = UDim2.new(1, 0, 1, 0)
@@ -36,6 +42,12 @@ function ESP:AddText(obj, color, text)
   TextLabel.Text = text
   TextLabel.TextScaled = true
   UIStroke.Parent = TextLabel
+  obj.AncestryChanged:Connect(function()
+    if obj.Parent then
+        return
+      end
+    BillboardGui:Destroy()
+  end)
   return BillboardGui
 end
 return ESP
