@@ -1,10 +1,14 @@
-local ESP = {Folder = nil}
+local ESP = {Folder = nil, Connections = {}}
 local espfolder = Instance.new("Folder")
 ESP.Folder = espfolder
 espfolder.Name = tostring(math.random(10000000,99999999))
 espfolder.Parent = game.Workspace
 function ESP:Clear()
   espfolder:ClearAllChildren()
+  for i,v in pairs(ESP.Connections) do
+    pcall(function() v:Disconnect() end)
+  end
+  table.clear(ESP.Connections)
 end
 function ESP:AddHighlight(obj, color)
   local esp = Instance.new("Highlight")
@@ -15,12 +19,12 @@ function ESP:AddHighlight(obj, color)
   esp.Adornee = obj
   esp.Name = #espfolder:GetChildren() + 1
   esp.Parent = espfolder
-  obj.AncestryChanged:Connect(function()
+  table.insert(ESP.Connections, obj.AncestryChanged:Connect(function()
     if obj.Parent then
         return
       end
     esp:Destroy()
-  end)
+  end))
   return esp
 end
 function ESP:AddText(obj, color, text)
@@ -42,12 +46,12 @@ function ESP:AddText(obj, color, text)
   TextLabel.Text = text
   TextLabel.TextScaled = true
   UIStroke.Parent = TextLabel
-  obj.AncestryChanged:Connect(function()
+  table.insert(ESP.Connections, obj.AncestryChanged:Connect(function()
     if obj.Parent then
         return
       end
     BillboardGui:Destroy()
-  end)
+  end))
   return BillboardGui
 end
 return ESP
