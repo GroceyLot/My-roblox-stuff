@@ -19,12 +19,14 @@ function ESP:AddHighlight(obj, color)
   esp.Adornee = obj
   esp.Name = #espfolder:GetChildren() + 1
   esp.Parent = espfolder
+  pcall(function()
   table.insert(ESP.Connections, obj.AncestryChanged:Connect(function()
     if obj.Parent then
         return
       end
     esp:Destroy()
   end))
+  end)
   return esp
 end
 function ESP:AddText(obj, color, text)
@@ -46,12 +48,14 @@ function ESP:AddText(obj, color, text)
   TextLabel.Text = text
   TextLabel.TextScaled = true
   UIStroke.Parent = TextLabel
+  pcall(function()
   table.insert(ESP.Connections, obj.AncestryChanged:Connect(function()
     if obj.Parent then
         return
       end
     BillboardGui:Destroy()
   end))
+  end)
   return BillboardGui
 end
 return ESP
