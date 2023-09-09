@@ -37,7 +37,7 @@ function ESP:AddText(obj, color, text)
   BillboardGui.Adornee = obj
   BillboardGui.Name = #espfolder:GetChildren() + 1
   BillboardGui.AlwaysOnTop = true
-  BillboardGui.Size = UDim2.new(0, 1000, 0, 25)
+  BillboardGui.Size = UDim2.new(0, 1000, 0, 15)
   TextLabel.Parent = BillboardGui
   TextLabel.BackgroundTransparency = 1
   TextLabel.Size = UDim2.new(1, 0, 1, 0)
