@@ -16,18 +16,6 @@ function DoEsp()
         end
     end
 end
-game.RunService.Heartbeat:Connect(function()
-    Char.Humanoid.WalkSpeed = Config.Speed
-    if Config.FullBright then
-        game.Lighting.Brightness = 1
-        game.Lighting.FogEnd = 78654
-        game.Lighting.ClockTime = 12
-    end
-    if Config.God then
-        Char.Collision.Position = Char.HumanoidRootPart.Position - Vector3.new(0,10,0)
-        Char.Collision.CanCollide = false
-    end
-end)
 workspace.ChildAdded:Connect(function(c)
     if c.Name == "BackdoorRush" then
         DoEsp()
@@ -46,3 +34,15 @@ end)
 LR.Changed:Connect(function()
      DoEsp()
 end)
+while wait() do
+    Char.Humanoid.WalkSpeed = Config.Speed
+    if Config.FullBright then
+        game.Lighting.Brightness = 1
+        game.Lighting.FogEnd = 78654
+        game.Lighting.ClockTime = 12
+    end
+    if Config.God then
+        Char.Collision.Position = Char.HumanoidRootPart.Position - Vector3.new(0,10,0)
+        Char.Collision.CanCollide = false
+    end
+end
