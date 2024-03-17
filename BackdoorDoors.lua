@@ -1,20 +1,11 @@
-local Config = {
-    Speed = 20,
-    FullBright = true,
-    Esp = true,
-    DoorCol = Color3.new(1,1,0),
-    God = true
-}
-
+local Config = {Speed = 20,FullBright = true,Esp = true,DoorCol = Color3.new(1,1,0),God = true}
 local CR = workspace.CurrentRooms
 local LR = game:GetService("ReplicatedStorage").GameData.LatestRoom
 local SGui = Instance.new("ScreenGui")
 SGui.Parent = game.CoreGui
 local Plr = game.Players.LocalPlayer
 local Char = Plr.Character
-
 local EspLib = loadstring(game:HttpGet("https://github.com/GroceyLot/My-roblox-stuff/raw/Things/esp.lua"))()
-
 function DoEsp()
     EspLib:Clear()
     if Config.Esp then
@@ -25,9 +16,8 @@ function DoEsp()
         end
     end
 end
-
-local RSC = game.RunService.HeartBeat:Connect(function()
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Config.Speed
+game.RunService.Heartbeat:Connect(function()
+    Char.Humanoid.WalkSpeed = Config.Speed
     if Config.FullBright then
         game.Lighting.Brightness = 1
         game.Lighting.FogEnd = 78654
@@ -38,7 +28,6 @@ local RSC = game.RunService.HeartBeat:Connect(function()
         Char.Collision.CanCollide = false
     end
 end)
-
 workspace.ChildAdded:Connect(function(c)
     if c.Name == "BackdoorRush" then
         DoEsp()
