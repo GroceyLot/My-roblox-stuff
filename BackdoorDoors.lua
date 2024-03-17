@@ -24,7 +24,7 @@ function DoEsp()
     end
 end
 
-local RSC = game.RunService.RenderStepped:Connect(function()
+local RSC = game.RunService.HeartBeat:Connect(function()
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Config.Speed
     if Config.FullBright then
         game.Lighting.Brightness = 1
@@ -36,8 +36,6 @@ local RSC = game.RunService.RenderStepped:Connect(function()
         game.Players.LocalPlayer.Collision.CanCollide = false
     end
 end)
-
-LR
 
 workspace.ChildAdded:Connect(function(c)
     if c.Name == "BackdoorRush" then
