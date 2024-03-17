@@ -1,4 +1,4 @@
-local Config = {Speed = 20,FullBright = true,Esp = true,DoorCol = Color3.new(1,1,0),God = true}
+local Config = {Speed = 20,FullBright = true,Esp = true,DoorCol = Color3.new(1,1,0),LevCol = Color3.new(0,1,1),God = true}
 local CR = workspace.CurrentRooms
 local LR = game:GetService("ReplicatedStorage").GameData.LatestRoom
 local SGui = Instance.new("ScreenGui")
@@ -9,24 +9,27 @@ local EspLib = loadstring(game:HttpGet("https://github.com/GroceyLot/My-roblox-s
 function DoEsp()
     EspLib:Clear()
     if Config.Esp then
-        EspLib:AddHighlight(CR[tostring(LR.Value)].Door, Config.DoorCol)
-        EspLib:AddText(CR[tostring(LR.Value)].Door.Sign, Config.DoorCol, "Door: "..tostring(LR.Value+1))
-        if workspace:FindFirstChild("BackdoorRush") then
-              EspLib:AddHighlight(workspace:FindFirstChild("BackdoorRush"), Color3.new(1,0,0))
+        EspLib:AddHighlight(CR[tostring(LR.Value)].Door.Door, Config.DoorCol)
+        EspLib:AddText(CR[tostring(LR.Value)].Door.Door.TimerPlate, Config.DoorCol, "Door: "..tostring(LR.Value+1))
+        for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
+            if v.Name == "TimerLever" then
+                EspLib:AddHighlight(v, LevCol)
+            end
         end
     end
 end
 workspace.ChildAdded:Connect(function(c)
     if c.Name == "BackdoorRush" then
-        DoEsp()
         local message = Instance.new("TextLabel")
         message.Size = UDim2.new(0.12, 0, 0.1, 0)
         message.Position = UDim2.new(0.44, 0, 0, 0)
         message.Text = "BackDoor rush is coming !!"
         message.TextColor3 = Color3.new(1, 1, 1)
-        message.BackgroundColor3 = Color3.new(0.5, 0.1, 0.1)
+        message.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
         message.TextScaled = true
         message.Parent = SGui
+        local Uic = Instance.new("UICorner")
+        Uic.Parent = message
         wait(5)
         message:Destroy()
     end
