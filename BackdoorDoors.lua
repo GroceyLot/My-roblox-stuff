@@ -13,7 +13,7 @@ function DoEsp()
         EspLib:AddText(CR[tostring(LR.Value)].Door.Door.TimerPlate, Config.DoorCol, "Door: "..tostring(LR.Value-50))
         for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
             if v.Name == "TimerLever" then
-                EspLib:AddHighlight(v, LevCol)
+                EspLib:AddHighlight(v.Main, LevCol)
             end
         end
     end
@@ -45,7 +45,7 @@ while wait() do
         game.Lighting.ClockTime = 12
     end
     if Config.God then
-        Char.Collision.Position = Char.HumanoidRootPart.Position - Vector3.new(0,10,0)
+        Char.Collision.Position = Char.HumanoidRootPart.Position - Vector3.new(0,11,0)
         Char.Collision.CanCollide = false
     end
 end
