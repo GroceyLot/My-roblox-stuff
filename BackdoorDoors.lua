@@ -13,7 +13,7 @@ function DoEsp()
         EspLib:AddText(CR[tostring(LR.Value)].Door.Door.TimerPlate, Config.DoorCol, "Door: "..tostring(LR.Value-50))
         for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
             if v.Name == "TimerLever" then
-                EspLib:AddHighlight(v.Main, LevCol)
+                EspLib:AddHighlight(v.Main, Config.LevCol)
             end
         end
     end
