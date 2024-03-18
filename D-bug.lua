@@ -10,7 +10,7 @@ local function findAndPrintPathsAndClasses(object, path, search)
     end
     
     -- Loop through all children of the current object
-    for _, child in ipairs(object:GetDescendants()) do
+    for _, child in ipairs(object:GetChildren()) do
         -- Recursively call this function for each child
         findAndPrintPathsAndClasses(child, currentPath, search)
     end
