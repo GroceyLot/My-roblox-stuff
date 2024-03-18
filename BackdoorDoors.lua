@@ -37,6 +37,7 @@ end)
 LR.Changed:Connect(function()
      DoEsp()
 end)
+DoEsp()
 while wait() do
     Char.Humanoid.WalkSpeed = Config.Speed
     if Config.FullBright then
