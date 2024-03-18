@@ -63,6 +63,10 @@ end
 
 ProcessApiData()
 
-return function(ClassName: string)
-	return Classes[ClassName]
+local Module = {}
+
+function Module:Get(ClassName)
+	 Classes[ClassName]
 end
+
+return Module
